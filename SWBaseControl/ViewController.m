@@ -9,12 +9,14 @@
 #import "ViewController.h"
 #import <SWBaseButton.h>
 #import <SWGrowingTextView.h>
+#import <SWBaseTextView.h>
 #import <UIImage+SWExtension.h>
 #import "ChatViewController.h"
 
 @interface ViewController ()
 {
     SWGrowingTextView *_growingTextView;
+    SWBaseTextView *_textView;
 }
 @end
 
@@ -30,6 +32,10 @@
     [self.view addSubview:btn];
     _growingTextView = [[SWGrowingTextView alloc] initWithFrame:CGRectMake(0, 200, self.view.bounds.size.width, 50)];
     [self.view addSubview:_growingTextView];
+    _textView = [[SWBaseTextView alloc] initWithFrame:CGRectMake(0, 260, self.view.bounds.size.width, 100)];
+    _textView.backgroundColor = [UIColor redColor];
+    _textView.placeholder = @"请输入文字";
+    [self.view addSubview:_textView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,6 +55,10 @@
         ChatViewController *vc = [[ChatViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     });
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 

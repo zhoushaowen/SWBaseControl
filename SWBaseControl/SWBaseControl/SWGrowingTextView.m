@@ -14,6 +14,7 @@
 @property (nonatomic,strong) UITextView *textView;
 @property (nonatomic,weak) id keyboardWillShowObserver,keyboardWillHideObserver;
 @property (nonatomic) CGRect originalRect;
+@property (nonatomic) BOOL isKeyboardShow;
 
 - (void)addKeyboardObserver;
 - (void)removeKeyboardObserver;
@@ -219,6 +220,8 @@
     [self removeKeyboardObserver];
     __weak typeof(self) weakSelf = self;
     _keyboardWillShowObserver = [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        if(!weakSelf.textView.isFirstResponder) return;
+        weakSelf.isKeyboardShow = YES;
         if(CGRectEqualToRect(weakSelf.originalRect, CGRectZero)){
             weakSelf.originalRect = weakSelf.frame;
         }
@@ -236,6 +239,8 @@
         } completion:nil];
     }];
     _keyboardWillHideObserver = [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        if(!weakSelf.isKeyboardShow) return;
+        weakSelf.isKeyboardShow = NO;
         NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         NSInteger curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         [UIView animateWithDuration:duration animations:^{
