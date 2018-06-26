@@ -12,8 +12,9 @@
 #import <SWBaseTextView.h>
 #import <UIImage+SWExtension.h>
 #import "ChatViewController.h"
+#import <SWDatePickerViewController.h>
 
-@interface ViewController ()
+@interface ViewController ()<SWDatePickerViewControllerDelegate>
 {
     SWGrowingTextView *_growingTextView;
     SWBaseTextView *_textView;
@@ -59,8 +60,13 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+    [SWDatePickerViewController showDatePickerToViewController:self withDatePickerConfig:nil delegate:self];
 }
 
+#pragma mark - SWDatePickerViewControllerDelegate
+- (void)datePickerViewController:(SWDatePickerViewController *)datePickerViewController didSelectedDate:(NSDate *)date {
+    NSLog(@"%@",date);
+}
 
 
 @end

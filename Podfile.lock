@@ -1,6 +1,8 @@
 PODS:
   - MBProgressHUD (1.1.0)
-  - SWBaseControl (0.0.1)
+  - SWBaseControl (0.0.2):
+    - SWCustomPresentation
+  - SWCustomPresentation (0.0.4)
   - SWExtension (1.5.0):
     - MBProgressHUD
     - SWExtension/Foundation (= 1.5.0)
@@ -17,6 +19,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - MBProgressHUD
+    - SWCustomPresentation
     - SWExtension
 
 EXTERNAL SOURCES:
@@ -25,7 +28,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  SWBaseControl: 5ddd774e3381407e8c77b6530c916d1cfc043f12
+  SWBaseControl: 5f5b16f76defdc24bb14d4725a2de68f439ee764
+  SWCustomPresentation: f7fe50b7fa4b6f660b13f26d61285924c4e75668
   SWExtension: 245350a8ce5a00073f54667ba9e839536d627ceb
 
 PODFILE CHECKSUM: 413b3ea6264da57a9dd4d104392341bf01c36704
