@@ -12,11 +12,11 @@
 
 - (instancetype)initWithType:(UIButtonType)buttonType style:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle;
 /**
- startAnimating will automatically disable button's user interaction
+  will automatically disable button's user interaction
  */
 - (void)startAnimating;
 /**
- stopAnimating will automatically enable button's user interaction
+  will automatically enable button's user interaction
  */
 - (void)stopAnimating;
 

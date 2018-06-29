@@ -13,6 +13,8 @@
 #import <UIImage+SWExtension.h>
 #import "ChatViewController.h"
 #import <SWDatePickerViewController.h>
+#import <SWPopoverView.h>
+#import <SWPopoverContentTableView.h>
 
 @interface ViewController ()<SWDatePickerViewControllerDelegate>
 {
@@ -60,7 +62,16 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
-    [SWDatePickerViewController showDatePickerToViewController:self withDatePickerConfig:nil delegate:self];
+//    [SWDatePickerViewController showDatePickerToViewController:self withDatePickerConfig:nil delegate:self];
+    SWPopoverContentTableView *contentView = [SWPopoverContentTableView new];
+    contentView.dataSource = @[@"1",@"2",@"3",@"4",@"5"];
+    contentView.didSelectedIndex = ^(NSInteger index) {
+    };
+    SWPopoverView *popoverView = [[SWPopoverView alloc] initWithContentView:contentView contentViewSize:CGSizeMake(130, contentView.rowHeight*5) arrowPoint:CGPointMake(self.view.bounds.size.width - 30, 80) arrowDirection:SWPopoverArrowDirectionTop contentViewCenterOffset:-50];
+    popoverView.popoverViewDidHidden = ^{
+        NSLog(@"popoverViewDidHidden");
+    };
+    [popoverView showPopoverAnimated:YES];
 }
 
 #pragma mark - SWDatePickerViewControllerDelegate

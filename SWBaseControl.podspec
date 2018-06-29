@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "SWBaseControl"
 
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
 
   s.homepage      = 'https://github.com/zhoushaowen/SWBaseControl'
 
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/zhoushaowen/SWBaseControl.git", :tag => s.version }
   
-  s.source_files  = "SWBaseControl/SWBaseControl/*.{h,m}"
+  s.source_files  = "SWBaseControl/SWBaseControl/*.{h,m}","SWBaseControl/SWBaseControl/*/*.{h,m}"
   
   s.dependency 'SWCustomPresentation'
   
