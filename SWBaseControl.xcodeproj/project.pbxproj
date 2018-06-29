@@ -9,11 +9,19 @@
 /* Begin PBXBuildFile section */
 		0727272F801A5EEDEFA63FBE /* libPods-SWBaseControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 862996719BEBB3AA640E90D7 /* libPods-SWBaseControl.a */; };
 		360F504720DA2783008B3AEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 360F504620DA2783008B3AEB /* AppDelegate.m */; };
-		360F504A20DA2783008B3AEB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360F504920DA2783008B3AEB /* ViewController.m */; };
 		360F504D20DA2783008B3AEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 360F504B20DA2783008B3AEB /* Main.storyboard */; };
 		360F504F20DA2785008B3AEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 360F504E20DA2785008B3AEB /* Assets.xcassets */; };
 		360F505220DA2785008B3AEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 360F505020DA2785008B3AEB /* LaunchScreen.storyboard */; };
 		360F505520DA2785008B3AEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 360F505420DA2785008B3AEB /* main.m */; };
+		36911FDD20E5FEF700674BFA /* MyPopoverContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FDC20E5FEF700674BFA /* MyPopoverContentTableViewCell.m */; };
+		36911FE020E5FFB100674BFA /* MyPopoverContentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FDF20E5FFB100674BFA /* MyPopoverContentTableView.m */; };
+		36911FE320E600A400674BFA /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FE220E600A400674BFA /* TableViewController.m */; };
+		36911FE620E6015D00674BFA /* PopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FE520E6015D00674BFA /* PopoverViewController.m */; };
+		36911FE820E6030300674BFA /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36911FE720E6030300674BFA /* PopoverViewController.xib */; };
+		36911FEC20E603EE00674BFA /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FEA20E603EE00674BFA /* DatePickerViewController.m */; };
+		36911FED20E603EE00674BFA /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36911FEB20E603EE00674BFA /* DatePickerViewController.xib */; };
+		36911FF120E605CA00674BFA /* PlaceholderTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FF020E605CA00674BFA /* PlaceholderTextViewController.m */; };
+		36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FF320E606C900674BFA /* AnimateBtnViewController.m */; };
 		36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CA95B820DB99E000713474 /* ChatViewController.m */; };
 		36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CA95B920DB99E000713474 /* ChatViewController.xib */; };
 /* End PBXBuildFile section */
@@ -22,13 +30,27 @@
 		360F504220DA2783008B3AEB /* SWBaseControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWBaseControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		360F504520DA2783008B3AEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		360F504620DA2783008B3AEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		360F504820DA2783008B3AEB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		360F504920DA2783008B3AEB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		360F504C20DA2783008B3AEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		360F504E20DA2785008B3AEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		360F505120DA2785008B3AEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		360F505320DA2785008B3AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		360F505420DA2785008B3AEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		36911FDB20E5FEF700674BFA /* MyPopoverContentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPopoverContentTableViewCell.h; sourceTree = "<group>"; };
+		36911FDC20E5FEF700674BFA /* MyPopoverContentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPopoverContentTableViewCell.m; sourceTree = "<group>"; };
+		36911FDE20E5FFB100674BFA /* MyPopoverContentTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPopoverContentTableView.h; sourceTree = "<group>"; };
+		36911FDF20E5FFB100674BFA /* MyPopoverContentTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPopoverContentTableView.m; sourceTree = "<group>"; };
+		36911FE120E600A400674BFA /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		36911FE220E600A400674BFA /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		36911FE420E6015D00674BFA /* PopoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopoverViewController.h; sourceTree = "<group>"; };
+		36911FE520E6015D00674BFA /* PopoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopoverViewController.m; sourceTree = "<group>"; };
+		36911FE720E6030300674BFA /* PopoverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
+		36911FE920E603EE00674BFA /* DatePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		36911FEA20E603EE00674BFA /* DatePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		36911FEB20E603EE00674BFA /* DatePickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
+		36911FEF20E605CA00674BFA /* PlaceholderTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextViewController.h; sourceTree = "<group>"; };
+		36911FF020E605CA00674BFA /* PlaceholderTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextViewController.m; sourceTree = "<group>"; };
+		36911FF220E606C900674BFA /* AnimateBtnViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimateBtnViewController.h; sourceTree = "<group>"; };
+		36911FF320E606C900674BFA /* AnimateBtnViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimateBtnViewController.m; sourceTree = "<group>"; };
 		36CA95B720DB99E000713474 /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		36CA95B820DB99E000713474 /* ChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		36CA95B920DB99E000713474 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -72,11 +94,13 @@
 			children = (
 				360F504520DA2783008B3AEB /* AppDelegate.h */,
 				360F504620DA2783008B3AEB /* AppDelegate.m */,
-				360F504820DA2783008B3AEB /* ViewController.h */,
-				360F504920DA2783008B3AEB /* ViewController.m */,
-				36CA95B720DB99E000713474 /* ChatViewController.h */,
-				36CA95B820DB99E000713474 /* ChatViewController.m */,
-				36CA95B920DB99E000713474 /* ChatViewController.xib */,
+				36911FE120E600A400674BFA /* TableViewController.h */,
+				36911FE220E600A400674BFA /* TableViewController.m */,
+				36911FEE20E603F700674BFA /* viewControllers */,
+				36911FDE20E5FFB100674BFA /* MyPopoverContentTableView.h */,
+				36911FDF20E5FFB100674BFA /* MyPopoverContentTableView.m */,
+				36911FDB20E5FEF700674BFA /* MyPopoverContentTableViewCell.h */,
+				36911FDC20E5FEF700674BFA /* MyPopoverContentTableViewCell.m */,
 				360F504B20DA2783008B3AEB /* Main.storyboard */,
 				360F504E20DA2785008B3AEB /* Assets.xcassets */,
 				360F505020DA2785008B3AEB /* LaunchScreen.storyboard */,
@@ -84,6 +108,26 @@
 				360F505420DA2785008B3AEB /* main.m */,
 			);
 			path = SWBaseControl;
+			sourceTree = "<group>";
+		};
+		36911FEE20E603F700674BFA /* viewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				36911FE420E6015D00674BFA /* PopoverViewController.h */,
+				36911FE520E6015D00674BFA /* PopoverViewController.m */,
+				36911FE720E6030300674BFA /* PopoverViewController.xib */,
+				36911FE920E603EE00674BFA /* DatePickerViewController.h */,
+				36911FEA20E603EE00674BFA /* DatePickerViewController.m */,
+				36911FEB20E603EE00674BFA /* DatePickerViewController.xib */,
+				36CA95B720DB99E000713474 /* ChatViewController.h */,
+				36CA95B820DB99E000713474 /* ChatViewController.m */,
+				36CA95B920DB99E000713474 /* ChatViewController.xib */,
+				36911FEF20E605CA00674BFA /* PlaceholderTextViewController.h */,
+				36911FF020E605CA00674BFA /* PlaceholderTextViewController.m */,
+				36911FF220E606C900674BFA /* AnimateBtnViewController.h */,
+				36911FF320E606C900674BFA /* AnimateBtnViewController.m */,
+			);
+			path = viewControllers;
 			sourceTree = "<group>";
 		};
 		485516F52CC60BCB60F403C3 /* Frameworks */ = {
@@ -161,10 +205,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36911FED20E603EE00674BFA /* DatePickerViewController.xib in Resources */,
 				360F505220DA2785008B3AEB /* LaunchScreen.storyboard in Resources */,
 				360F504F20DA2785008B3AEB /* Assets.xcassets in Resources */,
 				36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */,
 				360F504D20DA2783008B3AEB /* Main.storyboard in Resources */,
+				36911FE820E6030300674BFA /* PopoverViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,10 +242,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				360F504A20DA2783008B3AEB /* ViewController.m in Sources */,
+				36911FDD20E5FEF700674BFA /* MyPopoverContentTableViewCell.m in Sources */,
 				36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */,
 				360F505520DA2785008B3AEB /* main.m in Sources */,
+				36911FE620E6015D00674BFA /* PopoverViewController.m in Sources */,
 				360F504720DA2783008B3AEB /* AppDelegate.m in Sources */,
+				36911FE320E600A400674BFA /* TableViewController.m in Sources */,
+				36911FEC20E603EE00674BFA /* DatePickerViewController.m in Sources */,
+				36911FE020E5FFB100674BFA /* MyPopoverContentTableView.m in Sources */,
+				36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */,
+				36911FF120E605CA00674BFA /* PlaceholderTextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

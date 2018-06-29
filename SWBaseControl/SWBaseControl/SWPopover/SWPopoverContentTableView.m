@@ -44,15 +44,23 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.separatorInset = UIEdgeInsetsMake(0, 8, 0, 8);
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.rowHeight = self.rowHeight;
     [self addSubview:_tableView];
-    NSAssert([[[self registerCellClassForTableView] new] isKindOfClass:[SWPopoverContentTableViewCell class]], @"you must return a SWPopoverContentTableViewCell class or sub class");
-    [_tableView registerClass:[self registerCellClassForTableView] forCellReuseIdentifier:@"cell"];
+    if([self registerNibForTableView]){
+        [_tableView registerNib:[self registerNibForTableView] forCellReuseIdentifier:@"cell"];
+    }else{
+        NSAssert([[[self registerCellClassForTableView] new] isKindOfClass:[SWPopoverContentTableViewCell class]], @"you must return a SWPopoverContentTableViewCell class or sub class");
+            [_tableView registerClass:[self registerCellClassForTableView] forCellReuseIdentifier:@"cell"];
+    }
 }
 
 - (Class)registerCellClassForTableView {
     return [SWPopoverContentTableViewCell class];
+}
+
+- (UINib *)registerNibForTableView {
+    return nil;
 }
 
 - (void)setDataSource:(NSArray *)dataSource {
@@ -67,6 +75,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SWPopoverContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    if(indexPath.row == [tableView numberOfRowsInSection:0] - 1){
+        cell.shouldStrokeLine = NO;
+    }else{
+        cell.shouldStrokeLine = YES;
+    }
     cell.model = self.dataSource[indexPath.row];
     return cell;
 }

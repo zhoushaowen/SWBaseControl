@@ -10,6 +10,9 @@
 
 @interface SWPopoverContentTableView : UIView
 
+/**
+ set dataSource will automatically reload tableView
+ */
 @property (nonatomic,copy) NSArray *dataSource;
 /**
  default is 5
@@ -22,9 +25,16 @@
 
 @property (nonatomic,strong) void(^didSelectedIndex)(NSInteger index);
 /**
- you must return a SWPopoverContentTableViewCell class or sub class
+ you can overrid the method.
+ you must return a SWPopoverContentTableViewCell class or sub class.
  */
 - (Class)registerCellClassForTableView;
+/**
+ you can overrid the method.
+ you must return a SWPopoverContentTableViewCell class or sub class nib.
+ if you return a nib the registerCellClassForTableView will ignore.
+ */
+- (UINib *)registerNibForTableView;
 /**
  initialize subviews
  */

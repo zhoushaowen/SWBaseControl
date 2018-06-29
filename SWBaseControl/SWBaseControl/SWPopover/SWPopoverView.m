@@ -39,7 +39,11 @@
     BOOL _isAnimating;
 }
 
-- (SWPopoverView *)initWithContentView:(UIView *)contentView contentViewSize:(CGSize)contentViewSize arrowPoint:(CGPoint)arrowPoint arrowDirection:(SWPopoverArrowDirection)arrowDirection contentViewCenterOffset:(CGFloat)contentViewCenterOffset {
+- (instancetype)initWithFrame:(CGRect)frame {
+    return [self initWithContentView:[UIView new] contentViewSize:CGSizeMake(200, 200) arrowPoint:CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, 120) arrowDirection:SWPopoverArrowDirectionTop contentViewCenterOffset:0];
+}
+
+- (instancetype)initWithContentView:(UIView *)contentView contentViewSize:(CGSize)contentViewSize arrowPoint:(CGPoint)arrowPoint arrowDirection:(SWPopoverArrowDirection)arrowDirection contentViewCenterOffset:(CGFloat)contentViewCenterOffset {
     self = [super initWithFrame:[UIScreen mainScreen].bounds];
     if(self){
         self.contentViewColor = [[UIColor blackColor] colorWithAlphaComponent:0.7f];

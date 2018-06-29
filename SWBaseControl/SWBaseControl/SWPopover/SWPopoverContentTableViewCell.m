@@ -27,15 +27,32 @@
 }
 
 - (void)prepare {
+    self.shouldStrokeLine = YES;
+    self.lineStrokeColor = [UIColor whiteColor];
+    self.sw_separatorInset = UIEdgeInsetsMake(0, 8, 0, 8);
     self.backgroundColor = [UIColor clearColor];
-    self.layoutMargins = UIEdgeInsetsMake(0, 8, 0, 8);
     self.textLabel.textColor = [UIColor whiteColor];
     self.selectedBackgroundView = [UIView new];
     self.selectedBackgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3f];
 }
 
-- (void)setModel:(id)model {
-    _model = model;
+//- (void)setModel:(id)model {
+//    _model = model;
+//}
+
+- (void)drawRect:(CGRect)rect {
+    if(!self.shouldStrokeLine) return;
+    [self.lineStrokeColor?:[UIColor whiteColor] set];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+    [bezierPath setLineWidth:1/[UIScreen mainScreen].scale];
+    [bezierPath moveToPoint:CGPointMake(self.sw_separatorInset.left, self.bounds.size.height)];
+    [bezierPath addLineToPoint:CGPointMake(self.bounds.size.width - self.sw_separatorInset.right, self.bounds.size.height)];
+    [bezierPath stroke];
+}
+
+- (void)setShouldStrokeLine:(BOOL)shouldStrokeLine {
+    _shouldStrokeLine = shouldStrokeLine;
+    [self setNeedsDisplay];
 }
 
 

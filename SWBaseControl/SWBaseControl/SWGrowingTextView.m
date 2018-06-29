@@ -245,7 +245,14 @@
         NSInteger curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         [UIView animateWithDuration:duration animations:^{
             [UIView setAnimationCurve:curve];
-            weakSelf.frame = weakSelf.originalRect;
+            CGRect frame = weakSelf.frame;
+            if(weakSelf.originalRect.origin.y >= [UIScreen mainScreen].bounds.size.height){
+                frame.origin = weakSelf.originalRect.origin;
+                weakSelf.frame = frame;
+            }else{
+                frame.origin.y = weakSelf.superview.bounds.size.height - frame.size.height;
+                weakSelf.frame = frame;
+            }
             [weakSelf keyboardWillHide];
         } completion:nil];
     }];

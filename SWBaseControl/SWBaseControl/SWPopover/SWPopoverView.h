@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, SWPopoverArrowDirection) {
 @property (nonatomic,strong) void(^popoverViewDidHidden)(void);
 
 /**
- create a SWPopoverView
+ designated initializer
 
  @param contentView the view whant you want to see
  @param contentViewSize contentViewSize's width and height
@@ -36,14 +36,12 @@ typedef NS_ENUM(NSUInteger, SWPopoverArrowDirection) {
  @param contentViewCenterOffset the contentView's center offset between arrowPoint
  @return SWPopoverView
  */
-- (SWPopoverView *)initWithContentView:(UIView *)contentView contentViewSize:(CGSize)contentViewSize arrowPoint:(CGPoint)arrowPoint arrowDirection:(SWPopoverArrowDirection)arrowDirection contentViewCenterOffset:(CGFloat)contentViewCenterOffset;
+- (instancetype)initWithContentView:(UIView *)contentView contentViewSize:(CGSize)contentViewSize arrowPoint:(CGPoint)arrowPoint arrowDirection:(SWPopoverArrowDirection)arrowDirection contentViewCenterOffset:(CGFloat)contentViewCenterOffset NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
 
 - (void)showPopoverAnimated:(BOOL)isAnimated;
 - (void)hidePopoverAnimated:(BOOL)isAnimated;
 
-- (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
-- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
 
 @end
