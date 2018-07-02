@@ -36,10 +36,6 @@
     self.selectedBackgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3f];
 }
 
-//- (void)setModel:(id)model {
-//    _model = model;
-//}
-
 - (void)drawRect:(CGRect)rect {
     if(!self.shouldStrokeLine) return;
     [self.lineStrokeColor?:[UIColor whiteColor] set];

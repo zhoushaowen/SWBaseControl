@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoveableTableViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bV-Af-pgj">
+                    <rect key="frame" x="148" y="327" width="80" height="33"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="click me 1!"/>
+                    <connections>
+                        <action selector="clickBtn1:" destination="-1" eventType="touchUpInside" id="wrw-eg-gjZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9k-eG-3nt">
+                    <rect key="frame" x="146.5" y="368" width="83" height="33"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="click me 2!"/>
+                    <connections>
+                        <action selector="clickBtn2:" destination="-1" eventType="touchUpInside" id="Iad-gU-KAr"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZ2-zq-diF">
+                    <rect key="frame" x="146.5" y="409" width="83" height="33"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="click me 3!"/>
+                    <connections>
+                        <action selector="clickBtn3:" destination="-1" eventType="touchUpInside" id="GlH-c9-vAq"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bZ2-zq-diF" firstAttribute="centerX" secondItem="o9k-eG-3nt" secondAttribute="centerX" id="0aT-yP-zbA"/>
+                <constraint firstItem="bZ2-zq-diF" firstAttribute="top" secondItem="o9k-eG-3nt" secondAttribute="bottom" constant="8" id="67k-m5-KXb"/>
+                <constraint firstItem="o9k-eG-3nt" firstAttribute="top" secondItem="8bV-Af-pgj" secondAttribute="bottom" constant="8" id="Vmv-UT-Dma"/>
+                <constraint firstItem="8bV-Af-pgj" firstAttribute="centerY" secondItem="Q5M-cg-NOt" secondAttribute="centerY" id="YBw-og-44V"/>
+                <constraint firstItem="o9k-eG-3nt" firstAttribute="centerX" secondItem="8bV-Af-pgj" secondAttribute="centerX" id="ZGb-QF-Saz"/>
+                <constraint firstItem="8bV-Af-pgj" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="eAB-p7-pg8"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+</document>

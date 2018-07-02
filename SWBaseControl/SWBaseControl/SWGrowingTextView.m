@@ -76,7 +76,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self){
-        [self setup];
+        [self prepare];
     }
     return self;
 }
@@ -84,12 +84,12 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if(self){
-        [self setup];
+        [self prepare];
     }
     return self;
 }
 
-- (void)setup {
+- (void)prepare {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.backgroundColor = [UIColor colorWithRed:241/255.0 green:241/255.0 blue:244/255.0 alpha:1.0];
     _textView = [[UITextView alloc] init];

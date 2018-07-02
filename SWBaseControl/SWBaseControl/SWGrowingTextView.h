@@ -35,6 +35,11 @@
 
 @interface SWGrowingTextView : UIView
 
+/**
+ init subviews
+ */
+- (void)prepare NS_REQUIRES_SUPER;
+
 @property (nonatomic,weak) id<SWGrowingTextViewDelegate> delegate;
 
 /**

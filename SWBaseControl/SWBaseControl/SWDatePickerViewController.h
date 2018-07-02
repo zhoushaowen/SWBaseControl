@@ -25,7 +25,7 @@
  show a SWDatePickerViewController which has a datePicker view,default datePickerMode is UIDatePickerModeDate.
  you can custom datePicker with datePickerConfig block
  */
-+ (SWDatePickerViewController *)showDatePickerToViewController:(UIViewController *)viewController withDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate;
++ (instancetype)showDatePickerToViewController:(UIViewController *)viewController withDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate;
 /**
  affect confirm button's title color,default is nil
  */

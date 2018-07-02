@@ -97,7 +97,7 @@
     _confirmBtn.frame = CGRectMake(self.view.bounds.size.width - 156/2.0f, 0, 156/2.0f, 40);
 }
 
-+ (SWDatePickerViewController *)showDatePickerToViewController:(UIViewController *)viewController withDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate {
++ (instancetype)showDatePickerToViewController:(UIViewController *)viewController withDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate {
     SWDatePickerViewController *datePickerViewController = [SWDatePickerViewController new];
     datePickerViewController.delegate = delegate;
     datePickerViewController.datePickerConfig = datePickerConfig;

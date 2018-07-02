@@ -22,6 +22,11 @@
 		36911FED20E603EE00674BFA /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36911FEB20E603EE00674BFA /* DatePickerViewController.xib */; };
 		36911FF120E605CA00674BFA /* PlaceholderTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FF020E605CA00674BFA /* PlaceholderTextViewController.m */; };
 		36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FF320E606C900674BFA /* AnimateBtnViewController.m */; };
+		36911FFB20E6198500674BFA /* MoveableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FF920E6198500674BFA /* MoveableTableViewController.m */; };
+		36911FFC20E6198500674BFA /* MoveableTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36911FFA20E6198500674BFA /* MoveableTableViewController.xib */; };
+		36B42E1220E9BB1600CFBCC6 /* MyMoveableViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1120E9BB1600CFBCC6 /* MyMoveableViewController1.m */; };
+		36B42E1520E9BDD700CFBCC6 /* MyMoveableViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1420E9BDD700CFBCC6 /* MyMoveableViewController2.m */; };
+		36B42E1820E9BF6500CFBCC6 /* MyMoveableViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1720E9BF6500CFBCC6 /* MyMoveableViewController3.m */; };
 		36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CA95B820DB99E000713474 /* ChatViewController.m */; };
 		36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CA95B920DB99E000713474 /* ChatViewController.xib */; };
 /* End PBXBuildFile section */
@@ -51,6 +56,15 @@
 		36911FF020E605CA00674BFA /* PlaceholderTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextViewController.m; sourceTree = "<group>"; };
 		36911FF220E606C900674BFA /* AnimateBtnViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimateBtnViewController.h; sourceTree = "<group>"; };
 		36911FF320E606C900674BFA /* AnimateBtnViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimateBtnViewController.m; sourceTree = "<group>"; };
+		36911FF820E6198500674BFA /* MoveableTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoveableTableViewController.h; sourceTree = "<group>"; };
+		36911FF920E6198500674BFA /* MoveableTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoveableTableViewController.m; sourceTree = "<group>"; };
+		36911FFA20E6198500674BFA /* MoveableTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoveableTableViewController.xib; sourceTree = "<group>"; };
+		36B42E1020E9BB1600CFBCC6 /* MyMoveableViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoveableViewController1.h; sourceTree = "<group>"; };
+		36B42E1120E9BB1600CFBCC6 /* MyMoveableViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMoveableViewController1.m; sourceTree = "<group>"; };
+		36B42E1320E9BDD700CFBCC6 /* MyMoveableViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoveableViewController2.h; sourceTree = "<group>"; };
+		36B42E1420E9BDD700CFBCC6 /* MyMoveableViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMoveableViewController2.m; sourceTree = "<group>"; };
+		36B42E1620E9BF6500CFBCC6 /* MyMoveableViewController3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoveableViewController3.h; sourceTree = "<group>"; };
+		36B42E1720E9BF6500CFBCC6 /* MyMoveableViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMoveableViewController3.m; sourceTree = "<group>"; };
 		36CA95B720DB99E000713474 /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		36CA95B820DB99E000713474 /* ChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		36CA95B920DB99E000713474 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -126,6 +140,15 @@
 				36911FF020E605CA00674BFA /* PlaceholderTextViewController.m */,
 				36911FF220E606C900674BFA /* AnimateBtnViewController.h */,
 				36911FF320E606C900674BFA /* AnimateBtnViewController.m */,
+				36911FF820E6198500674BFA /* MoveableTableViewController.h */,
+				36911FF920E6198500674BFA /* MoveableTableViewController.m */,
+				36911FFA20E6198500674BFA /* MoveableTableViewController.xib */,
+				36B42E1020E9BB1600CFBCC6 /* MyMoveableViewController1.h */,
+				36B42E1120E9BB1600CFBCC6 /* MyMoveableViewController1.m */,
+				36B42E1320E9BDD700CFBCC6 /* MyMoveableViewController2.h */,
+				36B42E1420E9BDD700CFBCC6 /* MyMoveableViewController2.m */,
+				36B42E1620E9BF6500CFBCC6 /* MyMoveableViewController3.h */,
+				36B42E1720E9BF6500CFBCC6 /* MyMoveableViewController3.m */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -210,6 +233,7 @@
 				360F504F20DA2785008B3AEB /* Assets.xcassets in Resources */,
 				36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */,
 				360F504D20DA2783008B3AEB /* Main.storyboard in Resources */,
+				36911FFC20E6198500674BFA /* MoveableTableViewController.xib in Resources */,
 				36911FE820E6030300674BFA /* PopoverViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,12 +266,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36B42E1820E9BF6500CFBCC6 /* MyMoveableViewController3.m in Sources */,
 				36911FDD20E5FEF700674BFA /* MyPopoverContentTableViewCell.m in Sources */,
 				36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */,
 				360F505520DA2785008B3AEB /* main.m in Sources */,
 				36911FE620E6015D00674BFA /* PopoverViewController.m in Sources */,
 				360F504720DA2783008B3AEB /* AppDelegate.m in Sources */,
 				36911FE320E600A400674BFA /* TableViewController.m in Sources */,
+				36B42E1520E9BDD700CFBCC6 /* MyMoveableViewController2.m in Sources */,
+				36911FFB20E6198500674BFA /* MoveableTableViewController.m in Sources */,
+				36B42E1220E9BB1600CFBCC6 /* MyMoveableViewController1.m in Sources */,
 				36911FEC20E603EE00674BFA /* DatePickerViewController.m in Sources */,
 				36911FE020E5FFB100674BFA /* MyPopoverContentTableView.m in Sources */,
 				36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */,

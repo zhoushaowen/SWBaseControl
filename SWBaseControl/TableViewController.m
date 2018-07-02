@@ -23,6 +23,7 @@
                    @"ChatViewController",
                    @"PlaceholderTextViewController",
                    @"AnimateBtnViewController",
+                   @"MoveableTableViewController",
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

@@ -26,7 +26,7 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    self.growingTextView = [[SWGrowingTextView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 50, self.view.bounds.size.width, 50)];
+    self.growingTextView = [[SWGrowingTextView alloc] init];
     self.growingTextView.delegate = self;
     [self.view addSubview:self.growingTextView];
 }
