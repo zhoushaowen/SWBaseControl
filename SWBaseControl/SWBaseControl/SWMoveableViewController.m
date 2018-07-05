@@ -58,7 +58,6 @@
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
         {
-            
         }
             break;
         case UIGestureRecognizerStateChanged:
@@ -74,13 +73,22 @@
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         {
-            if(velocity.y > 200 || translation.y > 200){
-                [UIView animateWithDuration:0.35f delay:0 usingSpringWithDamping:1.0 initialSpringVelocity:velocity.y/100.0 options:UIViewAnimationOptionCurveLinear animations:^{
+            if(velocity.y > 200){
+                CGFloat duration = ([self moveableView].bounds.size.height - [self moveableView].transform.ty)/velocity.y;
+                [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                     [self moveableView].transform = CGAffineTransformMakeTranslation(0, [self moveableView].bounds.size.height);
                 } completion:^(BOOL finished) {
                     [self dismissViewControllerAnimated:NO completion:nil];
                 }];
-            }else{
+            }
+            else if (translation.y > [self moveableView].bounds.size.height * 0.4f) {
+                [UIView animateWithDuration:0.35f delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut animations:^{
+                    [self moveableView].transform = CGAffineTransformMakeTranslation(0, [self moveableView].bounds.size.height);
+                } completion:^(BOOL finished) {
+                    [self dismissViewControllerAnimated:NO completion:nil];
+                }];
+            }
+            else{
                 [UIView animateWithDuration:0.35f animations:^{
                     [self moveableView].transform = CGAffineTransformIdentity;
                 } completion:nil];
@@ -100,6 +108,7 @@
     }
     return YES;
 }
+
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if(gestureRecognizer == _panGesture){
         if(![self moveableView]) return NO;
@@ -108,6 +117,7 @@
     }
     return YES;
 }
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     if([self conflictingScrollView]){
         if(otherGestureRecognizer ==  [self conflictingScrollView].panGestureRecognizer){
