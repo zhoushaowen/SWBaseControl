@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "SWBaseControl"
 
-  s.version      = "0.0.6"
+  s.version      = "0.0.7"
 
   s.homepage      = 'https://github.com/zhoushaowen/SWBaseControl'
 
@@ -19,6 +19,8 @@ Pod::Spec.new do |s|
   s.source_files  = "SWBaseControl/SWBaseControl/*.{h,m}"
   
   s.dependency 'SWCustomPresentation'
+
+  s.dependency 'SWMultipleDelegateProxy'
   
   s.requires_arc = true
 

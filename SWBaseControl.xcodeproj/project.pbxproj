@@ -27,6 +27,8 @@
 		36B42E1220E9BB1600CFBCC6 /* MyMoveableViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1120E9BB1600CFBCC6 /* MyMoveableViewController1.m */; };
 		36B42E1520E9BDD700CFBCC6 /* MyMoveableViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1420E9BDD700CFBCC6 /* MyMoveableViewController2.m */; };
 		36B42E1820E9BF6500CFBCC6 /* MyMoveableViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1720E9BF6500CFBCC6 /* MyMoveableViewController3.m */; };
+		36B42E2020EA043B00CFBCC6 /* ScaleableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1F20EA043B00CFBCC6 /* ScaleableTableViewController.m */; };
+		36B42E2920EA1EC900CFBCC6 /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E2820EA1EC900CFBCC6 /* People.m */; };
 		36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CA95B820DB99E000713474 /* ChatViewController.m */; };
 		36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CA95B920DB99E000713474 /* ChatViewController.xib */; };
 /* End PBXBuildFile section */
@@ -65,6 +67,10 @@
 		36B42E1420E9BDD700CFBCC6 /* MyMoveableViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMoveableViewController2.m; sourceTree = "<group>"; };
 		36B42E1620E9BF6500CFBCC6 /* MyMoveableViewController3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoveableViewController3.h; sourceTree = "<group>"; };
 		36B42E1720E9BF6500CFBCC6 /* MyMoveableViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMoveableViewController3.m; sourceTree = "<group>"; };
+		36B42E1E20EA043B00CFBCC6 /* ScaleableTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScaleableTableViewController.h; sourceTree = "<group>"; };
+		36B42E1F20EA043B00CFBCC6 /* ScaleableTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScaleableTableViewController.m; sourceTree = "<group>"; };
+		36B42E2720EA1EC900CFBCC6 /* People.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = People.h; sourceTree = "<group>"; };
+		36B42E2820EA1EC900CFBCC6 /* People.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
 		36CA95B720DB99E000713474 /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		36CA95B820DB99E000713474 /* ChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		36CA95B920DB99E000713474 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -112,9 +118,11 @@
 				36911FE220E600A400674BFA /* TableViewController.m */,
 				36911FEE20E603F700674BFA /* viewControllers */,
 				36911FDE20E5FFB100674BFA /* MyPopoverContentTableView.h */,
-				36911FDF20E5FFB100674BFA /* MyPopoverContentTableView.m */,
 				36911FDB20E5FEF700674BFA /* MyPopoverContentTableViewCell.h */,
 				36911FDC20E5FEF700674BFA /* MyPopoverContentTableViewCell.m */,
+				36911FDF20E5FFB100674BFA /* MyPopoverContentTableView.m */,
+				36B42E2720EA1EC900CFBCC6 /* People.h */,
+				36B42E2820EA1EC900CFBCC6 /* People.m */,
 				360F504B20DA2783008B3AEB /* Main.storyboard */,
 				360F504E20DA2785008B3AEB /* Assets.xcassets */,
 				360F505020DA2785008B3AEB /* LaunchScreen.storyboard */,
@@ -149,6 +157,8 @@
 				36B42E1420E9BDD700CFBCC6 /* MyMoveableViewController2.m */,
 				36B42E1620E9BF6500CFBCC6 /* MyMoveableViewController3.h */,
 				36B42E1720E9BF6500CFBCC6 /* MyMoveableViewController3.m */,
+				36B42E1E20EA043B00CFBCC6 /* ScaleableTableViewController.h */,
+				36B42E1F20EA043B00CFBCC6 /* ScaleableTableViewController.m */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -181,6 +191,7 @@
 				360F503E20DA2783008B3AEB /* Sources */,
 				360F503F20DA2783008B3AEB /* Frameworks */,
 				360F504020DA2783008B3AEB /* Resources */,
+				E28AB28007EFB48F0EF16EC5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,6 +270,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E28AB28007EFB48F0EF16EC5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SWBaseControl/Pods-SWBaseControl-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SWBaseControl/Pods-SWBaseControl-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -276,10 +305,12 @@
 				36B42E1520E9BDD700CFBCC6 /* MyMoveableViewController2.m in Sources */,
 				36911FFB20E6198500674BFA /* MoveableTableViewController.m in Sources */,
 				36B42E1220E9BB1600CFBCC6 /* MyMoveableViewController1.m in Sources */,
+				36B42E2920EA1EC900CFBCC6 /* People.m in Sources */,
 				36911FEC20E603EE00674BFA /* DatePickerViewController.m in Sources */,
 				36911FE020E5FFB100674BFA /* MyPopoverContentTableView.m in Sources */,
 				36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */,
 				36911FF120E605CA00674BFA /* PlaceholderTextViewController.m in Sources */,
+				36B42E2020EA043B00CFBCC6 /* ScaleableTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

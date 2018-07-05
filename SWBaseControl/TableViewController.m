@@ -24,6 +24,7 @@
                    @"PlaceholderTextViewController",
                    @"AnimateBtnViewController",
                    @"MoveableTableViewController",
+                   @"ScaleableTableViewController",
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

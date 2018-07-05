@@ -1,4 +1,5 @@
 target "SWBaseControl" do
 pod 'SWExtension'
 pod 'SWBaseControl',path:'./'
+pod 'MJRefresh'
 end
