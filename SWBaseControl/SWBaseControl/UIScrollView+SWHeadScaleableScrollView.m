@@ -56,8 +56,12 @@
 
 - (void)sw_setDelegate:(id<UIScrollViewDelegate>)delegate {
     self.innerSWHeadScaleableScrollViewDelegate = [SWHeadScaleableScrollViewInnerDelegate new];
-    [self.innerSWHeadScaleableScrollViewMultipleDelegateProxy setAllDelegate:@[delegate,self.innerSWHeadScaleableScrollViewDelegate]];
-    [self sw_setDelegate:self.innerSWHeadScaleableScrollViewMultipleDelegateProxy];
+    if(delegate != nil){
+        [self.innerSWHeadScaleableScrollViewMultipleDelegateProxy setAllDelegate:@[delegate,self.innerSWHeadScaleableScrollViewDelegate]];
+        [self sw_setDelegate:self.innerSWHeadScaleableScrollViewMultipleDelegateProxy];
+    }else{
+        [self sw_setDelegate:delegate];
+    }
 }
 
 - (void)setInnerSWHeadScaleableScrollViewDelegate:(SWHeadScaleableScrollViewInnerDelegate *)innerSWHeadScaleableScrollViewDelegate {
