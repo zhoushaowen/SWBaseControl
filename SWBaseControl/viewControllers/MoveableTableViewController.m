@@ -18,15 +18,18 @@
 @implementation MoveableTableViewController
 
 - (IBAction)clickBtn1:(id)sender {
-    [[MyMoveableViewController1 new] presentMoveableTableViewControllerTo:self];
+    MyMoveableViewController1 *vc = [MyMoveableViewController1 new];
+    [self presentMoveableViewController:vc completion:nil];
 }
 
 - (IBAction)clickBtn2:(id)sender {
-    [[MyMoveableViewController2 new] presentMoveableTableViewControllerTo:self];
+    MyMoveableViewController2 *vc = [MyMoveableViewController2 new];
+    [self presentMoveableViewController:vc completion:nil];
 }
 
 - (IBAction)clickBtn3:(id)sender {
-    [[MyMoveableViewController3 new] presentMoveableTableViewControllerTo:self];
+    MyMoveableViewController3 *vc = [MyMoveableViewController3 new];
+    [self presentMoveableViewController:vc completion:nil];
 }
 
 

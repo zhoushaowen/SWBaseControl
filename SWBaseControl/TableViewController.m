@@ -25,6 +25,7 @@
                    @"AnimateBtnViewController",
                    @"MoveableTableViewController",
                    @"ScaleableTableViewController",
+                   @"DisplaySlideViewController",
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

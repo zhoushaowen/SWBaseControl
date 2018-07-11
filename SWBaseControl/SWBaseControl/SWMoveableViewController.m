@@ -13,8 +13,23 @@
 {
     UIPanGestureRecognizer *_panGesture;
     UITapGestureRecognizer *_tapGesture;
+    @public
     __weak SWPresentationController *_presentationController;
 }
+@end
+
+@implementation UIViewController (SWMoveableViewController)
+
+- (void)presentMoveableViewController:(SWMoveableViewController *)moveableViewController completion:(void (^)(void))completion {
+        __weak typeof(moveableViewController) weakVC = moveableViewController;
+    [self sw_presentCustomModalPresentationWithViewController:moveableViewController containerViewWillLayoutSubViewsBlock:^(SWPresentationController * _Nonnull presentationController) {
+        __strong typeof(weakVC) strongVC = weakVC;
+        presentationController.presentedView.frame = [UIScreen mainScreen].bounds;
+        presentationController.containerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
+        strongVC->_presentationController = presentationController;
+    } animatedTransitioningModel:nil completion:completion];
+}
+
 @end
 
 @implementation SWMoveableViewController
@@ -27,16 +42,6 @@
     _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognize:)];
     _panGesture.delegate = self;
     [self.view addGestureRecognizer:_panGesture];
-}
-
-- (void)presentMoveableTableViewControllerTo:(UIViewController *)toViewController {
-    __weak typeof(self) weakSelf = self;
-    [toViewController sw_presentCustomModalPresentationWithViewController:self containerViewWillLayoutSubViewsBlock:^(SWPresentationController * _Nonnull presentationController) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        presentationController.presentedView.frame = [UIScreen mainScreen].bounds;
-        presentationController.containerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
-        strongSelf->_presentationController = presentationController;
-    } animatedTransitioningModel:nil completion:nil];
 }
 
 - (UIView *)moveableView {
@@ -74,8 +79,7 @@
         case UIGestureRecognizerStateCancelled:
         {
             if(velocity.y > 200){
-                CGFloat duration = ([self moveableView].bounds.size.height - [self moveableView].transform.ty)/velocity.y;
-                [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                [UIView animateWithDuration:0.35f delay:0 usingSpringWithDamping:1.0 initialSpringVelocity:10 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                     [self moveableView].transform = CGAffineTransformMakeTranslation(0, [self moveableView].bounds.size.height);
                 } completion:^(BOOL finished) {
                     [self dismissViewControllerAnimated:NO completion:nil];
@@ -128,6 +132,7 @@
     }
     return NO;
 }
+
 
 - (void)dealloc {
     NSLog(@"%s",__func__);

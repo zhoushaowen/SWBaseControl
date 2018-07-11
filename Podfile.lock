@@ -1,11 +1,11 @@
 PODS:
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.3)
-  - SWBaseControl (0.0.8):
-    - SWBaseControl/SWPopover (= 0.0.8)
+  - SWBaseControl (0.0.9):
+    - SWBaseControl/SWPopover (= 0.0.9)
     - SWCustomPresentation
     - SWMultipleDelegateProxy
-  - SWBaseControl/SWPopover (0.0.8):
+  - SWBaseControl/SWPopover (0.0.9):
     - SWCustomPresentation
     - SWMultipleDelegateProxy
   - SWCustomPresentation (0.0.4)
@@ -39,7 +39,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  SWBaseControl: f9b3505c39218854fb8114d94da717d9c634acea
+  SWBaseControl: 3bae57629c60eb7549c47b727ef702fb80439aea
   SWCustomPresentation: f7fe50b7fa4b6f660b13f26d61285924c4e75668
   SWExtension: 245350a8ce5a00073f54667ba9e839536d627ceb
   SWMultipleDelegateProxy: 7fc2c8e8c60d6fb295cc28ae44dcd33dc9b7bd88

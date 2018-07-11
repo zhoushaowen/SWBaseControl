@@ -11,4 +11,6 @@
 
 @interface People : NSObject<UITableViewDelegate>
 
+- (void)test;
+
 @end

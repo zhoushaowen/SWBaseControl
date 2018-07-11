@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class SWMoveableViewController;
+
+@interface UIViewController (SWMoveableViewController)
+
+/**
+ present a SWMoveableViewController animated
+ */
+- (void)presentMoveableViewController:(SWMoveableViewController *)moveableViewController completion:(void(^)(void))completion;
+
+@end
+
 @interface SWMoveableViewController : UIViewController<UIGestureRecognizerDelegate>
 
 /**
@@ -21,12 +32,6 @@ conflicting scrollView,otherwise the moveableView will can't move.
  */
 - (UIScrollView *)conflictingScrollView;
 
-/**
- show a SWMoveableViewController
-
- @param toViewController  which viewController will present the SWMoveableViewController
- */
-- (void)presentMoveableTableViewControllerTo:(UIViewController *)toViewController;
 
 
 @end
