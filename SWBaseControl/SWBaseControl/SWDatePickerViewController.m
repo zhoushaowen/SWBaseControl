@@ -14,11 +14,24 @@
     UIDatePicker *_datePicker;
     CALayer *_line;
     UIButton *_cancelBtn,*_confirmBtn;
-    __weak UIViewController *_toViewController;
 }
 
 @property (nonatomic,strong) void(^datePickerConfig)(UIDatePicker *datePicker);
 @property (nonatomic,weak) id<SWDatePickerViewControllerDelegate> delegate;
+
+@end
+
+@implementation UIViewController (SWDatePickerViewController)
+
+- (instancetype)sw_presentDatePickerWithDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate {
+    SWDatePickerViewController *datePickerViewController = [SWDatePickerViewController new];
+    datePickerViewController.delegate = delegate;
+    datePickerViewController.datePickerConfig = datePickerConfig;
+    [self sw_presentCustomModalPresentationWithViewController:datePickerViewController containerViewWillLayoutSubViewsBlock:^(SWPresentationController * _Nonnull presentationController) {
+        presentationController.presentedView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width, 300);
+    } animatedTransitioningModel:nil completion:nil];
+    return datePickerViewController;
+}
 
 @end
 
@@ -97,17 +110,6 @@
     _confirmBtn.frame = CGRectMake(self.view.bounds.size.width - 156/2.0f, 0, 156/2.0f, 40);
 }
 
-+ (instancetype)showDatePickerToViewController:(UIViewController *)viewController withDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate {
-    SWDatePickerViewController *datePickerViewController = [SWDatePickerViewController new];
-    datePickerViewController.delegate = delegate;
-    datePickerViewController.datePickerConfig = datePickerConfig;
-    datePickerViewController->_toViewController = viewController;
-    [viewController sw_presentCustomModalPresentationWithViewController:datePickerViewController containerViewWillLayoutSubViewsBlock:^(SWPresentationController * _Nonnull presentationController) {
-        presentationController.presentedView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width, 300);
-    } animatedTransitioningModel:nil completion:nil];
-    return datePickerViewController;
-}
-
 - (void)setStyleColor:(UIColor *)styleColor {
     _styleColor = styleColor;
     if(_styleColor == nil){
@@ -117,12 +119,16 @@
 }
 
 - (void)btnClick:(UIButton *)sender {
-    [_toViewController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
     if(sender == _confirmBtn){
         if(_delegate && [_delegate respondsToSelector:@selector(datePickerViewController:didSelectedDate:)]){
             [_delegate datePickerViewController:self didSelectedDate:_datePicker.date];
         }
     }
+}
+
+- (void)dealloc {
+    NSLog(@"%s",__func__);
 }
 
 

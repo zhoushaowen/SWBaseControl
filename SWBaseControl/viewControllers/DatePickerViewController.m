@@ -17,7 +17,7 @@
 
 
 - (IBAction)clickBtn:(id)sender {
-    [SWDatePickerViewController showDatePickerToViewController:self withDatePickerConfig:nil delegate:self];
+    [self sw_presentDatePickerWithDatePickerConfig:nil delegate:self];
 }
 
 #pragma mark - SWDatePickerViewControllerDelegate

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @class SWDatePickerViewController;
 
 @protocol SWDatePickerViewControllerDelegate <NSObject>
@@ -19,13 +20,19 @@
 
 @end
 
-@interface SWDatePickerViewController : UIViewController
+@interface UIViewController (SWDatePickerViewController)
 
 /**
  show a SWDatePickerViewController which has a datePicker view,default datePickerMode is UIDatePickerModeDate.
  you can custom datePicker with datePickerConfig block
  */
-+ (instancetype)showDatePickerToViewController:(UIViewController *)viewController withDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate;
+- (instancetype)sw_presentDatePickerWithDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate;
+
+
+@end
+
+@interface SWDatePickerViewController : UIViewController
+
 /**
  affect confirm button's title color,default is nil
  */
