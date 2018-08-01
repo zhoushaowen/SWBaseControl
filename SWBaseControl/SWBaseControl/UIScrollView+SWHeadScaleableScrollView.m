@@ -56,7 +56,7 @@
 
 - (void)sw_setDelegate:(id<UIScrollViewDelegate>)delegate {
     self.innerSWHeadScaleableScrollViewDelegate = [SWHeadScaleableScrollViewInnerDelegate new];
-    if(delegate != nil){
+    if(delegate != nil && self.sw_scaleableHeadView != nil){
         [self.innerSWHeadScaleableScrollViewMultipleDelegateProxy setAllDelegate:@[delegate,self.innerSWHeadScaleableScrollViewDelegate]];
         [self sw_setDelegate:self.innerSWHeadScaleableScrollViewMultipleDelegateProxy];
     }else{
@@ -114,6 +114,7 @@
         self.sw_scaleableHeadViewOriginalFrame = sw_scaleableHeadView.frame;
     }
     objc_setAssociatedObject(self, @selector(sw_scaleableHeadView), sw_scaleableHeadView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    self.innerSWHeadScaleableScrollViewDelegate = [SWHeadScaleableScrollViewInnerDelegate new];
 }
 
 - (UIView *)sw_scaleableHeadView {
