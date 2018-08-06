@@ -14,7 +14,7 @@
 /**
  means confirm button is click
  */
-- (void)pickerViewControllerDidClickConfirmButton:(SWPickerViewController *)datePickerViewController;
+- (void)pickerViewControllerDidClickConfirmButton:(SWPickerViewController *)pickerViewController;
 
 @end
 
