@@ -20,6 +20,7 @@
     [super viewDidLoad];
     _dataArray = @[@"PopoverViewController",
                    @"DatePickerViewController",
+                   @"ShowPickerViewController",
                    @"ChatViewController",
                    @"PlaceholderTextViewController",
                    @"AnimateBtnViewController",
