@@ -24,6 +24,9 @@
 @end
 
 @interface SWPopoverView ()
+{
+    BOOL _didChangePosition;
+}
 
 @property (nonatomic) SWPopoverArrowDirection arrowDirection;
 
@@ -171,66 +174,69 @@
     if(self.superview == nil){
         [[[UIApplication sharedApplication].delegate window] addSubview:self];
     }
-    switch (self.arrowDirection) {
-        case SWPopoverArrowDirectionLeft:
-        {
-            CGFloat percent = 0;
-            if(_arrowPoint.y >= CGRectGetMaxY(_contentView.frame) - 6){
-                percent = ((_arrowPoint.y + 6) - _contentView.frame.origin.y)/_contentViewSize.height;
-            }else if (_arrowPoint.x <= CGRectGetMinY(_contentView.frame) + 6){
-                percent = ((_arrowPoint.y - 6) - _contentView.frame.origin.y)/_contentViewSize.height;
-            }else{
-                percent = (_arrowPoint.y - _contentView.frame.origin.y)/_contentViewSize.height;
+    if(!_didChangePosition){
+        _didChangePosition = YES;
+        switch (self.arrowDirection) {
+            case SWPopoverArrowDirectionLeft:
+            {
+                CGFloat percent = 0;
+                if(_arrowPoint.y >= CGRectGetMaxY(_contentView.frame) - 6){
+                    percent = ((_arrowPoint.y + 6) - _contentView.frame.origin.y)/_contentViewSize.height;
+                }else if (_arrowPoint.x <= CGRectGetMinY(_contentView.frame) + 6){
+                    percent = ((_arrowPoint.y - 6) - _contentView.frame.origin.y)/_contentViewSize.height;
+                }else{
+                    percent = (_arrowPoint.y - _contentView.frame.origin.y)/_contentViewSize.height;
+                }
+                _contentView.layer.anchorPoint = CGPointMake(0, percent);
+                _contentView.layer.position = CGPointMake(_contentView.center.x - _contentViewSize.width/2.0f, _contentView.center.y + (percent - 0.5) * _contentViewSize.height);
             }
-            _contentView.layer.anchorPoint = CGPointMake(0, percent);
-            _contentView.layer.position = CGPointMake(_contentView.center.x - _contentViewSize.width/2.0f, _contentView.center.y + (percent - 0.5) * _contentViewSize.height);
-        }
-            break;
-        case SWPopoverArrowDirectionRight:
-        {
-            CGFloat percent = 0;
-            if(_arrowPoint.y >= CGRectGetMaxY(_contentView.frame) - 6){
-                percent = ((_arrowPoint.y + 6) - _contentView.frame.origin.y)/_contentViewSize.height;
-            }else if (_arrowPoint.x <= CGRectGetMinY(_contentView.frame) + 6){
-                percent = ((_arrowPoint.y - 6) - _contentView.frame.origin.y)/_contentViewSize.height;
-            }else{
-                percent = (_arrowPoint.y - _contentView.frame.origin.y)/_contentViewSize.height;
+                break;
+            case SWPopoverArrowDirectionRight:
+            {
+                CGFloat percent = 0;
+                if(_arrowPoint.y >= CGRectGetMaxY(_contentView.frame) - 6){
+                    percent = ((_arrowPoint.y + 6) - _contentView.frame.origin.y)/_contentViewSize.height;
+                }else if (_arrowPoint.x <= CGRectGetMinY(_contentView.frame) + 6){
+                    percent = ((_arrowPoint.y - 6) - _contentView.frame.origin.y)/_contentViewSize.height;
+                }else{
+                    percent = (_arrowPoint.y - _contentView.frame.origin.y)/_contentViewSize.height;
+                }
+                _contentView.layer.anchorPoint = CGPointMake(1, percent);
+                _contentView.layer.position = CGPointMake(_contentView.center.x + _contentViewSize.width/2.0f, _contentView.center.y + (percent - 0.5) * _contentViewSize.height);
             }
-            _contentView.layer.anchorPoint = CGPointMake(1, percent);
-            _contentView.layer.position = CGPointMake(_contentView.center.x + _contentViewSize.width/2.0f, _contentView.center.y + (percent - 0.5) * _contentViewSize.height);
-        }
-            break;
-        case SWPopoverArrowDirectionTop:
-        {
-            CGFloat percent = 0;
-            if(_arrowPoint.x >= CGRectGetMaxX(_contentView.frame) - 6){
-                percent = ((_arrowPoint.x + 6) - _contentView.frame.origin.x)/_contentViewSize.width;
-            }else if (_arrowPoint.x <= CGRectGetMinX(_contentView.frame) + 6){
-                percent = ((_arrowPoint.x - 6) - _contentView.frame.origin.x)/_contentViewSize.width;
-            }else{
-                percent = (_arrowPoint.x - _contentView.frame.origin.x)/_contentViewSize.width;
+                break;
+            case SWPopoverArrowDirectionTop:
+            {
+                CGFloat percent = 0;
+                if(_arrowPoint.x >= CGRectGetMaxX(_contentView.frame) - 6){
+                    percent = ((_arrowPoint.x + 6) - _contentView.frame.origin.x)/_contentViewSize.width;
+                }else if (_arrowPoint.x <= CGRectGetMinX(_contentView.frame) + 6){
+                    percent = ((_arrowPoint.x - 6) - _contentView.frame.origin.x)/_contentViewSize.width;
+                }else{
+                    percent = (_arrowPoint.x - _contentView.frame.origin.x)/_contentViewSize.width;
+                }
+                _contentView.layer.anchorPoint = CGPointMake(percent, 0);
+                _contentView.layer.position = CGPointMake(_contentView.center.x + (percent - 0.5)*_contentViewSize.width, _contentView.center.y - _contentViewSize.height/2.0f);
             }
-            _contentView.layer.anchorPoint = CGPointMake(percent, 0);
-            _contentView.layer.position = CGPointMake(_contentView.center.x + (percent - 0.5)*_contentViewSize.width, _contentView.center.y - _contentViewSize.height/2.0f);
-        }
-            break;
-        case SWPopoverArrowDirectionBottom:
-        {
-            CGFloat percent = 0;
-            if(_arrowPoint.x >= CGRectGetMaxX(_contentView.frame) - 6){
-                percent = ((_arrowPoint.x + 6) - _contentView.frame.origin.x)/_contentViewSize.width;
-            }else if (_arrowPoint.x <= CGRectGetMinX(_contentView.frame) + 6){
-                percent = ((_arrowPoint.x - 6) - _contentView.frame.origin.x)/_contentViewSize.width;
-            }else{
-                percent = (_arrowPoint.x - _contentView.frame.origin.x)/_contentViewSize.width;
+                break;
+            case SWPopoverArrowDirectionBottom:
+            {
+                CGFloat percent = 0;
+                if(_arrowPoint.x >= CGRectGetMaxX(_contentView.frame) - 6){
+                    percent = ((_arrowPoint.x + 6) - _contentView.frame.origin.x)/_contentViewSize.width;
+                }else if (_arrowPoint.x <= CGRectGetMinX(_contentView.frame) + 6){
+                    percent = ((_arrowPoint.x - 6) - _contentView.frame.origin.x)/_contentViewSize.width;
+                }else{
+                    percent = (_arrowPoint.x - _contentView.frame.origin.x)/_contentViewSize.width;
+                }
+                _contentView.layer.anchorPoint = CGPointMake(percent, 1);
+                _contentView.layer.position = CGPointMake(_contentView.center.x + (percent - 0.5)*_contentViewSize.width, _contentView.center.y + _contentViewSize.height/2.0f);
             }
-            _contentView.layer.anchorPoint = CGPointMake(percent, 1);
-            _contentView.layer.position = CGPointMake(_contentView.center.x + (percent - 0.5)*_contentViewSize.width, _contentView.center.y + _contentViewSize.height/2.0f);
+                break;
+                
+            default:
+                break;
         }
-            break;
-            
-        default:
-            break;
     }
     _contentView.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
     self.alpha = 0.0;
@@ -274,3 +280,4 @@
 }
 
 @end
+

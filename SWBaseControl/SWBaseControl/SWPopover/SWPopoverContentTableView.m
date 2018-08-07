@@ -85,6 +85,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if([self.superview isKindOfClass:[SWPopoverView class]]){
         [(SWPopoverView *)self.superview hidePopoverAnimated:YES];
     }
