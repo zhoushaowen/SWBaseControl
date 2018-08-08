@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, SWPopoverArrowDirection) {
 
 @property (nonatomic,strong) void(^popoverViewDidHidden)(void);
 
+@property (nonatomic,readonly) CGSize contentViewSize;
+
 /**
  designated initializer
 

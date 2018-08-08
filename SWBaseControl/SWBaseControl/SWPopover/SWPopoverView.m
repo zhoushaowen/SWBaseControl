@@ -35,7 +35,6 @@
 @implementation SWPopoverView
 {
     UIView *_contentView;
-    CGSize _contentViewSize;
     CGPoint _arrowPoint;
     CGFloat _contentViewCenterOffset;
     BOOL _isShow;
@@ -280,4 +279,5 @@
 }
 
 @end
+
 

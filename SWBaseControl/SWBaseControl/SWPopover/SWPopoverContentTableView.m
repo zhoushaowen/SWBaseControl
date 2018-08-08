@@ -10,7 +10,7 @@
 #import "SWPopoverContentTableViewCell.h"
 #import "SWPopoverView.h"
 
-@interface SWPopoverContentTableView ()<UITableViewDelegate,UITableViewDataSource>
+@interface SWPopoverContentTableView ()
 
 @end
 
@@ -36,7 +36,6 @@
 
 - (void)prepare {
     self.rowHeight = 44.0f;
-    self.maxDisplayRows = 5;
     self.layer.cornerRadius = 2.0f;
     self.clipsToBounds = YES;
     _tableView = [[UITableView alloc] initWithFrame:self.bounds];
@@ -51,7 +50,15 @@
         [_tableView registerNib:[self registerNibForTableView] forCellReuseIdentifier:@"cell"];
     }else{
         NSAssert([[[self registerCellClassForTableView] new] isKindOfClass:[SWPopoverContentTableViewCell class]], @"you must return a SWPopoverContentTableViewCell class or sub class");
-            [_tableView registerClass:[self registerCellClassForTableView] forCellReuseIdentifier:@"cell"];
+        [_tableView registerClass:[self registerCellClassForTableView] forCellReuseIdentifier:@"cell"];
+    }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if([self.superview isKindOfClass:[SWPopoverView class]]){
+        SWPopoverView *popoverView = (SWPopoverView *)self.superview;
+        _tableView.scrollEnabled = _dataSource.count * self.rowHeight > popoverView.contentViewSize.height;
     }
 }
 
@@ -66,7 +73,8 @@
 - (void)setDataSource:(NSArray *)dataSource {
     _dataSource = [dataSource copy];
     [_tableView reloadData];
-    _tableView.scrollEnabled = _dataSource.count > self.maxDisplayRows;
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -100,3 +108,4 @@
 
 
 @end
+

@@ -15,10 +15,6 @@
  */
 @property (nonatomic,copy) NSArray *dataSource;
 /**
- default is 5
- */
-@property (nonatomic) NSUInteger maxDisplayRows;
-/**
  default is 44.0
  */
 @property (nonatomic) CGFloat rowHeight;
