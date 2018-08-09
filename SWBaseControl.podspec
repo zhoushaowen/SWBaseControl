@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "SWBaseControl"
 
-  s.version      = "1.0.6"
+  s.version      = "1.0.7"
 
   s.homepage      = 'https://github.com/zhoushaowen/SWBaseControl'
 
@@ -30,5 +30,10 @@ Pod::Spec.new do |s|
 
   end
 
+  s.subspec 'SWBaseViewController' do |ss|
+
+  ss.source_files = "SWBaseControl/SWBaseControl/SWBaseViewController/*.{h,m}"
+
+  end
 
 end
