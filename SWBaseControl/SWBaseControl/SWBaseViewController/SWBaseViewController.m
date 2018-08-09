@@ -8,7 +8,7 @@
 
 #import "SWBaseViewController.h"
 #import <objc/runtime.h>
-#import <SWVisualEffectView.h>
+#import "SWVisualEffectView.h"
 
 @implementation UIView (SWBaseViewController)
 
