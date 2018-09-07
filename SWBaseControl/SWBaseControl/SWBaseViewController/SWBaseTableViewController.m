@@ -27,6 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.style];
+    //防止外界全局更改了这个属性
+    if (@available(iOS 11.0, *)) {
+        _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+    } else {
+        // Fallback on earlier versions
+    }
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
