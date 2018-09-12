@@ -8,6 +8,8 @@
 
 #import "SWMoveableViewController.h"
 #import <SWCustomPresentation.h>
+#import <UIKit/UIGestureRecognizerSubclass.h>
+#import <objc/runtime.h>
 
 @interface SWMoveableViewController ()
 {
@@ -16,6 +18,9 @@
     @public
     __weak SWPresentationController *_presentationController;
 }
+
+@property (nonatomic,strong) UIView *moveableContentView;
+
 @end
 
 @implementation UIViewController (SWMoveableViewController)
@@ -24,7 +29,7 @@
         __weak typeof(moveableViewController) weakVC = moveableViewController;
     [self sw_presentCustomModalPresentationWithViewController:moveableViewController containerViewWillLayoutSubViewsBlock:^(SWPresentationController * _Nonnull presentationController) {
         __strong typeof(weakVC) strongVC = weakVC;
-        presentationController.presentedView.frame = [UIScreen mainScreen].bounds;
+        presentationController.presentedView.frame = presentationController.containerView.bounds;
         presentationController.containerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
         strongVC->_presentationController = presentationController;
     } animatedTransitioningModel:nil completion:completion];
@@ -58,6 +63,7 @@
 }
 
 - (void)panGestureRecognize:(UIPanGestureRecognizer *)gesture {
+    if(self.conflictingScrollView.isDragging) return;
     CGPoint translation = [gesture translationInView:gesture.view];
     CGPoint velocity = [gesture velocityInView:gesture.view];
     switch (gesture.state) {
@@ -122,15 +128,20 @@
     return YES;
 }
 
+//这个方法返回YES，第一个和第二个互斥时，第二个会失效
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     if([self conflictingScrollView]){
         if(otherGestureRecognizer ==  [self conflictingScrollView].panGestureRecognizer){
-            if([self conflictingScrollView].contentOffset.y <= 0) return YES;
-        }else{
-            return NO;
+            if([self conflictingScrollView].contentOffset.y < 0){
+                return YES;
+            }
         }
     }
     return NO;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 

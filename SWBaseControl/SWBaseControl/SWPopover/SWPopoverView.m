@@ -16,6 +16,7 @@
 @implementation SWPopoverViewTouchDownGesture
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    //按下就让手势响应
     if(self.state == UIGestureRecognizerStatePossible){
         self.state = UIGestureRecognizerStateRecognized;
     }
