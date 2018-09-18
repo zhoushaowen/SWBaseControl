@@ -31,6 +31,11 @@
  */
 @property (nonatomic,strong) UIImage *sw_barBackgroundImage;
 
+/**
+ 初始化自定义导航视图(SWBaseViewController内部已经默认调用了,不要重复调用)
+ */
+- (void)sw_initSubViews;
+
 @end
 
 @interface SWBaseViewController : UIViewController
