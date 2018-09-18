@@ -50,12 +50,12 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return self.visibleViewController.preferredStatusBarStyle;
+    return self.topViewController.preferredStatusBarStyle;
 }
 
 - (BOOL)prefersStatusBarHidden
 {
-    return self.visibleViewController.prefersStatusBarHidden;
+    return self.topViewController.prefersStatusBarHidden;
 }
 
 - (BOOL)shouldAutorotate
