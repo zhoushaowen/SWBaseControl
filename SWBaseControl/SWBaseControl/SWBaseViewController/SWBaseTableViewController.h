@@ -12,4 +12,6 @@
 
 @property (nonatomic,readonly,strong) UITableView *tableView;
 
+- (instancetype)initWithStyle:(UITableViewStyle)style;
+
 @end
