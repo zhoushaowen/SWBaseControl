@@ -75,6 +75,16 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     self.sw_bar.hidden = self.navigationController == nil;
 }
 
+- (void)sw_layoutSubviews {
+    if (@available(iOS 11.0, *)) {
+        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.safeAreaInsets.top);
+    } else {
+        CGFloat height = 44.0;
+        height += [UIApplication sharedApplication].isStatusBarHidden ? 0 : 20;
+        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
+    }
+}
+
 - (UIImage *)sw_createImageWithColor:(UIColor *)color
 {
     CGRect rect = CGRectMake(0, 0, 1, 1);
@@ -178,13 +188,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    if (@available(iOS 11.0, *)) {
-        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.safeAreaInsets.top);
-    } else {
-        CGFloat height = 44.0;
-        height += [UIApplication sharedApplication].isStatusBarHidden ? 0 : 20;
-        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
-    }
+    [self sw_layoutSubviews];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {

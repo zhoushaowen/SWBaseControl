@@ -36,6 +36,11 @@
  */
 - (void)sw_initSubViews;
 
+/**
+ 设置自定义导航的frame(必须在viewWillLayoutSubviews之后调用,SWBaseViewController内部已经默认调用了,不要重复调用)
+ */
+- (void)sw_layoutSubviews;
+
 @end
 
 @interface SWBaseViewController : UIViewController
