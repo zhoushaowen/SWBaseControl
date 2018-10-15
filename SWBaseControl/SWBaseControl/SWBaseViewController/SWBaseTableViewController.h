@@ -12,6 +12,7 @@
 
 @property (nonatomic,readonly,strong) UITableView *tableView;
 
-- (instancetype)initWithStyle:(UITableViewStyle)style;
+- (instancetype)initWithStyle:(UITableViewStyle)style NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 @end

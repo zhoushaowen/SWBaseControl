@@ -16,6 +16,14 @@
 
 @implementation SWBaseTableViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    return [super initWithCoder:aDecoder];
+}
+
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithNibName:nil bundle:nil];
     if(self){

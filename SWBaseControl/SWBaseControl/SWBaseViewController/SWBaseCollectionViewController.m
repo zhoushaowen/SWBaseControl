@@ -16,6 +16,14 @@
 
 @implementation SWBaseCollectionViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    return [self initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    return [super initWithCoder:aDecoder];
+}
+
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *_Nonnull)collectionViewLayout {
     self = [super initWithNibName:nil bundle:nil];
     if(self){
@@ -24,7 +32,7 @@
     return self;
 }
 
--(UICollectionViewLayout *)collectionViewLayout {
+- (UICollectionViewLayout *)collectionViewLayout {
     if(!_collectionViewLayout){
         _collectionViewLayout = [[UICollectionViewFlowLayout alloc] init];
     }
