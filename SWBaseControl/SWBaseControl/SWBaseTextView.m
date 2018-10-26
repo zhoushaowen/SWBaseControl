@@ -53,6 +53,11 @@
     _label.frame = rect;
 }
 
+- (void)setFont:(UIFont *)font {
+    [super setFont:font];
+    _label.font = font;
+}
+
 - (void)setPlaceholder:(NSString *)placeholder {
     _placeholder = [placeholder copy];
     _label.text = _placeholder;
