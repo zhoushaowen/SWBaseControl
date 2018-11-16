@@ -183,7 +183,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 }
 
 - (BOOL)shouldAutorotate {
-    return NO;
+    return YES;
 }
 
 - (void)viewWillLayoutSubviews {
