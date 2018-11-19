@@ -18,6 +18,7 @@
 
 @property (nonatomic,strong) void(^datePickerConfig)(UIDatePicker *datePicker);
 @property (nonatomic,weak) id<SWDatePickerViewControllerDelegate> delegate;
+@property (nonatomic,strong) void(^didSelectedDateBlock)(NSDate *selectedDate);
 
 @end
 
@@ -27,6 +28,16 @@
     SWDatePickerViewController *datePickerViewController = [SWDatePickerViewController new];
     datePickerViewController.delegate = delegate;
     datePickerViewController.datePickerConfig = datePickerConfig;
+    [self sw_presentCustomModalPresentationWithViewController:datePickerViewController containerViewWillLayoutSubViewsBlock:^(SWPresentationController * _Nonnull presentationController) {
+        presentationController.presentedView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width, 300);
+    } animatedTransitioningModel:nil completion:nil];
+    return datePickerViewController;
+}
+
+- (instancetype)sw_presentDatePickerWithDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig didSelectedDateBlock:(void(^)(NSDate *selectedDate))didSelectedDateBlock {
+    SWDatePickerViewController *datePickerViewController = [SWDatePickerViewController new];
+    datePickerViewController.datePickerConfig = datePickerConfig;
+    datePickerViewController.didSelectedDateBlock = didSelectedDateBlock;
     [self sw_presentCustomModalPresentationWithViewController:datePickerViewController containerViewWillLayoutSubViewsBlock:^(SWPresentationController * _Nonnull presentationController) {
         presentationController.presentedView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width, 300);
     } animatedTransitioningModel:nil completion:nil];
@@ -123,6 +134,9 @@
     if(sender == _confirmBtn){
         if(_delegate && [_delegate respondsToSelector:@selector(datePickerViewController:didSelectedDate:)]){
             [_delegate datePickerViewController:self didSelectedDate:_datePicker.date];
+        }
+        if(_didSelectedDateBlock){
+            _didSelectedDateBlock(_datePicker.date);
         }
     }
 }
