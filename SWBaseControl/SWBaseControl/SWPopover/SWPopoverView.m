@@ -163,6 +163,7 @@
 
 - (void)setContentViewColor:(UIColor *)contentViewColor {
     _contentViewColor = contentViewColor;
+    _contentView.backgroundColor = _contentViewColor;
     [self setNeedsDisplay];
 }
 
@@ -280,5 +281,6 @@
 }
 
 @end
+
 
 

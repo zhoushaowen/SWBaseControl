@@ -10,7 +10,7 @@
 #import "SWPopoverContentTableViewCell.h"
 #import "SWPopoverView.h"
 
-@interface SWPopoverContentTableView ()
+@interface SWPopoverContentTableView ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
@@ -44,7 +44,6 @@
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.rowHeight = self.rowHeight;
     [self addSubview:_tableView];
     if([self registerNibForTableView]){
         [_tableView registerNib:[self registerNibForTableView] forCellReuseIdentifier:@"cell"];
@@ -102,10 +101,15 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.rowHeight;
+}
+
 - (void)dealloc {
     NSLog(@"%s",__func__);
 }
 
 
 @end
+
 
