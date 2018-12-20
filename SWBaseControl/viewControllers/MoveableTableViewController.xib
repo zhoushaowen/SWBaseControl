@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bV-Af-pgj">
-                    <rect key="frame" x="148" y="327" width="80" height="33"/>
+                    <rect key="frame" x="147.5" y="317" width="80" height="33"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="click me 1!"/>
                     <connections>
@@ -29,7 +28,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9k-eG-3nt">
-                    <rect key="frame" x="146.5" y="368" width="83" height="33"/>
+                    <rect key="frame" x="146" y="358" width="83" height="33"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="click me 2!"/>
                     <connections>
@@ -37,7 +36,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZ2-zq-diF">
-                    <rect key="frame" x="146.5" y="409" width="83" height="33"/>
+                    <rect key="frame" x="146" y="399" width="83" height="33"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="click me 3!"/>
                     <connections>
@@ -50,11 +49,10 @@
                 <constraint firstItem="bZ2-zq-diF" firstAttribute="centerX" secondItem="o9k-eG-3nt" secondAttribute="centerX" id="0aT-yP-zbA"/>
                 <constraint firstItem="bZ2-zq-diF" firstAttribute="top" secondItem="o9k-eG-3nt" secondAttribute="bottom" constant="8" id="67k-m5-KXb"/>
                 <constraint firstItem="o9k-eG-3nt" firstAttribute="top" secondItem="8bV-Af-pgj" secondAttribute="bottom" constant="8" id="Vmv-UT-Dma"/>
-                <constraint firstItem="8bV-Af-pgj" firstAttribute="centerY" secondItem="Q5M-cg-NOt" secondAttribute="centerY" id="YBw-og-44V"/>
+                <constraint firstItem="8bV-Af-pgj" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="YBw-og-44V"/>
                 <constraint firstItem="o9k-eG-3nt" firstAttribute="centerX" secondItem="8bV-Af-pgj" secondAttribute="centerX" id="ZGb-QF-Saz"/>
-                <constraint firstItem="8bV-Af-pgj" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="eAB-p7-pg8"/>
+                <constraint firstItem="8bV-Af-pgj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eAB-p7-pg8"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>
 </document>

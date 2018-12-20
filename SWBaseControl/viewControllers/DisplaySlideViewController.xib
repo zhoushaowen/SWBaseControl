@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,28 +20,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02c-7i-PWe">
-                    <rect key="frame" x="172" y="328.5" width="30" height="30"/>
+                    <rect key="frame" x="172.5" y="318.5" width="30" height="30"/>
                     <state key="normal" title="left"/>
                     <connections>
                         <action selector="leftAction:" destination="-1" eventType="touchUpInside" id="sp3-uR-EvC"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UkH-Oa-P1j">
-                    <rect key="frame" x="171" y="366" width="32" height="30"/>
+                    <rect key="frame" x="171.5" y="356" width="32" height="30"/>
                     <state key="normal" title="right"/>
                     <connections>
                         <action selector="rightAction:" destination="-1" eventType="touchUpInside" id="KVc-Ud-43W"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ULI-Cw-Aw6">
-                    <rect key="frame" x="172" y="404" width="30" height="30"/>
+                    <rect key="frame" x="172.5" y="394" width="30" height="30"/>
                     <state key="normal" title="top"/>
                     <connections>
                         <action selector="topAction:" destination="-1" eventType="touchUpInside" id="vzJ-OO-Tog"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoI-BN-nKE">
-                    <rect key="frame" x="162" y="442" width="50" height="30"/>
+                    <rect key="frame" x="162.5" y="432" width="50" height="30"/>
                     <state key="normal" title="bottom"/>
                     <connections>
                         <action selector="bottomAction:" destination="-1" eventType="touchUpInside" id="VUq-uK-hVN"/>
@@ -53,14 +52,13 @@
             <constraints>
                 <constraint firstItem="UkH-Oa-P1j" firstAttribute="top" secondItem="02c-7i-PWe" secondAttribute="bottom" constant="7.5" id="5ZT-nA-VDY"/>
                 <constraint firstItem="IoI-BN-nKE" firstAttribute="centerX" secondItem="ULI-Cw-Aw6" secondAttribute="centerX" id="6uw-S4-zku"/>
-                <constraint firstItem="02c-7i-PWe" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Fv0-2G-gK1"/>
+                <constraint firstItem="02c-7i-PWe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Fv0-2G-gK1"/>
                 <constraint firstItem="UkH-Oa-P1j" firstAttribute="centerX" secondItem="02c-7i-PWe" secondAttribute="centerX" id="bcD-0v-fGy"/>
                 <constraint firstItem="ULI-Cw-Aw6" firstAttribute="top" secondItem="UkH-Oa-P1j" secondAttribute="bottom" constant="8" id="q1D-GG-IWB"/>
                 <constraint firstItem="ULI-Cw-Aw6" firstAttribute="centerX" secondItem="UkH-Oa-P1j" secondAttribute="centerX" id="xKT-2s-vRo"/>
-                <constraint firstItem="02c-7i-PWe" firstAttribute="centerY" secondItem="Q5M-cg-NOt" secondAttribute="centerY" id="y2h-b3-0G6"/>
+                <constraint firstItem="02c-7i-PWe" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="y2h-b3-0G6"/>
                 <constraint firstItem="IoI-BN-nKE" firstAttribute="top" secondItem="ULI-Cw-Aw6" secondAttribute="bottom" constant="8" id="yWD-Xs-TCP"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>
 </document>

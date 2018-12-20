@@ -42,8 +42,8 @@ typedef NS_ENUM(NSUInteger, SWPopoverArrowDirection) {
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
 
-- (void)showPopoverAnimated:(BOOL)isAnimated;
-- (void)hidePopoverAnimated:(BOOL)isAnimated;
+- (void)showAnimated:(BOOL)isAnimated;
+- (void)hideAnimated:(BOOL)isAnimated;
 
 
 @end

@@ -167,7 +167,7 @@
     [self setNeedsDisplay];
 }
 
-- (void)showPopoverAnimated:(BOOL)isAnimated {
+- (void)showAnimated:(BOOL)isAnimated {
     if(_isShow) return;
     if(_isAnimating) return;
     _isShow = YES;
@@ -249,7 +249,7 @@
     }];
 }
 
-- (void)hidePopoverAnimated:(BOOL)isAnimated {
+- (void)hideAnimated:(BOOL)isAnimated {
     if(_isAnimating) return;
     if(!_isShow) return;
     _isAnimating = YES;
@@ -273,7 +273,7 @@
 }
 
 - (void)tapGesture:(UITapGestureRecognizer *)gesture {
-    [self hidePopoverAnimated:YES];
+    [self hideAnimated:YES];
 }
 
 - (void)dealloc {

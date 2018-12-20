@@ -35,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.style];
+    _tableView.tableFooterView = [UIView new];
     //防止外界全局更改了这个属性
     if (@available(iOS 11.0, *)) {
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;

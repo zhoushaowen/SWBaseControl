@@ -72,7 +72,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     self.sw_barBottomLine.image = [self sw_createImageWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3f]];
     self.sw_barBottomLineImage = self.sw_barBottomLine.image;
     [self.sw_bar addSubview:self.sw_barBottomLine];
-    self.sw_bar.hidden = self.navigationController == nil;
+    self.sw_bar.hidden = ![self.parentViewController isKindOfClass:[UINavigationController class]];
 }
 
 - (void)sw_layoutSubviews {
