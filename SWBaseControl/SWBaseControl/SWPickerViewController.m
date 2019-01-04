@@ -22,7 +22,7 @@
 
 @implementation UIViewController (SWPickerViewController)
 
-- (instancetype)sw_presentPickerViewController:(SWPickerViewController *)pickerViewController withDelegate:(id<SWPickerViewControllerDelegate>)delegate {
+- (SWPickerViewController *)sw_presentPickerViewController:(SWPickerViewController *)pickerViewController withDelegate:(id<SWPickerViewControllerDelegate>)delegate {
     pickerViewController.delegate = delegate;
     [self sw_presentCustomModalPresentationWithViewController:pickerViewController containerViewWillLayoutSubViewsBlock:^(SWPresentationController * _Nonnull presentationController) {
         presentationController.presentedView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width, 300);

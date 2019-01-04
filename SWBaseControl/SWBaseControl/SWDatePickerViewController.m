@@ -24,7 +24,7 @@
 
 @implementation UIViewController (SWDatePickerViewController)
 
-- (instancetype)sw_presentDatePickerWithDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate {
+- (SWDatePickerViewController *)sw_presentDatePickerWithDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig delegate:(id<SWDatePickerViewControllerDelegate>)delegate {
     SWDatePickerViewController *datePickerViewController = [SWDatePickerViewController new];
     datePickerViewController.delegate = delegate;
     datePickerViewController.datePickerConfig = datePickerConfig;
@@ -34,7 +34,7 @@
     return datePickerViewController;
 }
 
-- (instancetype)sw_presentDatePickerWithDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig didSelectedDateBlock:(void(^)(NSDate *selectedDate))didSelectedDateBlock {
+- (SWDatePickerViewController *)sw_presentDatePickerWithDatePickerConfig:(void(^)(UIDatePicker *datePicker))datePickerConfig didSelectedDateBlock:(void(^)(NSDate *selectedDate))didSelectedDateBlock {
     SWDatePickerViewController *datePickerViewController = [SWDatePickerViewController new];
     datePickerViewController.datePickerConfig = datePickerConfig;
     datePickerViewController.didSelectedDateBlock = didSelectedDateBlock;

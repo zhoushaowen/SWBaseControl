@@ -23,7 +23,7 @@
 /**
  show a SWPickerViewController.
  */
-- (instancetype)sw_presentPickerViewController:(SWPickerViewController *)pickerViewController withDelegate:(id<SWPickerViewControllerDelegate>)delegate;
+- (SWPickerViewController *)sw_presentPickerViewController:(SWPickerViewController *)pickerViewController withDelegate:(id<SWPickerViewControllerDelegate>)delegate;
 
 @end
 

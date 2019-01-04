@@ -33,7 +33,7 @@
     popoverView.popoverViewDidHidden = ^{
         NSLog(@"popoverViewDidHidden");
     };
-    [popoverView showPopoverAnimated:YES];
+    [popoverView showAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
