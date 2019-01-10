@@ -49,9 +49,18 @@
 @implementation UIScrollView (SWHeadScaleableScrollView)
 
 + (void)load {
-    Method sysMethod = class_getInstanceMethod([self class], @selector(setDelegate:));
-    Method myMethod = class_getInstanceMethod([self class], @selector(sw_setDelegate:));
-    method_exchangeImplementations(sysMethod, myMethod);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        SEL sysSel = @selector(setDelegate:);
+        SEL mySel = @selector(sw_setDelegate:);
+        Method sysMethod = class_getInstanceMethod([self class], sysSel);
+        Method myMethod = class_getInstanceMethod([self class], mySel);
+        if(class_addMethod([self class], sysSel, method_getImplementation(myMethod), method_getTypeEncoding(myMethod))){
+            class_replaceMethod([self class], mySel, method_getImplementation(sysMethod), method_getTypeEncoding(sysMethod));
+        }else{
+            method_exchangeImplementations(sysMethod, myMethod);
+        }
+    });
 }
 
 - (void)sw_setDelegate:(id<UIScrollViewDelegate>)delegate {

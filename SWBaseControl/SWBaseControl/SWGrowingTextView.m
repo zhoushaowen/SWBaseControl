@@ -28,13 +28,24 @@
 @implementation UIViewController (UIViewControllerSWGrowingTextViewExtension)
 
 + (void)load {
-    Method m1 = class_getInstanceMethod([self class], @selector(viewDidAppear:));
-    Method c1 = class_getInstanceMethod([self class], @selector(SWGrowingTextView_viewDidAppear:));
-    method_exchangeImplementations(m1, c1);
-    
-    Method m2 = class_getInstanceMethod([self class], @selector(viewWillDisappear:));
-    Method c2 = class_getInstanceMethod([self class], @selector(SWGrowingTextView_viewWillDisappear:));
-    method_exchangeImplementations(m2, c2);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method m1 = class_getInstanceMethod([self class], @selector(viewDidAppear:));
+        Method c1 = class_getInstanceMethod([self class], @selector(SWGrowingTextView_viewDidAppear:));
+        if(class_addMethod([self class], @selector(viewDidAppear:), method_getImplementation(c1), method_getTypeEncoding(c1))){
+            class_replaceMethod([self class], @selector(SWGrowingTextView_viewDidAppear:), method_getImplementation(m1), method_getTypeEncoding(m1));
+        }else{
+            method_exchangeImplementations(m1, c1);
+        }
+        
+        Method m2 = class_getInstanceMethod([self class], @selector(viewWillDisappear:));
+        Method c2 = class_getInstanceMethod([self class], @selector(SWGrowingTextView_viewWillDisappear:));
+        if(class_addMethod([self class], @selector(viewWillDisappear:), method_getImplementation(c2), method_getTypeEncoding(c2))){
+            class_replaceMethod([self class], @selector(SWGrowingTextView_viewWillDisappear:), method_getImplementation(m2), method_getTypeEncoding(m2));
+        }else{
+            method_exchangeImplementations(m2, c2);
+        }
+    });
 }
 
 - (void)SWGrowingTextView_viewDidAppear:(BOOL)animated {

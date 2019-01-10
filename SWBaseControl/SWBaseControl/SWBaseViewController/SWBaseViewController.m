@@ -13,9 +13,18 @@
 @implementation UIView (SWBaseViewController)
 
 + (void)load {
-    Method systemMethod = class_getInstanceMethod([self class], @selector(addSubview:));
-    Method customMethod = class_getInstanceMethod([self class], @selector(sw_addSubview:));
-    method_exchangeImplementations(systemMethod, customMethod);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        SEL sysSel = @selector(addSubview:);
+        SEL cusSel = @selector(sw_addSubview:);
+        Method systemMethod = class_getInstanceMethod([self class], sysSel);
+        Method customMethod = class_getInstanceMethod([self class], cusSel);
+        if(class_addMethod([self class], sysSel, method_getImplementation(customMethod), method_getTypeEncoding(customMethod))){
+            class_replaceMethod([self class], cusSel, method_getImplementation(systemMethod), method_getTypeEncoding(systemMethod));
+        }else{
+            method_exchangeImplementations(systemMethod, customMethod);
+        }
+    });
 }
 
 - (void)sw_addSubview:(UIView *)view {
