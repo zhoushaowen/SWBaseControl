@@ -16,6 +16,9 @@
 
 @implementation SWBaseCollectionViewController
 
+@synthesize collectionViewLayout = _collectionViewLayout;
+@synthesize collectionView = _collectionView;
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     return [self initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
 }

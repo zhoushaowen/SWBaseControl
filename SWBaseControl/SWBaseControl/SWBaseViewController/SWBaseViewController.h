@@ -43,6 +43,26 @@
 
 @end
 
-@interface SWBaseViewController : UIViewController
+typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
+    SWBaseViewControllerNormalType = 0,
+    SWBaseViewControllerTableViewType = 1,
+    SWBaseViewControllerCollectionViewType = 2,
+};
+
+@interface SWBaseViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+
+- (instancetype)initWithStyle:(UITableViewStyle)style;
+- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *_Nonnull)collectionViewLayout;
+
+#if TARGET_INTERFACE_BUILDER
+@property (nonatomic,readonly) IBInspectable NSUInteger controllerType;
+#else
+@property (nonatomic,readonly) SWBaseViewControllerType controllerType;
+#endif
+
+@property (nonatomic,readonly,strong,nullable) UITableView *tableView;
+//default is UICollectionViewFlowLayout
+@property (nonatomic,readonly,strong,nullable) UICollectionViewLayout *collectionViewLayout;
+@property (nonatomic,readonly,strong,nullable) UICollectionView *collectionView;
 
 @end

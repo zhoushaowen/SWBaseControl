@@ -7,10 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface SWLeftTitleRightImageButton : UIButton
 
-@property (nonatomic) CGFloat horizontalSpaceBetweenTitleAndImage;
+@property (nonatomic) IBInspectable CGFloat horizontalSpaceBetweenTitleAndImage;
 
 @end
 

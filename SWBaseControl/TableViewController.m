@@ -27,6 +27,9 @@
                    @"MoveableTableViewController",
                    @"ScaleableTableViewController",
                    @"DisplaySlideViewController",
+                   @"XibViewController",
+                   @"XibTableViewController",
+                   @"XibCollectionViewController"
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

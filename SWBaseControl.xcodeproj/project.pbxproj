@@ -27,6 +27,10 @@
 		36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FF320E606C900674BFA /* AnimateBtnViewController.m */; };
 		36911FFB20E6198500674BFA /* MoveableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36911FF920E6198500674BFA /* MoveableTableViewController.m */; };
 		36911FFC20E6198500674BFA /* MoveableTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36911FFA20E6198500674BFA /* MoveableTableViewController.xib */; };
+		3699819421E8814F006C6A25 /* XibTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3699819221E8814F006C6A25 /* XibTableViewController.m */; };
+		3699819521E8814F006C6A25 /* XibTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3699819321E8814F006C6A25 /* XibTableViewController.xib */; };
+		3699819921E88175006C6A25 /* XibCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3699819721E88175006C6A25 /* XibCollectionViewController.m */; };
+		3699819A21E88175006C6A25 /* XibCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3699819821E88175006C6A25 /* XibCollectionViewController.xib */; };
 		36B42E1220E9BB1600CFBCC6 /* MyMoveableViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1120E9BB1600CFBCC6 /* MyMoveableViewController1.m */; };
 		36B42E1520E9BDD700CFBCC6 /* MyMoveableViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1420E9BDD700CFBCC6 /* MyMoveableViewController2.m */; };
 		36B42E1820E9BF6500CFBCC6 /* MyMoveableViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1720E9BF6500CFBCC6 /* MyMoveableViewController3.m */; };
@@ -34,6 +38,8 @@
 		36B42E2920EA1EC900CFBCC6 /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E2820EA1EC900CFBCC6 /* People.m */; };
 		36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CA95B820DB99E000713474 /* ChatViewController.m */; };
 		36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CA95B920DB99E000713474 /* ChatViewController.xib */; };
+		36CB63C121E86EC000314317 /* XibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CB63BF21E86EC000314317 /* XibViewController.m */; };
+		36CB63C221E86EC000314317 /* XibViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CB63C021E86EC000314317 /* XibViewController.xib */; };
 		36D2AD8D21183B5300B1BA4E /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2AD8C21183B5300B1BA4E /* PickerViewController.m */; };
 		36D2AD9121183CD100B1BA4E /* ShowPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2AD8F21183CD100B1BA4E /* ShowPickerViewController.m */; };
 		36D2AD9221183CD100B1BA4E /* ShowPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2AD9021183CD100B1BA4E /* ShowPickerViewController.xib */; };
@@ -72,6 +78,12 @@
 		36911FF820E6198500674BFA /* MoveableTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoveableTableViewController.h; sourceTree = "<group>"; };
 		36911FF920E6198500674BFA /* MoveableTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoveableTableViewController.m; sourceTree = "<group>"; };
 		36911FFA20E6198500674BFA /* MoveableTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoveableTableViewController.xib; sourceTree = "<group>"; };
+		3699819121E8814F006C6A25 /* XibTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XibTableViewController.h; sourceTree = "<group>"; };
+		3699819221E8814F006C6A25 /* XibTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XibTableViewController.m; sourceTree = "<group>"; };
+		3699819321E8814F006C6A25 /* XibTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XibTableViewController.xib; sourceTree = "<group>"; };
+		3699819621E88175006C6A25 /* XibCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XibCollectionViewController.h; sourceTree = "<group>"; };
+		3699819721E88175006C6A25 /* XibCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XibCollectionViewController.m; sourceTree = "<group>"; };
+		3699819821E88175006C6A25 /* XibCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XibCollectionViewController.xib; sourceTree = "<group>"; };
 		36B42E1020E9BB1600CFBCC6 /* MyMoveableViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoveableViewController1.h; sourceTree = "<group>"; };
 		36B42E1120E9BB1600CFBCC6 /* MyMoveableViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMoveableViewController1.m; sourceTree = "<group>"; };
 		36B42E1320E9BDD700CFBCC6 /* MyMoveableViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoveableViewController2.h; sourceTree = "<group>"; };
@@ -85,6 +97,9 @@
 		36CA95B720DB99E000713474 /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		36CA95B820DB99E000713474 /* ChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		36CA95B920DB99E000713474 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		36CB63BE21E86EC000314317 /* XibViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XibViewController.h; sourceTree = "<group>"; };
+		36CB63BF21E86EC000314317 /* XibViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XibViewController.m; sourceTree = "<group>"; };
+		36CB63C021E86EC000314317 /* XibViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XibViewController.xib; sourceTree = "<group>"; };
 		36D2AD8B21183B5300B1BA4E /* PickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
 		36D2AD8C21183B5300B1BA4E /* PickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
 		36D2AD8E21183CD100B1BA4E /* ShowPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowPickerViewController.h; sourceTree = "<group>"; };
@@ -132,6 +147,15 @@
 				360F504620DA2783008B3AEB /* AppDelegate.m */,
 				36911FE120E600A400674BFA /* TableViewController.h */,
 				36911FE220E600A400674BFA /* TableViewController.m */,
+				36CB63BE21E86EC000314317 /* XibViewController.h */,
+				36CB63BF21E86EC000314317 /* XibViewController.m */,
+				36CB63C021E86EC000314317 /* XibViewController.xib */,
+				3699819121E8814F006C6A25 /* XibTableViewController.h */,
+				3699819221E8814F006C6A25 /* XibTableViewController.m */,
+				3699819321E8814F006C6A25 /* XibTableViewController.xib */,
+				3699819621E88175006C6A25 /* XibCollectionViewController.h */,
+				3699819721E88175006C6A25 /* XibCollectionViewController.m */,
+				3699819821E88175006C6A25 /* XibCollectionViewController.xib */,
 				36911FEE20E603F700674BFA /* viewControllers */,
 				36911FDE20E5FFB100674BFA /* MyPopoverContentTableView.h */,
 				36911FDF20E5FFB100674BFA /* MyPopoverContentTableView.m */,
@@ -265,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36CB63C221E86EC000314317 /* XibViewController.xib in Resources */,
 				36911FED20E603EE00674BFA /* DatePickerViewController.xib in Resources */,
 				360F505220DA2785008B3AEB /* LaunchScreen.storyboard in Resources */,
 				360F504F20DA2785008B3AEB /* Assets.xcassets in Resources */,
@@ -272,7 +297,9 @@
 				360F504D20DA2783008B3AEB /* Main.storyboard in Resources */,
 				3675B4D620EF4325007B8CF0 /* DisplaySlideViewController.xib in Resources */,
 				36911FFC20E6198500674BFA /* MoveableTableViewController.xib in Resources */,
+				3699819521E8814F006C6A25 /* XibTableViewController.xib in Resources */,
 				36D2AD9221183CD100B1BA4E /* ShowPickerViewController.xib in Resources */,
+				3699819A21E88175006C6A25 /* XibCollectionViewController.xib in Resources */,
 				36911FE820E6030300674BFA /* PopoverViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3699819921E88175006C6A25 /* XibCollectionViewController.m in Sources */,
 				36B42E1820E9BF6500CFBCC6 /* MyMoveableViewController3.m in Sources */,
 				36911FDD20E5FEF700674BFA /* MyPopoverContentTableViewCell.m in Sources */,
 				36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */,
@@ -337,6 +365,8 @@
 				3675B4D920EF43BD007B8CF0 /* SlideViewController.m in Sources */,
 				36B42E1220E9BB1600CFBCC6 /* MyMoveableViewController1.m in Sources */,
 				36B42E2920EA1EC900CFBCC6 /* People.m in Sources */,
+				36CB63C121E86EC000314317 /* XibViewController.m in Sources */,
+				3699819421E8814F006C6A25 /* XibTableViewController.m in Sources */,
 				36911FEC20E603EE00674BFA /* DatePickerViewController.m in Sources */,
 				36911FE020E5FFB100674BFA /* MyPopoverContentTableView.m in Sources */,
 				36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */,

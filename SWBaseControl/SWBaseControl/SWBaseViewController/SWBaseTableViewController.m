@@ -16,6 +16,9 @@
 
 @implementation SWBaseTableViewController
 
+
+@synthesize tableView = _tableView;
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     return [self initWithStyle:UITableViewStylePlain];
 }
@@ -53,6 +56,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 0;
 }
 

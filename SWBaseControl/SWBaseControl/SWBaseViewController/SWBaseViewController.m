@@ -177,13 +177,88 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 
 @interface SWBaseViewController ()
 
+#if TARGET_INTERFACE_BUILDER
+@property (nonatomic) IBInspectable NSUInteger controllerType;
+#else
+@property (nonatomic) SWBaseViewControllerType controllerType;
+#endif
+@property (nonatomic) UITableViewStyle tableViewStyle;
+@property (nonatomic,strong) UICollectionViewLayout *collectionViewLayout;
+
 @end
 
 @implementation SWBaseViewController
 
+- (instancetype)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithNibName:nil bundle:nil];
+    if(self){
+        self.tableViewStyle = style;
+        self.controllerType = SWBaseViewControllerTableViewType;
+    }
+    return self;
+}
+
+- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *_Nonnull)collectionViewLayout {
+    self = [super initWithNibName:nil bundle:nil];
+    if(self){
+        self.collectionViewLayout = collectionViewLayout;
+        self.controllerType = SWBaseViewControllerCollectionViewType;
+    }
+    return self;
+}
+
+- (UICollectionViewLayout *)collectionViewLayout {
+    if(!_collectionViewLayout){
+        _collectionViewLayout = [[UICollectionViewFlowLayout alloc] init];
+    }
+    return _collectionViewLayout;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self sw_initSubViews];
+    switch (self.controllerType) {
+        case SWBaseViewControllerNormalType:
+        {
+            
+        }
+            break;
+        case SWBaseViewControllerTableViewType:{
+            _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
+            _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            _tableView.backgroundColor = [UIColor redColor];
+            _tableView.tableFooterView = [UIView new];
+            //防止外界全局更改了这个属性
+            if (@available(iOS 11.0, *)) {
+                _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+            } else {
+                // Fallback on earlier versions
+            }
+            _tableView.delegate = self;
+            _tableView.dataSource = self;
+            [self.view addSubview:_tableView];
+        }
+            break;
+            case SWBaseViewControllerCollectionViewType:
+        {
+            _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.collectionViewLayout];
+            _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            _collectionView.backgroundColor = [UIColor blueColor];
+            //防止外界全局更改了这个属性
+            if (@available(iOS 11.0, *)) {
+                _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+            } else {
+                // Fallback on earlier versions
+            }
+            _collectionView.delegate = self;
+            _collectionView.dataSource = self;
+            [self.view addSubview:_collectionView];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -191,13 +266,36 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     [[[UIApplication sharedApplication].delegate window].rootViewController setNeedsStatusBarAppearanceUpdate];
 }
 
-- (BOOL)shouldAutorotate {
-    return YES;
-}
-
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     [self sw_layoutSubviews];
+//    switch (self.controllerType) {
+//        case SWBaseViewControllerTableViewType:
+//        {
+//            _tableView.frame = self.view.bounds;
+//        }
+//            break;
+//            case SWBaseViewControllerCollectionViewType:
+//        {
+//            _collectionView.frame = self.view.bounds;
+//        }
+//            break;
+//
+//        default:
+//            break;
+//    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (BOOL)shouldAutorotate {
+    return YES;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
