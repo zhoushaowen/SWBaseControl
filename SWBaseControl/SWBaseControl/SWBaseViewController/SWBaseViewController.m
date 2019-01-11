@@ -201,17 +201,13 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *_Nonnull)collectionViewLayout {
     self = [super initWithNibName:nil bundle:nil];
     if(self){
+        if(collectionViewLayout == nil){
+            collectionViewLayout = [[UICollectionViewFlowLayout alloc] init];
+        }
         self.collectionViewLayout = collectionViewLayout;
         self.controllerType = SWBaseViewControllerCollectionViewType;
     }
     return self;
-}
-
-- (UICollectionViewLayout *)collectionViewLayout {
-    if(!_collectionViewLayout){
-        _collectionViewLayout = [[UICollectionViewFlowLayout alloc] init];
-    }
-    return _collectionViewLayout;
 }
 
 - (void)viewDidLoad {
@@ -226,7 +222,6 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
         case SWBaseViewControllerTableViewType:{
             _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
             _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-            _tableView.backgroundColor = [UIColor redColor];
             _tableView.tableFooterView = [UIView new];
             //防止外界全局更改了这个属性
             if (@available(iOS 11.0, *)) {
@@ -241,9 +236,8 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             break;
             case SWBaseViewControllerCollectionViewType:
         {
-            _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.collectionViewLayout];
+            _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
             _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-            _collectionView.backgroundColor = [UIColor blueColor];
             //防止外界全局更改了这个属性
             if (@available(iOS 11.0, *)) {
                 _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
