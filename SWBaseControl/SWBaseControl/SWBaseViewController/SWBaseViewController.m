@@ -222,6 +222,9 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
         case SWBaseViewControllerTableViewType:{
             _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
             _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            //去除UITableViewStyleGrouped样式导致的tableView头部空白间隙
+            UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0.001)];
+            _tableView.tableHeaderView = headerView;
             _tableView.tableFooterView = [UIView new];
             //防止外界全局更改了这个属性
             if (@available(iOS 11.0, *)) {
