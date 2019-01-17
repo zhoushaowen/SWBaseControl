@@ -11,8 +11,15 @@
 
 - (void)setHorizontalSpaceBetweenTitleAndImage:(CGFloat)horizontalSpaceBetweenTitleAndImage {
     _horizontalSpaceBetweenTitleAndImage = horizontalSpaceBetweenTitleAndImage;
+    [self invalidateIntrinsicContentSize];
     [self setNeedsLayout];
     [self layoutIfNeeded];
+}
+
+- (CGSize)intrinsicContentSize {
+    CGSize size = [super intrinsicContentSize];
+    size.width += fabs(self.horizontalSpaceBetweenTitleAndImage);
+    return size;
 }
 
 - (void)layoutSubviews {
@@ -23,9 +30,6 @@
     imageRect.origin.x = titleRect.size.width + self.horizontalSpaceBetweenTitleAndImage;
     self.imageView.frame = imageRect;
     self.titleLabel.frame = titleRect;
-    CGRect btnFrame = self.frame;
-    btnFrame.size.width = titleRect.size.width + imageRect.size.width + fabs(self.horizontalSpaceBetweenTitleAndImage);
-    self.frame = btnFrame;
 }
 
 @end
