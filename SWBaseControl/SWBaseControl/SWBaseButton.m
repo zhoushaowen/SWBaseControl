@@ -1,57 +1,46 @@
 //
 //  SWBaseButton.m
-//  SWBaseControl
+//  Pods-SWBaseControl
 //
-//  Created by zhoushaowen on 2018/6/20.
-//  Copyright © 2018年 zhoushaowen. All rights reserved.
+//  Created by zhoushaowen on 2019/1/23.
 //
 
 #import "SWBaseButton.h"
-
-@interface SWBaseButton ()
-
-@property (nonatomic,strong) UIActivityIndicatorView *activityIndicatorView;
-
-@end
+#import <UIImage+SWExtension.h>
+#import <UIColor+Hex.h>
 
 @implementation SWBaseButton
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if(self){
-        if(!_activityIndicatorView){
-            _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-            [self addSubview:_activityIndicatorView];
-        }
+- (void)setBackgroundImageHexStringForNormal:(NSString *)backgroundImageHexStringForNormal {
+    _backgroundImageHexStringForNormal = [backgroundImageHexStringForNormal copy];
+    if(_backgroundImageHexStringForNormal.length < 1){
+        [self setBackgroundImage:nil forState:UIControlStateNormal];
     }
-    return self;
+    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:backgroundImageHexStringForNormal]] forState:UIControlStateNormal];
 }
 
-- (instancetype)initWithType:(UIButtonType)buttonType style:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle {
-    self = [SWBaseButton buttonWithType:buttonType];
-    if(self){
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityIndicatorViewStyle];
-        [self addSubview:_activityIndicatorView];
+- (void)setBackgroundImageHexStringForDisabled:(NSString *)backgroundImageHexStringForDisabled {
+    _backgroundImageHexStringForDisabled = backgroundImageHexStringForDisabled;
+    if(_backgroundImageHexStringForDisabled.length < 1){
+        [self setBackgroundImage:nil forState:UIControlStateDisabled];
     }
-    return self;
+    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:backgroundImageHexStringForDisabled]] forState:UIControlStateDisabled];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    _activityIndicatorView.center = CGPointMake(self.bounds.size.width/2.0f, self.bounds.size.height/2.0f);
+- (void)setBackgroundImageHexStringForSelected:(NSString *)backgroundImageHexStringForSelected {
+    _backgroundImageHexStringForSelected = backgroundImageHexStringForSelected;
+    if(_backgroundImageHexStringForSelected.length < 1){
+        [self setBackgroundImage:nil forState:UIControlStateSelected];
+    }
+    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:backgroundImageHexStringForSelected]] forState:UIControlStateSelected];
 }
 
-- (void)startAnimating {
-    [_activityIndicatorView startAnimating];
-    self.enabled = NO;
+- (void)setBackgroundImageHexStringForHighlighted:(NSString *)backgroundImageHexStringForHighlighted {
+    _backgroundImageHexStringForHighlighted = backgroundImageHexStringForHighlighted;
+    if(_backgroundImageHexStringForHighlighted.length < 1){
+        [self setBackgroundImage:nil forState:UIControlStateHighlighted];
+    }
+    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:backgroundImageHexStringForHighlighted]] forState:UIControlStateHighlighted];
 }
-
-- (void)stopAnimating {
-    [_activityIndicatorView stopAnimating];
-    self.enabled = YES;
-}
-
-
-
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "AnimateBtnViewController.h"
-#import <SWBaseButton.h>
+#import <SWActivityIndicatorButton.h>
 #import <UIImage+SWExtension.h>
 
 @interface AnimateBtnViewController ()
@@ -20,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    SWBaseButton *btn = [[SWBaseButton alloc] initWithType:UIButtonTypeCustom style:UIActivityIndicatorViewStyleWhite];
+    SWActivityIndicatorButton *btn = [[SWActivityIndicatorButton alloc] initWithType:UIButtonTypeCustom style:UIActivityIndicatorViewStyleWhite];
     btn.frame = CGRectMake(30, 100, self.view.bounds.size.width - 60, 50);
     [btn setTitle:@"点我!" forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
@@ -29,7 +29,7 @@
 
 }
 
-- (void)btnClick:(SWBaseButton *)sender {
+- (void)btnClick:(SWActivityIndicatorButton *)sender {
     [sender startAnimating];
     NSLog(@"网络请求中...");
     [sender setTitle:@"网络请求中..." forState:UIControlStateNormal];

@@ -5,10 +5,10 @@
 //  Created by zhoushaowen on 2018/12/21.
 //
 
-#import <UIKit/UIKit.h>
+#import "SWBaseButton.h"
 
 IB_DESIGNABLE
-@interface SWLeftTitleRightImageButton : UIButton
+@interface SWLeftTitleRightImageButton : SWBaseButton
 
 @property (nonatomic) IBInspectable CGFloat horizontalSpaceBetweenTitleAndImage;
 

@@ -1,24 +1,18 @@
 //
 //  SWBaseButton.h
-//  SWBaseControl
+//  Pods-SWBaseControl
 //
-//  Created by zhoushaowen on 2018/6/20.
-//  Copyright © 2018年 zhoushaowen. All rights reserved.
+//  Created by zhoushaowen on 2019/1/23.
 //
 
 #import <UIKit/UIKit.h>
 
+IB_DESIGNABLE
 @interface SWBaseButton : UIButton
 
-- (instancetype)initWithType:(UIButtonType)buttonType style:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle;
-/**
-  will automatically disable button's user interaction
- */
-- (void)startAnimating;
-/**
-  will automatically enable button's user interaction
- */
-- (void)stopAnimating;
-
+@property (nonatomic,copy,nullable) IBInspectable NSString *backgroundImageHexStringForNormal;//UIControlStateNormal
+@property (nonatomic,copy,nullable) IBInspectable NSString *backgroundImageHexStringForHighlighted;//UIControlStateHighlighted
+@property (nonatomic,copy,nullable) IBInspectable NSString *backgroundImageHexStringForDisabled;//UIControlStateDisabled
+@property (nonatomic,copy,nullable) IBInspectable NSString *backgroundImageHexStringForSelected;//UIControlStateSelected
 
 @end
