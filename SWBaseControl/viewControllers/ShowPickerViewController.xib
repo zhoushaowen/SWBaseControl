@@ -23,7 +23,7 @@
                     <rect key="frame" x="155.5" y="318.5" width="64" height="30"/>
                     <state key="normal" title="Click me!"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="backgroundImageHexStringForNormal" value="2fc295"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="hexColorStringForNormalBackgroundImage" value="2fc295"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="action:" destination="-1" eventType="touchUpInside" id="NAP-b6-tfn"/>

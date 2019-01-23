@@ -11,36 +11,36 @@
 
 @implementation SWBaseButton
 
-- (void)setBackgroundImageHexStringForNormal:(NSString *)backgroundImageHexStringForNormal {
-    _backgroundImageHexStringForNormal = [backgroundImageHexStringForNormal copy];
-    if(_backgroundImageHexStringForNormal.length < 1){
+- (void)setHexColorStringForNormalBackgroundImage:(NSString *)hexColorStringForNormalBackgroundImage {
+    _hexColorStringForNormalBackgroundImage = [hexColorStringForNormalBackgroundImage copy];
+    if(_hexColorStringForNormalBackgroundImage.length < 1){
         [self setBackgroundImage:nil forState:UIControlStateNormal];
     }
-    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:backgroundImageHexStringForNormal]] forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:_hexColorStringForNormalBackgroundImage]] forState:UIControlStateNormal];
 }
 
-- (void)setBackgroundImageHexStringForDisabled:(NSString *)backgroundImageHexStringForDisabled {
-    _backgroundImageHexStringForDisabled = backgroundImageHexStringForDisabled;
-    if(_backgroundImageHexStringForDisabled.length < 1){
+- (void)setHexColorStringForDisabledBackgroundImage:(NSString *)hexColorStringForDisabledBackgroundImage  {
+    _hexColorStringForDisabledBackgroundImage = hexColorStringForDisabledBackgroundImage;
+    if(_hexColorStringForDisabledBackgroundImage.length < 1){
         [self setBackgroundImage:nil forState:UIControlStateDisabled];
     }
-    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:backgroundImageHexStringForDisabled]] forState:UIControlStateDisabled];
+    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:_hexColorStringForDisabledBackgroundImage]] forState:UIControlStateDisabled];
 }
 
-- (void)setBackgroundImageHexStringForSelected:(NSString *)backgroundImageHexStringForSelected {
-    _backgroundImageHexStringForSelected = backgroundImageHexStringForSelected;
-    if(_backgroundImageHexStringForSelected.length < 1){
+- (void)setHexColorStringForSelectedBackgroundImage:(NSString *)hexColorStringForSelectedBackgroundImage {
+    _hexColorStringForSelectedBackgroundImage = hexColorStringForSelectedBackgroundImage;
+    if(_hexColorStringForSelectedBackgroundImage.length < 1){
         [self setBackgroundImage:nil forState:UIControlStateSelected];
     }
-    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:backgroundImageHexStringForSelected]] forState:UIControlStateSelected];
+    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:_hexColorStringForSelectedBackgroundImage]] forState:UIControlStateSelected];
 }
 
-- (void)setBackgroundImageHexStringForHighlighted:(NSString *)backgroundImageHexStringForHighlighted {
-    _backgroundImageHexStringForHighlighted = backgroundImageHexStringForHighlighted;
-    if(_backgroundImageHexStringForHighlighted.length < 1){
+- (void)setHexColorStringForHighlightedBackgroundImage:(NSString *)hexColorStringForHighlightedBackgroundImage {
+    _hexColorStringForHighlightedBackgroundImage = hexColorStringForHighlightedBackgroundImage;
+    if(_hexColorStringForHighlightedBackgroundImage.length < 1){
         [self setBackgroundImage:nil forState:UIControlStateHighlighted];
     }
-    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:backgroundImageHexStringForHighlighted]] forState:UIControlStateHighlighted];
+    [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:_hexColorStringForHighlightedBackgroundImage]] forState:UIControlStateHighlighted];
 }
 
 @end
