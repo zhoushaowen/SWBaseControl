@@ -16,9 +16,23 @@
     [self layoutIfNeeded];
 }
 
+- (void)setLeftInset:(CGFloat)leftInset {
+    _leftInset = leftInset;
+    [self invalidateIntrinsicContentSize];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
+- (void)setRightInset:(CGFloat)rightInset {
+    _rightInset = rightInset;
+    [self invalidateIntrinsicContentSize];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
 - (CGSize)intrinsicContentSize {
     CGSize size = [super intrinsicContentSize];
-    size.width += fabs(self.horizontalSpaceBetweenTitleAndImage);
+    size.width += fabs(self.horizontalSpaceBetweenTitleAndImage) + fabs(self.leftInset) + fabs(self.rightInset);
     return size;
 }
 
@@ -26,8 +40,8 @@
     [super layoutSubviews];
     CGRect imageRect = self.imageView.frame;
     CGRect titleRect = self.titleLabel.frame;
-    titleRect.origin.x = 0;
-    imageRect.origin.x = titleRect.size.width + self.horizontalSpaceBetweenTitleAndImage;
+    titleRect.origin.x = self.leftInset;
+    imageRect.origin.x = self.leftInset + titleRect.size.width + self.horizontalSpaceBetweenTitleAndImage;
     self.imageView.frame = imageRect;
     self.titleLabel.frame = titleRect;
 }

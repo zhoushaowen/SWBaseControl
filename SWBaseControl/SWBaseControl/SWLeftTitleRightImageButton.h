@@ -11,6 +11,8 @@ IB_DESIGNABLE
 @interface SWLeftTitleRightImageButton : SWBaseButton
 
 @property (nonatomic) IBInspectable CGFloat horizontalSpaceBetweenTitleAndImage;
+@property (nonatomic) IBInspectable CGFloat leftInset;
+@property (nonatomic) IBInspectable CGFloat rightInset;
 
 @end
 
