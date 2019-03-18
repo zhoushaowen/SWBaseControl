@@ -63,7 +63,9 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 - (void)sw_initSubViews {
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.extendedLayoutIncludesOpaqueBars = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
+    if(self.view.backgroundColor == nil){
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
     self.sw_bar = [[UIView alloc] init];
     [self.view addSubview:self.sw_bar];
     self.sw_barBackgroundImageView = [[UIImageView alloc] initWithFrame:self.sw_bar.bounds];
