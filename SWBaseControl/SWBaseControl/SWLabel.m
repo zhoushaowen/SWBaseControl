@@ -27,5 +27,13 @@
     return size;
 }
 
+- (void)sizeToFit {
+    [super sizeToFit];
+    CGRect rect = self.bounds;
+    rect.size.width += (self.leftInset + self.rightInset);
+    rect.size.height += (self.topInset + self.bottomInset);
+    self.bounds = rect;
+}
+
 
 @end
