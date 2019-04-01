@@ -7,7 +7,7 @@
 
 #import "SWBaseButton.h"
 
-IB_DESIGNABLE
+//IB_DESIGNABLE
 @interface SWLeftTitleRightImageButton : SWBaseButton
 
 @property (nonatomic) IBInspectable CGFloat horizontalSpaceBetweenTitleAndImage;

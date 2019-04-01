@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-IB_DESIGNABLE
+//IB_DESIGNABLE
 @interface SWLabel : UILabel
 
 @property (nonatomic) IBInspectable CGFloat topInset;

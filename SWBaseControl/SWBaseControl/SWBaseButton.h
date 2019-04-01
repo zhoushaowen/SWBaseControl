@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-IB_DESIGNABLE
+//IB_DESIGNABLE
 @interface SWBaseButton : UIButton
 
 @property (nonatomic,copy,nullable) IBInspectable NSString *hexColorStringForNormalBackgroundImage;//UIControlStateNormal
