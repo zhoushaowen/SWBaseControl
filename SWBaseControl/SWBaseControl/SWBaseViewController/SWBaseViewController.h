@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIView (SWBaseViewController)
 
 @end
@@ -36,10 +38,10 @@
  */
 - (void)sw_initSubViews;
 
-/**
- 设置自定义导航的frame(必须在viewWillLayoutSubviews之后调用,SWBaseViewController内部已经默认调用了,不要重复调用)
- */
-- (void)sw_layoutSubviews;
+///**
+// 设置自定义导航的frame(必须在viewWillLayoutSubviews之后调用,SWBaseViewController内部已经默认调用了,不要重复调用)
+// */
+//- (void)sw_layoutSubviews;
 
 @end
 
@@ -49,7 +51,8 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
     SWBaseViewControllerCollectionViewType = 2,
 };
 
-@interface SWBaseViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface SWBaseViewController : UIViewController
+<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 - (instancetype)initWithStyle:(UITableViewStyle)style;
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *_Nonnull)collectionViewLayout;
@@ -67,3 +70,5 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
 @property (nonatomic,readonly,strong,nullable) UICollectionView *collectionView;
 
 @end
+
+NS_ASSUME_NONNULL_END

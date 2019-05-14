@@ -9,6 +9,9 @@
 #import "SWBaseViewController.h"
 #import <objc/runtime.h>
 #import "SWVisualEffectView.h"
+#import <SWExtension.h>
+#import <NSObject+RACKVOWrapper.h>
+#import <RACEXTScope.h>
 
 @implementation UIView (SWBaseViewController)
 
@@ -84,17 +87,26 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     self.sw_barBottomLineImage = self.sw_barBottomLine.image;
     [self.sw_bar addSubview:self.sw_barBottomLine];
     self.sw_bar.hidden = ![self.parentViewController isKindOfClass:[UINavigationController class]];
+    @weakify(self)
+    [self rac_observeKeyPath:@"view.frame" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew observer:self block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
+        @strongify(self)
+        if(UIDevice.sw_isIPhoneXSeries){
+            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight);
+        }else{
+            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0));
+        }
+    }];
 }
 
-- (void)sw_layoutSubviews {
-    if (@available(iOS 11.0, *)) {
-        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.safeAreaInsets.top);
-    } else {
-        CGFloat height = 44.0;
-        height += [UIApplication sharedApplication].isStatusBarHidden ? 0 : 20;
-        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
-    }
-}
+//- (void)sw_layoutSubviews {
+//    if (@available(iOS 11.0, *)) {
+//        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.safeAreaInsets.top);
+//    } else {
+//        CGFloat height = 44.0;
+//        height += [UIApplication sharedApplication].isStatusBarHidden ? 0 : 20;
+//        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
+//    }
+//}
 
 - (UIImage *)sw_createImageWithColor:(UIColor *)color
 {
@@ -191,6 +203,10 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 
 @implementation SWBaseViewController
 
+- (SWBaseViewControllerType)controllerType {
+    return _controllerType;
+}
+
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithNibName:nil bundle:nil];
     if(self){
@@ -265,9 +281,9 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     [[[UIApplication sharedApplication].delegate window].rootViewController setNeedsStatusBarAppearanceUpdate];
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    [self sw_layoutSubviews];
+//- (void)viewWillLayoutSubviews {
+//    [super viewWillLayoutSubviews];
+//    [self sw_layoutSubviews];
 //    switch (self.controllerType) {
 //        case SWBaseViewControllerTableViewType:
 //        {
@@ -283,7 +299,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 //        default:
 //            break;
 //    }
-}
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;
@@ -303,6 +319,10 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationPortrait;
+}
+
+- (void)dealloc {
+    NSLog(@"%@---dealloc",[self class]);
 }
 
 @end

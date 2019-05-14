@@ -13,6 +13,7 @@
 #import <SWMultipleDelegateProxy.h>
 #import "People.h"
 #import <MJRefresh.h>
+#import <ReactiveObjC.h>
 
 @interface ScaleableTableViewController ()
 {
