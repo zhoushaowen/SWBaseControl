@@ -43,4 +43,68 @@
     [self setBackgroundImage:[UIImage sw_createImageWithColor:[UIColor colorWithHexString:_hexColorStringForHighlightedBackgroundImage]] forState:UIControlStateHighlighted];
 }
 
+- (void)setImageForNormal:(UIImage *)imageForNormal {
+    [self setImage:imageForNormal forState:UIControlStateNormal];
+}
+
+- (UIImage *)imageForNormal {
+    return [self imageForState:UIControlStateNormal];
+}
+
+- (void)setImageForHighlighted:(UIImage *)imageForHighlighted {
+    [self setImage:imageForHighlighted forState:UIControlStateHighlighted];
+}
+
+- (UIImage *)imageForHighlighted {
+    return [self imageForState:UIControlStateHighlighted];
+}
+
+- (void)setImageForSelected:(UIImage *)imageForSelected {
+    [self setImage:imageForSelected forState:UIControlStateSelected];
+}
+
+- (UIImage *)imageForSelected {
+    return [self imageForState:UIControlStateSelected];
+}
+
+- (void)setImageForDisabled:(UIImage *)imageForDisabled {
+    [self setImage:imageForDisabled forState:UIControlStateDisabled];
+}
+
+- (UIImage *)imageForDisabled {
+    return [self imageForState:UIControlStateDisabled];
+}
+
+- (void)setBackgroundImageForNormal:(UIImage *)backgroundImageForNormal {
+    [self setBackgroundImage:backgroundImageForNormal forState:UIControlStateNormal];
+}
+
+- (UIImage *)backgroundImageForNormal {
+    return [self backgroundImageForState:UIControlStateNormal];
+}
+
+- (void)setBackgroundImageForHighlighted:(UIImage *)backgroundImageForHighlighted {
+    [self setBackgroundImage:backgroundImageForHighlighted forState:UIControlStateHighlighted];
+}
+
+- (UIImage *)backgroundImageForHighlighted {
+    return [self backgroundImageForState:UIControlStateHighlighted];
+}
+
+- (void)setBackgroundImageForSelected:(UIImage *)backgroundImageForSelected {
+    [self setBackgroundImage:backgroundImageForSelected forState:UIControlStateSelected];
+}
+
+- (UIImage *)backgroundImageForSelected {
+    return [self backgroundImageForState:UIControlStateSelected];
+}
+
+- (void)setBackgroundImageForDisabled:(UIImage *)backgroundImageForDisabled {
+    [self setBackgroundImage:backgroundImageForDisabled forState:UIControlStateDisabled];
+}
+
+- (UIImage *)backgroundImageForDisabled {
+    return [self backgroundImageForState:UIControlStateDisabled];
+}
+
 @end
