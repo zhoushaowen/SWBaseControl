@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "SWBaseControl"
 
-  s.version      = "1.3.5"
+  s.version      = "1.3.6"
 
   s.homepage      = 'https://github.com/zhoushaowen/SWBaseControl'
 
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'SWMultipleDelegateProxy'
 
-  s.dependency 'SWExtension'
+  s.dependency 'SWExtension/Core'
 
   s.dependency 'ReactiveObjC'
   
