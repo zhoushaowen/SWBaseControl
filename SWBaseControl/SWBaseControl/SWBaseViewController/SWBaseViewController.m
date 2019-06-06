@@ -64,6 +64,8 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 @dynamic sw_barBottomLineImage;
 
 - (void)sw_initSubViews {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.extendedLayoutIncludesOpaqueBars = YES;
     if(self.view.backgroundColor == nil){
@@ -122,7 +124,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 
 #pragma mark - Setter&Getter
 - (void)setSw_bar:(UIView *)sw_bar {
-    objc_setAssociatedObject(self, SW_bar_key, sw_bar, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, SW_bar_key, sw_bar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (UIView *)sw_bar {
@@ -130,7 +132,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 }
 
 - (void)setSw_barBottomLine:(UIImageView *)sw_barBottomLine {
-    objc_setAssociatedObject(self, SW_barBottomLine_key, sw_barBottomLine, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, SW_barBottomLine_key, sw_barBottomLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (UIImageView *)sw_barBottomLine {
@@ -138,7 +140,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 }
 
 - (void)setSw_barColor:(UIColor *)sw_barColor {
-    objc_setAssociatedObject(self, SW_barColor_key, sw_barColor, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, SW_barColor_key, sw_barColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     self.sw_visualView.sw_tintColor = sw_barColor;
 }
 
@@ -147,7 +149,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 }
 
 - (void)setSw_barBackgroundImage:(UIImage *)sw_barBackgroundImage {
-    objc_setAssociatedObject(self, &sw_barBackgroundImage, sw_barBackgroundImage, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, &sw_barBackgroundImage, sw_barBackgroundImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     self.sw_barBackgroundImageView.image = sw_barBackgroundImage;
     self.sw_visualView.hidden = sw_barBackgroundImage != nil;
 }
@@ -157,7 +159,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 }
 
 - (void)setSw_barBottomLineImage:(UIImage *)sw_barBottomLineImage {
-    objc_setAssociatedObject(self, SW_barBottomLineImage_key, sw_barBottomLineImage, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, SW_barBottomLineImage_key, sw_barBottomLineImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if(sw_barBottomLineImage == nil){
         self.sw_barBottomLine.image = [self sw_createImageWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3f]];
     }else{
@@ -170,7 +172,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 }
 
 - (void)setSw_visualView:(SWVisualEffectView *)sw_visualView {
-    objc_setAssociatedObject(self, SW_visualView_key, sw_visualView, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, SW_visualView_key, sw_visualView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (SWVisualEffectView *)sw_visualView {
@@ -178,7 +180,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 }
 
 - (void)setSw_barBackgroundImageView:(UIImageView *)sw_barBackgroundImageView {
-    objc_setAssociatedObject(self, SW_barBackgroundImageView_key, sw_barBackgroundImageView, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, SW_barBackgroundImageView_key, sw_barBackgroundImageView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (UIImageView *)sw_barBackgroundImageView {
@@ -253,6 +255,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
+            [self addScrollViewContentOffsetObserver:_tableView];
         }
             break;
             case SWBaseViewControllerCollectionViewType:
@@ -268,6 +271,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             _collectionView.delegate = self;
             _collectionView.dataSource = self;
             [self.view addSubview:_collectionView];
+            [self addScrollViewContentOffsetObserver:_collectionView];
         }
             break;
             
@@ -300,6 +304,73 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 //            break;
 //    }
 //}
+
+- (void)addScrollViewContentOffsetObserver:(UIScrollView *)scrollView {
+    @weakify(self)
+    [scrollView rac_observeKeyPath:@"contentOffset" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew observer:self block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
+        @strongify(self)
+//        NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
+        if (@available(iOS 13.0, *)) {
+            #ifdef __IPHONE_13_0
+            self.sw_visualView.sw_tintColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+                @strongify(self)
+                if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
+                    self.sw_visualView.visualView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+                }else{
+                    self.sw_visualView.visualView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+                }
+                CGFloat percent = (scrollView.contentOffset.y + self.sw_bar.bounds.size.height)/self.sw_bar.bounds.size.height;
+                if(percent >= 1.0){
+                    percent = 1.0;
+                }
+//                NSLog(@"percent:%f",percent);
+                if(percent > 0){
+                    if(self.sw_barColor && traitCollection.userInterfaceStyle != UIUserInterfaceStyleDark){
+                        return [self.sw_barColor colorWithAlphaComponent:1.0-0.1*percent];
+                    }else{
+                        if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
+                            return [[UIColor blackColor] colorWithAlphaComponent:1.0 - 0.9*percent];
+                        }else{
+                            return [[UIColor whiteColor] colorWithAlphaComponent:1.0-0.9*percent];
+                        }
+                    }
+                }else{
+                    if(self.sw_barColor && traitCollection.userInterfaceStyle != UIUserInterfaceStyleDark){
+                        return self.sw_barColor;
+                    }else{
+                        if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
+                            return [UIColor blackColor];
+                        }else{
+                            return [UIColor whiteColor];
+                        }
+                    }
+                }
+
+            }];
+#endif
+        }else{
+            CGFloat percent = (scrollView.contentOffset.y + self.sw_bar.bounds.size.height)/self.sw_bar.bounds.size.height;
+            if(percent >= 1.0){
+                percent = 1.0;
+            }
+//            NSLog(@"percent:%f",percent);
+            if(percent > 0){
+                if(self.sw_barColor){
+                    self.sw_visualView.sw_tintColor = [self.sw_barColor colorWithAlphaComponent:1.0-0.1*percent];
+                }else{
+                    self.sw_visualView.sw_tintColor = [[UIColor whiteColor] colorWithAlphaComponent:1.0-0.1*percent];
+                }
+            }else{
+                if(self.sw_barColor){
+                    self.sw_visualView.sw_tintColor = self.sw_barColor;
+                }else{
+                    self.sw_visualView.sw_tintColor = [UIColor whiteColor];
+                }
+            }
+        }
+
+    }];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;

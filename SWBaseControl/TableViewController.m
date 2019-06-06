@@ -16,8 +16,16 @@
 
 @implementation TableViewController
 
+- (SWBaseViewControllerType)controllerType {
+    return SWBaseViewControllerTableViewType;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.sw_barColor = [UIColor redColor];
+    self.navigationItem.title = @"Main";
+    self.sw_barBottomLineImage = [UIImage new];
+    self.tableView.tableFooterView = [UIView new];
     _dataArray = @[@"PopoverViewController",
                    @"DatePickerViewController",
                    @"ShowPickerViewController",
@@ -52,6 +60,7 @@
     UIViewController *vc = [[class alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 
 
 @end

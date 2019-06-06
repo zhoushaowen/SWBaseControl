@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SWBaseViewController.h>
 
-@interface TableViewController : UITableViewController
+@interface TableViewController : SWBaseViewController
 
 @end

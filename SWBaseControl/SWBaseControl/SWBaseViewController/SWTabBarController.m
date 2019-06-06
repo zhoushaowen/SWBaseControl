@@ -17,6 +17,9 @@
 
 + (void)load {
     if (@available(iOS 12.1, *)) {
+        if(@available(iOS 13.0, *)){
+            
+        }else{
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             Class originalClass = NSClassFromString(@"UITabBarButton");
@@ -37,6 +40,7 @@
                                     method_getTypeEncoding(swizzledMethod));
             }
         });
+        }
     }
 }
 

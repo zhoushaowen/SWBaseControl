@@ -11,5 +11,6 @@
 @interface SWVisualEffectView : UIView
 
 @property (nonatomic,strong) UIColor *sw_tintColor;
+@property (nonatomic,strong,readonly) UIVisualEffectView *visualView;
 
 @end
