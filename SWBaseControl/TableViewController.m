@@ -51,6 +51,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.textLabel.text = _dataArray[indexPath.row];
+//    cell.imageView.image = [UIImage imageNamed:@"1"];
     return cell;
 }
 
@@ -61,6 +62,9 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return 120;
+//}
 
 
 @end

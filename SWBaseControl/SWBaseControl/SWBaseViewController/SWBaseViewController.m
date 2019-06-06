@@ -314,7 +314,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             #ifdef __IPHONE_13_0
             self.sw_visualView.sw_tintColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
                 @strongify(self)
-                if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
+                if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark && self.sw_barColor == nil){
                     self.sw_visualView.visualView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
                 }else{
                     self.sw_visualView.visualView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -325,17 +325,17 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
                 }
 //                NSLog(@"percent:%f",percent);
                 if(percent > 0){
-                    if(self.sw_barColor && traitCollection.userInterfaceStyle != UIUserInterfaceStyleDark){
+                    if(self.sw_barColor){
                         return [self.sw_barColor colorWithAlphaComponent:1.0-0.1*percent];
                     }else{
                         if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
                             return [[UIColor blackColor] colorWithAlphaComponent:1.0 - 0.9*percent];
                         }else{
-                            return [[UIColor whiteColor] colorWithAlphaComponent:1.0-0.9*percent];
+                            return [[UIColor whiteColor] colorWithAlphaComponent:1.0-0.1*percent];
                         }
                     }
                 }else{
-                    if(self.sw_barColor && traitCollection.userInterfaceStyle != UIUserInterfaceStyleDark){
+                    if(self.sw_barColor){
                         return self.sw_barColor;
                     }else{
                         if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
