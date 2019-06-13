@@ -8,7 +8,6 @@
 #import "SWBaseTextView.h"
 #import <SWMultipleDelegateProxy.h>
 #import <RACDelegateProxy.h>
-#import <NSObject+RACKVOWrapper.h>
 #import <RACEXTScope.h>
 
 @class SWBaseTextViewDelegateObserver;
