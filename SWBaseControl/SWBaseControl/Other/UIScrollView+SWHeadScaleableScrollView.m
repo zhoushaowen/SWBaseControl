@@ -66,7 +66,7 @@
 - (void)sw_setDelegate:(id<UIScrollViewDelegate>)delegate {
     self.innerSWHeadScaleableScrollViewDelegate = [SWHeadScaleableScrollViewInnerDelegate new];
     if(delegate != nil && self.sw_scaleableHeadView != nil){
-        [self.innerSWHeadScaleableScrollViewMultipleDelegateProxy setAllDelegate:@[delegate,self.innerSWHeadScaleableScrollViewDelegate]];
+        [self.innerSWHeadScaleableScrollViewMultipleDelegateProxy setAllDelegate:@[self.innerSWHeadScaleableScrollViewDelegate,delegate]];
         [self sw_setDelegate:self.innerSWHeadScaleableScrollViewMultipleDelegateProxy];
     }else{
         [self sw_setDelegate:delegate];

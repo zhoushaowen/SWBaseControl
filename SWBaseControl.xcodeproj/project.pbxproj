@@ -14,6 +14,8 @@
 		360F504F20DA2785008B3AEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 360F504E20DA2785008B3AEB /* Assets.xcassets */; };
 		360F505220DA2785008B3AEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 360F505020DA2785008B3AEB /* LaunchScreen.storyboard */; };
 		360F505520DA2785008B3AEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 360F505420DA2785008B3AEB /* main.m */; };
+		362859C822B1233D00236BA3 /* BaseTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362859C722B1233D00236BA3 /* BaseTextViewController.m */; };
+		362859CA22B1235E00236BA3 /* BaseTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362859C922B1235E00236BA3 /* BaseTextViewController.xib */; };
 		3675B4D520EF4325007B8CF0 /* DisplaySlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675B4D320EF4325007B8CF0 /* DisplaySlideViewController.m */; };
 		3675B4D620EF4325007B8CF0 /* DisplaySlideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3675B4D420EF4325007B8CF0 /* DisplaySlideViewController.xib */; };
 		3675B4D920EF43BD007B8CF0 /* SlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675B4D820EF43BD007B8CF0 /* SlideViewController.m */; };
@@ -56,6 +58,9 @@
 		360F505120DA2785008B3AEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		360F505320DA2785008B3AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		360F505420DA2785008B3AEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		362859C622B1233D00236BA3 /* BaseTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTextViewController.h; sourceTree = "<group>"; };
+		362859C722B1233D00236BA3 /* BaseTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTextViewController.m; sourceTree = "<group>"; };
+		362859C922B1235E00236BA3 /* BaseTextViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseTextViewController.xib; sourceTree = "<group>"; };
 		3675B4D220EF4325007B8CF0 /* DisplaySlideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisplaySlideViewController.h; sourceTree = "<group>"; };
 		3675B4D320EF4325007B8CF0 /* DisplaySlideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisplaySlideViewController.m; sourceTree = "<group>"; };
 		3675B4D420EF4325007B8CF0 /* DisplaySlideViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplaySlideViewController.xib; sourceTree = "<group>"; };
@@ -212,6 +217,9 @@
 				36D2AD9021183CD100B1BA4E /* ShowPickerViewController.xib */,
 				36D2AD8B21183B5300B1BA4E /* PickerViewController.h */,
 				36D2AD8C21183B5300B1BA4E /* PickerViewController.m */,
+				362859C622B1233D00236BA3 /* BaseTextViewController.h */,
+				362859C722B1233D00236BA3 /* BaseTextViewController.m */,
+				362859C922B1235E00236BA3 /* BaseTextViewController.xib */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -296,6 +304,7 @@
 				36911FED20E603EE00674BFA /* DatePickerViewController.xib in Resources */,
 				360F505220DA2785008B3AEB /* LaunchScreen.storyboard in Resources */,
 				360F504F20DA2785008B3AEB /* Assets.xcassets in Resources */,
+				362859CA22B1235E00236BA3 /* BaseTextViewController.xib in Resources */,
 				36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */,
 				360F504D20DA2783008B3AEB /* Main.storyboard in Resources */,
 				3675B4D620EF4325007B8CF0 /* DisplaySlideViewController.xib in Resources */,
@@ -355,6 +364,7 @@
 			files = (
 				3699819921E88175006C6A25 /* XibCollectionViewController.m in Sources */,
 				36B42E1820E9BF6500CFBCC6 /* MyMoveableViewController3.m in Sources */,
+				362859C822B1233D00236BA3 /* BaseTextViewController.m in Sources */,
 				36911FDD20E5FEF700674BFA /* MyPopoverContentTableViewCell.m in Sources */,
 				36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */,
 				36D2AD9121183CD100B1BA4E /* ShowPickerViewController.m in Sources */,

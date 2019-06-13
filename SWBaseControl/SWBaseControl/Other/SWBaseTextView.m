@@ -6,10 +6,37 @@
 //
 
 #import "SWBaseTextView.h"
+#import <SWMultipleDelegateProxy.h>
+#import <RACDelegateProxy.h>
+
+@interface SWBaseTextViewDelegateObserver : NSObject<UITextViewDelegate>
+
+@property (nonatomic) IBInspectable NSInteger limitCount;
+
+@end
+
+@implementation SWBaseTextViewDelegateObserver
+
+#pragma mark - UITextViewDelegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if(self.limitCount < 0) return YES;
+    NSString *replacedText = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    if(replacedText.length > self.limitCount) return NO;
+    return YES;
+}
+
+- (void)dealloc {
+    
+}
+
+@end
 
 @interface SWBaseTextView ()
 
-@property (nonatomic,strong) UILabel *label;
+@property (nonatomic,strong) UILabel *placeholderLabel;
+@property (nonatomic,strong) UILabel *limitLabel;
+@property (nonatomic,strong) SWMultipleDelegateProxy *multipleDelegateProxy;
+@property (nonatomic,strong) SWBaseTextViewDelegateObserver *delegateObserver;
 
 @end
 
@@ -35,58 +62,131 @@
 }
 
 - (void)setup {
+    if(self.delegate == nil){
+        self.delegate = self.multipleDelegateProxy;
+    }
+    self.limitCount = -1;
+    self.limitLabelRightInset = 8;
+    self.limitLabelBottomInset = 8;
     self.font = [UIFont systemFontOfSize:15];
-    [self addSubview:self.label];
+    [self addSubview:self.placeholderLabel];
+    [self addSubview:self.limitLabel];
     [self setNeedsLayout];
     [self layoutIfNeeded];
     [self addObserver];
 }
 
-- (UILabel *)label {
-    if(!_label){
-        _label = [[UILabel alloc] init];
-        _label.font = self.font;
-        _label.numberOfLines = 0;
-        _label.textColor = [UIColor colorWithWhite:0.82 alpha:1.0];
-        _label.hidden = self.text.length > 0;
+- (SWMultipleDelegateProxy *)multipleDelegateProxy {
+    if(!_multipleDelegateProxy){
+        _multipleDelegateProxy = [[SWMultipleDelegateProxy alloc] init];
+        [_multipleDelegateProxy setAllDelegate:@[self.delegateObserver]];
     }
-    return _label;
+    return _multipleDelegateProxy;
+}
+
+- (SWBaseTextViewDelegateObserver *)delegateObserver {
+    if(!_delegateObserver){
+        _delegateObserver = [[SWBaseTextViewDelegateObserver alloc] init];
+    }
+    return _delegateObserver;
+}
+
+- (UILabel *)placeholderLabel {
+    if(!_placeholderLabel){
+        _placeholderLabel = [[UILabel alloc] init];
+        _placeholderLabel.font = self.font;
+        _placeholderLabel.numberOfLines = 0;
+        _placeholderLabel.textColor = [UIColor colorWithWhite:0.82 alpha:1.0];
+        _placeholderLabel.hidden = self.text.length > 0;
+    }
+    return _placeholderLabel;
+}
+
+- (UILabel *)limitLabel {
+    if(!_limitLabel){
+        _limitLabel = [[UILabel alloc] init];
+        _limitLabel.font = self.font;
+        _limitLabel.textColor = [UIColor colorWithWhite:0.82 alpha:1.0];
+        _limitLabel.text = [NSString stringWithFormat:@"%@/%@",@(self.text.length),@(self.limitCount)];
+        _limitLabel.hidden = self.limitCount < 0;
+    }
+    return _limitLabel;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGSize bestSize = [self.label sizeThatFits:CGSizeMake(self.bounds.size.width - self.textContainerInset.left - self.textContainerInset.right - 2 * self.textContainer.lineFragmentPadding, MAXFLOAT)];
+    CGSize bestSize = [self.placeholderLabel sizeThatFits:CGSizeMake(self.bounds.size.width - self.textContainerInset.left - self.textContainerInset.right - 2 * self.textContainer.lineFragmentPadding, MAXFLOAT)];
     CGFloat maxLineHeight = self.bounds.size.height - self.textContainerInset.top - self.textContainerInset.bottom;
     if(bestSize.height > maxLineHeight){
         bestSize.height = maxLineHeight;
     }
-    self.label.numberOfLines = bestSize.height/self.label.font.lineHeight;
-    self.label.frame = CGRectMake(0, 0, bestSize.width, bestSize.height);
-    CGRect rect = self.label.frame;
+    self.placeholderLabel.numberOfLines = bestSize.height/self.placeholderLabel.font.lineHeight;
+    self.placeholderLabel.frame = CGRectMake(0, 0, bestSize.width, bestSize.height);
+    CGRect rect = self.placeholderLabel.frame;
     rect.origin = CGPointMake(self.textContainerInset.left + self.textContainer.lineFragmentPadding, self.textContainerInset.top);
-    self.label.frame = rect;
+    self.placeholderLabel.frame = rect;
+    [self.limitLabel sizeToFit];
+    [self updateLimitLabelFrame];
+}
+
+- (void)updateLimitLabelFrame {
+    CGRect limitLabelFrame = self.limitLabel.frame;
+    limitLabelFrame.origin.x = self.bounds.size.width - limitLabelFrame.size.width - self.limitLabelRightInset;
+    limitLabelFrame.origin.y = self.bounds.size.height - limitLabelFrame.size.height - self.limitLabelBottomInset;
+    self.limitLabel.frame = limitLabelFrame;
 }
 
 - (void)setFont:(UIFont *)font {
     [super setFont:font];
-    self.label.font = font;
+    self.placeholderLabel.font = font;
 }
 
 - (void)setPlaceholder:(NSString *)placeholder {
     _placeholder = [placeholder copy];
-    self.label.text = _placeholder;
+    self.placeholderLabel.text = _placeholder;
     [self setNeedsLayout];
     [self layoutIfNeeded];
 }
 
 - (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder {
     _attributedPlaceholder = [attributedPlaceholder copy];
-    self.label.attributedText = _attributedPlaceholder;
+    self.placeholderLabel.attributedText = _attributedPlaceholder;
 }
 
 - (void)setPlaceholderColor:(UIColor *)placeholderColor {
     _placeholderColor = placeholderColor;
-    self.label.textColor = _placeholderColor;
+    self.placeholderLabel.textColor = _placeholderColor;
+}
+
+- (void)setLimitCount:(NSInteger)limitCount {
+    _limitCount = limitCount;
+    self.delegateObserver.limitCount = limitCount;
+    self.limitLabel.hidden = limitCount < 0;
+    self.limitLabel.text = [NSString stringWithFormat:@"%@/%@",@(self.text.length),@(self.limitCount)];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
+- (void)setLimitLabelRightInset:(CGFloat)limitLabelRightInset {
+    _limitLabelRightInset = limitLabelRightInset;
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
+- (void)setLimitLabelBottomInset:(CGFloat)limitLabelBottomInset {
+    _limitLabelBottomInset = limitLabelBottomInset;
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
+- (void)setLimitLabelFont:(UIFont *)limitLabelFont {
+    _limitLabelFont = limitLabelFont;
+    self.limitLabel.font = limitLabelFont;
+}
+
+- (void)setLimitLabelTextColor:(UIColor *)limitLabelTextColor {
+    _limitLabelTextColor = limitLabelTextColor;
+    self.limitLabel.textColor = limitLabelTextColor;
 }
 
 - (void)addObserver {
@@ -104,7 +204,10 @@
 }
 
 - (void)changeLabelStatus {
-    self.label.hidden = self.text.length > 0;
+    self.placeholderLabel.hidden = self.text.length > 0;
+    self.limitLabel.text = [NSString stringWithFormat:@"%@/%@",@(self.text.length),@(self.limitCount)];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 //When any text changes on textField, the delegate getter is called. At this time we refresh the textView's placeholder
@@ -112,6 +215,18 @@
     [self changeLabelStatus];
     return [super delegate];
 }
+
+- (void)setDelegate:(id<UITextViewDelegate>)delegate {
+    if(delegate != self.multipleDelegateProxy && delegate != nil && delegate != self){
+        [self.multipleDelegateProxy setAllDelegate:@[self.delegateObserver,delegate]];
+    }
+    if(delegate == nil){
+        [super setDelegate:nil];
+        return;
+    }
+    [super setDelegate:self.multipleDelegateProxy];
+}
+
 
 - (void)dealloc {
     [self removeObserver];

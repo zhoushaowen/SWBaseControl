@@ -37,7 +37,8 @@
                    @"DisplaySlideViewController",
                    @"XibViewController",
                    @"XibTableViewController",
-                   @"XibCollectionViewController"
+                   @"XibCollectionViewController",
+                   @"BaseTextViewController"
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
