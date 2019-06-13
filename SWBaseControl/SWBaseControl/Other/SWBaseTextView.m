@@ -8,28 +8,10 @@
 #import "SWBaseTextView.h"
 #import <SWMultipleDelegateProxy.h>
 #import <RACDelegateProxy.h>
+#import <NSObject+RACKVOWrapper.h>
+#import <RACEXTScope.h>
 
-@interface SWBaseTextViewDelegateObserver : NSObject<UITextViewDelegate>
-
-@property (nonatomic) IBInspectable NSInteger limitCount;
-
-@end
-
-@implementation SWBaseTextViewDelegateObserver
-
-#pragma mark - UITextViewDelegate
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if(self.limitCount < 0) return YES;
-    NSString *replacedText = [textView.text stringByReplacingCharactersInRange:range withString:text];
-    if(replacedText.length > self.limitCount) return NO;
-    return YES;
-}
-
-- (void)dealloc {
-    
-}
-
-@end
+@class SWBaseTextViewDelegateObserver;
 
 @interface SWBaseTextView ()
 
@@ -38,7 +20,48 @@
 @property (nonatomic,strong) SWMultipleDelegateProxy *multipleDelegateProxy;
 @property (nonatomic,strong) SWBaseTextViewDelegateObserver *delegateObserver;
 
+- (void)updateLimitLabelStatus:(BOOL)isEditing;
+
 @end
+
+@interface SWBaseTextViewDelegateObserver : NSObject<UITextViewDelegate>
+
+@property (nonatomic) IBInspectable NSInteger limitCount;
+@property (nonatomic,weak) UILabel *limitLabel;
+@property (nonatomic) SWBaseTextViewLimitLabelViewMode limitLabelViewMode;
+@property (nonatomic,weak) SWBaseTextView *textView;
+
+@end
+
+@implementation SWBaseTextViewDelegateObserver
+
+#pragma mark - UITextViewDelegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if([text isEqualToString:@"\n"]){
+        if(self.textView.didClickReturnKeyBlock){
+            self.textView.didClickReturnKeyBlock();
+        }
+        return NO;
+    }
+    if(self.limitCount < 0) return YES;
+    NSString *replacedText = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    if(replacedText.length > self.limitCount) return NO;
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    [self.textView updateLimitLabelStatus:YES];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [self.textView updateLimitLabelStatus:NO];
+}
+
+- (void)dealloc {
+}
+
+@end
+
 
 @implementation SWBaseTextView
 {
@@ -71,6 +94,7 @@
     self.font = [UIFont systemFontOfSize:15];
     [self addSubview:self.placeholderLabel];
     [self addSubview:self.limitLabel];
+    [self updateLimitLabelStatus:self.isFirstResponder];
     [self setNeedsLayout];
     [self layoutIfNeeded];
     [self addObserver];
@@ -87,6 +111,9 @@
 - (SWBaseTextViewDelegateObserver *)delegateObserver {
     if(!_delegateObserver){
         _delegateObserver = [[SWBaseTextViewDelegateObserver alloc] init];
+        _delegateObserver.limitLabel = self.limitLabel;
+        _delegateObserver.limitLabelViewMode = self.limitLabelViewMode;
+        _delegateObserver.textView = self;
     }
     return _delegateObserver;
 }
@@ -108,7 +135,7 @@
         _limitLabel.font = self.font;
         _limitLabel.textColor = [UIColor colorWithWhite:0.82 alpha:1.0];
         _limitLabel.text = [NSString stringWithFormat:@"%@/%@",@(self.text.length),@(self.limitCount)];
-        _limitLabel.hidden = self.limitCount < 0;
+        _limitLabel.hidden = YES;
     }
     return _limitLabel;
 }
@@ -161,7 +188,6 @@
 - (void)setLimitCount:(NSInteger)limitCount {
     _limitCount = limitCount;
     self.delegateObserver.limitCount = limitCount;
-    self.limitLabel.hidden = limitCount < 0;
     self.limitLabel.text = [NSString stringWithFormat:@"%@/%@",@(self.text.length),@(self.limitCount)];
     [self setNeedsLayout];
     [self layoutIfNeeded];
@@ -189,10 +215,44 @@
     self.limitLabel.textColor = limitLabelTextColor;
 }
 
+- (void)setLimitLabelViewMode:(SWBaseTextViewLimitLabelViewMode)limitLabelViewMode {
+    _limitLabelViewMode = limitLabelViewMode;
+    [self updateLimitLabelStatus:self.isFirstResponder];
+}
+
+- (void)updateLimitLabelStatus:(BOOL)isEditing {
+    if(self.limitCount < 0) {
+        self.limitLabel.hidden = YES;
+        return;
+    }
+    switch (self.limitLabelViewMode) {
+        case SWBaseTextViewLimitLabelViewModeWhileEditing:
+        {
+            self.limitLabel.hidden = !isEditing;
+        }
+            break;
+        case SWBaseTextViewLimitLabelViewModeAlways:
+        {
+            self.limitLabel.hidden = NO;
+        }
+            break;
+        case SWBaseTextViewLimitLabelViewModeNever:
+        {
+            self.limitLabel.hidden = YES;
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 - (void)addObserver {
-    __weak typeof(self) weakSelf = self;
+    @weakify(self)
     _textDidChangeObserver = [[NSNotificationCenter defaultCenter] addObserverForName:UITextViewTextDidChangeNotification object:self queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        [weakSelf changeLabelStatus];
+        @strongify(self)
+        if(note.object != self) return;
+        [self changeLabelStatus];
     }];
 }
 

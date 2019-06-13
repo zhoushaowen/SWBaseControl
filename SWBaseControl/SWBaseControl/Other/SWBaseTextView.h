@@ -7,6 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, SWBaseTextViewLimitLabelViewMode) {
+    SWBaseTextViewLimitLabelViewModeWhileEditing,
+    SWBaseTextViewLimitLabelViewModeAlways,
+    SWBaseTextViewLimitLabelViewModeNever,
+};
+
 @interface SWBaseTextView : UITextView
 
 @property (nonatomic,copy) IBInspectable NSString *placeholder;
@@ -15,7 +21,13 @@
  */
 @property (nonatomic,strong)IBInspectable UIColor *placeholderColor;
 @property (nonatomic,copy) NSAttributedString *attributedPlaceholder;
+@property (nonatomic,strong) void(^didClickReturnKeyBlock)(void);
 
+#if TARGET_INTERFACE_BUILDER
+@property (nonatomic) IBInspectable NSInteger limitLabelViewMode;
+#else
+@property (nonatomic) SWBaseTextViewLimitLabelViewMode limitLabelViewMode;
+#endif
 /**
  default is -1,means no limit
  */
