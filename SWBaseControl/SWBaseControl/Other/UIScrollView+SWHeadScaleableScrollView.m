@@ -64,8 +64,7 @@
 }
 
 - (void)sw_setDelegate:(id<UIScrollViewDelegate>)delegate {
-    self.innerSWHeadScaleableScrollViewDelegate = [SWHeadScaleableScrollViewInnerDelegate new];
-    if(delegate != nil && self.sw_scaleableHeadView != nil){
+    if(delegate != nil && self.sw_scaleableHeadView != nil && delegate != self.innerSWHeadScaleableScrollViewMultipleDelegateProxy && ![self.innerSWHeadScaleableScrollViewMultipleDelegateProxy.allDelegate containsObject:delegate]){
         [self.innerSWHeadScaleableScrollViewMultipleDelegateProxy setAllDelegate:@[self.innerSWHeadScaleableScrollViewDelegate,delegate]];
         [self sw_setDelegate:self.innerSWHeadScaleableScrollViewMultipleDelegateProxy];
     }else{
@@ -78,7 +77,12 @@
 }
 
 - (SWHeadScaleableScrollViewInnerDelegate *)innerSWHeadScaleableScrollViewDelegate {
-    return objc_getAssociatedObject(self, @selector(innerSWHeadScaleableScrollViewDelegate));
+    SWHeadScaleableScrollViewInnerDelegate *delegate = objc_getAssociatedObject(self, @selector(innerSWHeadScaleableScrollViewDelegate));
+    if(delegate == nil){
+        delegate = [[SWHeadScaleableScrollViewInnerDelegate alloc] init];
+        self.innerSWHeadScaleableScrollViewDelegate = delegate;
+    }
+    return delegate;
 }
 
 - (void)setSw_scaleableHeadViewOriginalFrame:(CGRect)sw_scaleableHeadViewOriginalFrame {
@@ -104,6 +108,7 @@
 
 - (void)setSw_scaleableHeadView:(UIView *)sw_scaleableHeadView {
     if(self.sw_scaleableHeadView == sw_scaleableHeadView) return;
+    if(sw_scaleableHeadView == nil) return;
     if(sw_scaleableHeadView.bounds.size.height <= 0){
         sw_scaleableHeadView.frame = CGRectMake(0, 0, self.bounds.size.width, 200);
     }
@@ -123,7 +128,18 @@
         self.sw_scaleableHeadViewOriginalFrame = sw_scaleableHeadView.frame;
     }
     objc_setAssociatedObject(self, @selector(sw_scaleableHeadView), sw_scaleableHeadView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.innerSWHeadScaleableScrollViewDelegate = [SWHeadScaleableScrollViewInnerDelegate new];
+    if(self.delegate != nil && sw_scaleableHeadView != nil){
+        NSMutableArray *mutableArr = [NSMutableArray arrayWithCapacity:0];
+        if(![self.innerSWHeadScaleableScrollViewMultipleDelegateProxy.allDelegate containsObject:self.innerSWHeadScaleableScrollViewDelegate]){
+            [mutableArr addObject:self.innerSWHeadScaleableScrollViewDelegate];
+        }
+        [mutableArr addObjectsFromArray:self.innerSWHeadScaleableScrollViewMultipleDelegateProxy.allDelegate?:@[]];
+        if(![self.innerSWHeadScaleableScrollViewMultipleDelegateProxy.allDelegate containsObject:self.delegate] && self.delegate != self.innerSWHeadScaleableScrollViewMultipleDelegateProxy){
+            [mutableArr addObject:self.delegate];
+        }
+        [self.innerSWHeadScaleableScrollViewMultipleDelegateProxy setAllDelegate:mutableArr];
+        [self sw_setDelegate:self.innerSWHeadScaleableScrollViewMultipleDelegateProxy];
+    }
 }
 
 - (UIView *)sw_scaleableHeadView {
