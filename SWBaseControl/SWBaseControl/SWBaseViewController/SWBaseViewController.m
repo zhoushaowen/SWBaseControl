@@ -200,6 +200,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 #endif
 @property (nonatomic) UITableViewStyle tableViewStyle;
 @property (nonatomic,strong) UICollectionViewLayout *collectionViewLayout;
+@property (nonatomic,strong) WKWebView *webView;
 
 @end
 
@@ -207,6 +208,13 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 
 - (SWBaseViewControllerType)controllerType {
     return _controllerType;
+}
+- (instancetype)initWithControllerType:(SWBaseViewControllerType)controllerType {
+    self = [super initWithNibName:nil bundle:nil];
+    if(self){
+        self.controllerType = controllerType;
+    }
+    return self;
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
@@ -226,6 +234,15 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
         }
         self.collectionViewLayout = collectionViewLayout;
         self.controllerType = SWBaseViewControllerCollectionViewType;
+    }
+    return self;
+}
+
+- (instancetype)initWithURL:(NSURL *)url {
+    self = [super initWithNibName:nil bundle:nil];
+    if(self){
+        self.controllerType = SWBaseViewControllerWebViewType;
+        self.url = url;
     }
     return self;
 }
@@ -258,7 +275,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             [self addScrollViewContentOffsetObserver:_tableView];
         }
             break;
-            case SWBaseViewControllerCollectionViewType:
+        case SWBaseViewControllerCollectionViewType:
         {
             _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
             _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -272,6 +289,18 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             _collectionView.dataSource = self;
             [self.view addSubview:_collectionView];
             [self addScrollViewContentOffsetObserver:_collectionView];
+        }
+            break;
+        case SWBaseViewControllerWebViewType:
+        {
+            self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+            self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            self.webView.navigationDelegate = self;
+            self.webView.UIDelegate = self;
+            [self.view addSubview:self.webView];
+            if(self.url){
+                [self.webView loadRequest:[NSURLRequest requestWithURL:_url]];
+            }
         }
             break;
             
@@ -309,9 +338,9 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     @weakify(self)
     [scrollView rac_observeKeyPath:@"contentOffset" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew observer:self block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
         @strongify(self)
-//        NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
+        //        NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
         if (@available(iOS 13.0, *)) {
-            #ifdef __IPHONE_13_0
+#ifdef __IPHONE_13_0
             self.sw_visualView.sw_tintColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
                 @strongify(self)
                 if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark && self.sw_barColor == nil){
@@ -323,7 +352,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
                 if(percent >= 1.0){
                     percent = 1.0;
                 }
-//                NSLog(@"percent:%f",percent);
+                //                NSLog(@"percent:%f",percent);
                 if(percent > 0){
                     if(self.sw_barColor){
                         return [self.sw_barColor colorWithAlphaComponent:1.0-0.1*percent];
@@ -345,7 +374,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
                         }
                     }
                 }
-
+                
             }];
 #endif
         }else{
@@ -353,7 +382,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             if(percent >= 1.0){
                 percent = 1.0;
             }
-//            NSLog(@"percent:%f",percent);
+            //            NSLog(@"percent:%f",percent);
             if(percent > 0){
                 if(self.sw_barColor){
                     self.sw_visualView.sw_tintColor = [self.sw_barColor colorWithAlphaComponent:1.0-0.1*percent];
@@ -368,7 +397,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
                 }
             }
         }
-
+        
     }];
 }
 
@@ -379,6 +408,35 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 0;
 }
+
+#pragma mark - WKWebView
+- (void)setUrl:(NSURL *)url {
+    _url = url;
+    if(self.isViewLoaded && url){
+        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    }
+}
+- (void)setMaximumScale:(CGFloat)maximumScale {
+    if(maximumScale < 1.0) maximumScale = 1.0;
+    _maximumScale = maximumScale;
+}
+
+#pragma mark - WKNavigationDelegate
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    NSString *str = nil;
+    if(self.forceDisableScale){
+        // 禁止放大缩小
+        str = @"no";
+    }else{
+        str = @"yes";
+    }
+    NSString *injectionJSString = [NSString stringWithFormat:@"var script = document.createElement('meta');"
+                                   "script.name = 'viewport';"
+                                   "script.content=\"width=device-width, initial-scale=1.0,maximum-scale=%f, minimum-scale=1.0, user-scalable=%@\";"
+                                   "document.getElementsByTagName('head')[0].appendChild(script);",self.maximumScale,str];
+    [webView evaluateJavaScript:injectionJSString completionHandler:nil];
+}
+
 
 - (BOOL)shouldAutorotate {
     return YES;

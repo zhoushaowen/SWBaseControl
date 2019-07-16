@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -49,13 +50,16 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
     SWBaseViewControllerNormalType = 0,
     SWBaseViewControllerTableViewType = 1,
     SWBaseViewControllerCollectionViewType = 2,
+    SWBaseViewControllerWebViewType,
 };
 
 @interface SWBaseViewController : UIViewController
-<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WKNavigationDelegate,WKUIDelegate>
 
+- (instancetype)initWithControllerType:(SWBaseViewControllerType)controllerType;
 - (instancetype)initWithStyle:(UITableViewStyle)style;
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *_Nonnull)collectionViewLayout;
+- (instancetype)initWithURL:(NSURL *)url;
 
 #if TARGET_INTERFACE_BUILDER
 @property (nonatomic,readonly) IBInspectable NSUInteger controllerType;
@@ -65,9 +69,17 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
 
 @property (nonatomic,readonly,strong,nullable) UITableView *tableView;
 @property (nonatomic,readonly) UITableViewStyle tableViewStyle;
-//default is UICollectionViewFlowLayout
+///default is UICollectionViewFlowLayout
 @property (nonatomic,readonly,strong,nullable) UICollectionViewLayout *collectionViewLayout;
 @property (nonatomic,readonly,strong,nullable) UICollectionView *collectionView;
+
+#pragma mark - WKWebView
+@property (nonatomic,readonly,strong,nullable) WKWebView *webView;
+@property (nonatomic,strong) NSURL *url;
+///是否强制禁止缩放
+@property (nonatomic) BOOL forceDisableScale;
+/// default is 3.0
+@property (nonatomic) CGFloat maximumScale;
 
 @end
 
