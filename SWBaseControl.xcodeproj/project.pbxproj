@@ -14,6 +14,8 @@
 		360F504F20DA2785008B3AEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 360F504E20DA2785008B3AEB /* Assets.xcassets */; };
 		360F505220DA2785008B3AEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 360F505020DA2785008B3AEB /* LaunchScreen.storyboard */; };
 		360F505520DA2785008B3AEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 360F505420DA2785008B3AEB /* main.m */; };
+		3626CEC322E15D6900ECBE23 /* ShowProvincesPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626CEC122E15D6900ECBE23 /* ShowProvincesPickerViewController.m */; };
+		3626CEC422E15D6900ECBE23 /* ShowProvincesPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3626CEC222E15D6900ECBE23 /* ShowProvincesPickerViewController.xib */; };
 		362859C822B1233D00236BA3 /* BaseTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362859C722B1233D00236BA3 /* BaseTextViewController.m */; };
 		362859CA22B1235E00236BA3 /* BaseTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362859C922B1235E00236BA3 /* BaseTextViewController.xib */; };
 		3675B4D520EF4325007B8CF0 /* DisplaySlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675B4D320EF4325007B8CF0 /* DisplaySlideViewController.m */; };
@@ -58,6 +60,9 @@
 		360F505120DA2785008B3AEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		360F505320DA2785008B3AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		360F505420DA2785008B3AEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3626CEC022E15D6900ECBE23 /* ShowProvincesPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowProvincesPickerViewController.h; sourceTree = "<group>"; };
+		3626CEC122E15D6900ECBE23 /* ShowProvincesPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowProvincesPickerViewController.m; sourceTree = "<group>"; };
+		3626CEC222E15D6900ECBE23 /* ShowProvincesPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowProvincesPickerViewController.xib; sourceTree = "<group>"; };
 		362859C622B1233D00236BA3 /* BaseTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTextViewController.h; sourceTree = "<group>"; };
 		362859C722B1233D00236BA3 /* BaseTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTextViewController.m; sourceTree = "<group>"; };
 		362859C922B1235E00236BA3 /* BaseTextViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseTextViewController.xib; sourceTree = "<group>"; };
@@ -220,6 +225,9 @@
 				362859C622B1233D00236BA3 /* BaseTextViewController.h */,
 				362859C722B1233D00236BA3 /* BaseTextViewController.m */,
 				362859C922B1235E00236BA3 /* BaseTextViewController.xib */,
+				3626CEC022E15D6900ECBE23 /* ShowProvincesPickerViewController.h */,
+				3626CEC122E15D6900ECBE23 /* ShowProvincesPickerViewController.m */,
+				3626CEC222E15D6900ECBE23 /* ShowProvincesPickerViewController.xib */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -305,6 +313,7 @@
 				360F505220DA2785008B3AEB /* LaunchScreen.storyboard in Resources */,
 				360F504F20DA2785008B3AEB /* Assets.xcassets in Resources */,
 				362859CA22B1235E00236BA3 /* BaseTextViewController.xib in Resources */,
+				3626CEC422E15D6900ECBE23 /* ShowProvincesPickerViewController.xib in Resources */,
 				36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */,
 				360F504D20DA2783008B3AEB /* Main.storyboard in Resources */,
 				3675B4D620EF4325007B8CF0 /* DisplaySlideViewController.xib in Resources */,
@@ -386,6 +395,7 @@
 				36911FF120E605CA00674BFA /* PlaceholderTextViewController.m in Sources */,
 				3675B4D520EF4325007B8CF0 /* DisplaySlideViewController.m in Sources */,
 				36B42E2020EA043B00CFBCC6 /* ScaleableTableViewController.m in Sources */,
+				3626CEC322E15D6900ECBE23 /* ShowProvincesPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

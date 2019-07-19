@@ -29,6 +29,7 @@
     _dataArray = @[@"PopoverViewController",
                    @"DatePickerViewController",
                    @"ShowPickerViewController",
+                   @"ShowProvincesPickerViewController",
                    @"ChatViewController",
                    @"PlaceholderTextViewController",
                    @"AnimateBtnViewController",
