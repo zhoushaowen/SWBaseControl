@@ -11,7 +11,7 @@
 
 @interface SWGrowingTextView ()<UITextViewDelegate>
 
-@property (nonatomic,strong) UITextView *textView;
+@property (nonatomic,strong) SWBaseTextView *textView;
 @property (nonatomic,weak) id keyboardWillShowObserver,keyboardWillHideObserver;
 @property (nonatomic) CGRect originalRect;
 @property (nonatomic) BOOL isKeyboardShow;
@@ -103,7 +103,7 @@
 - (void)prepare {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.backgroundColor = [UIColor colorWithRed:241/255.0 green:241/255.0 blue:244/255.0 alpha:1.0];
-    _textView = [[UITextView alloc] init];
+    _textView = [[SWBaseTextView alloc] init];
     [self reset];
     _textView.layer.borderWidth = _textViewBorderWidth;
     _textView.layer.borderColor = _textViewBorderColor.CGColor;
@@ -163,6 +163,8 @@
     frame.size.height = height;
     [UIView animateWithDuration:0.3f animations:^{
         self.frame = frame;
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
         [self textDidChange];
     } completion:nil];
 }
@@ -280,17 +282,15 @@
     }
 }
 
-- (BOOL)canBecomeFirstResponder {
-    return YES;
-}
+//- (BOOL)canBecomeFirstResponder {
+//    return YES;
+//}
 
 - (BOOL)becomeFirstResponder {
-    [super becomeFirstResponder];
     return [_textView becomeFirstResponder];
 }
 
 - (BOOL)resignFirstResponder {
-    [super resignFirstResponder];
     return [_textView resignFirstResponder];
 }
 

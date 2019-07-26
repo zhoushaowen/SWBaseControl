@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SWBaseTextView.h>
 
 @class SWGrowingTextView;
 
@@ -39,6 +40,8 @@
  init subviews
  */
 - (void)prepare NS_REQUIRES_SUPER;
+
+@property (nonatomic,readonly,strong) SWBaseTextView *textView;
 
 @property (nonatomic,weak) id<SWGrowingTextViewDelegate> delegate;
 
