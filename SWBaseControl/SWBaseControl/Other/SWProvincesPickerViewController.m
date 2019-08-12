@@ -81,6 +81,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataSource = [SWProvincesPickerViewController loadAllProvincesData];
+//    [self.pickerView selectRow:0 inComponent:0 animated:NO];
+    [self getSelectedModel];
 }
 
 - (void)setDataSource:(NSArray *)dataSource {
