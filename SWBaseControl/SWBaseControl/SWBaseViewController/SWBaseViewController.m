@@ -93,7 +93,15 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     [self rac_observeKeyPath:@"view.frame" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew observer:self block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
         @strongify(self)
         //适配iOS13,默认情况下iOS13模态出的导航条高度为56
-        self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, self.navigationController.navigationBar.frame.size.height + (([UIApplication sharedApplication].isStatusBarHidden||self.navigationController.navigationBar.frame.size.height == 56)?0:UIDevice.sw_statusBarHeight));
+        if(self.navigationController.navigationBar.frame.size.height == 56){
+            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, 56);
+        }else{
+            if(UIDevice.sw_isIPhoneXSeries){
+                self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight);
+            }else{
+                self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0));
+            }
+        }
     }];
 }
 
