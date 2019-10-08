@@ -48,6 +48,7 @@
 		36D2AD8D21183B5300B1BA4E /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2AD8C21183B5300B1BA4E /* PickerViewController.m */; };
 		36D2AD9121183CD100B1BA4E /* ShowPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2AD8F21183CD100B1BA4E /* ShowPickerViewController.m */; };
 		36D2AD9221183CD100B1BA4E /* ShowPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2AD9021183CD100B1BA4E /* ShowPickerViewController.xib */; };
+		36EC1481234C864B00F420B5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EC147F234C864B00F420B5 /* BaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,8 @@
 		36D2AD8E21183CD100B1BA4E /* ShowPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowPickerViewController.h; sourceTree = "<group>"; };
 		36D2AD8F21183CD100B1BA4E /* ShowPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowPickerViewController.m; sourceTree = "<group>"; };
 		36D2AD9021183CD100B1BA4E /* ShowPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowPickerViewController.xib; sourceTree = "<group>"; };
+		36EC147F234C864B00F420B5 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		36EC1480234C864B00F420B5 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4D1F1953B369AD1068F399A8 /* Pods-SWBaseControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWBaseControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-SWBaseControl/Pods-SWBaseControl.release.xcconfig"; sourceTree = "<group>"; };
 		862996719BEBB3AA640E90D7 /* libPods-SWBaseControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SWBaseControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFB61B4BD818E83AADDBE7A /* Pods-SWBaseControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWBaseControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SWBaseControl/Pods-SWBaseControl.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 		36911FEE20E603F700674BFA /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				36EC1480234C864B00F420B5 /* BaseViewController.h */,
+				36EC147F234C864B00F420B5 /* BaseViewController.m */,
 				36911FE420E6015D00674BFA /* PopoverViewController.h */,
 				36911FE520E6015D00674BFA /* PopoverViewController.m */,
 				36911FE720E6030300674BFA /* PopoverViewController.xib */,
@@ -377,6 +382,7 @@
 				36911FDD20E5FEF700674BFA /* MyPopoverContentTableViewCell.m in Sources */,
 				36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */,
 				36D2AD9121183CD100B1BA4E /* ShowPickerViewController.m in Sources */,
+				36EC1481234C864B00F420B5 /* BaseViewController.m in Sources */,
 				360F505520DA2785008B3AEB /* main.m in Sources */,
 				36911FE620E6015D00674BFA /* PopoverViewController.m in Sources */,
 				36D2AD8D21183B5300B1BA4E /* PickerViewController.m in Sources */,

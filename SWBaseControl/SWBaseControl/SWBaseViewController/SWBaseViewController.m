@@ -273,6 +273,13 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
                 _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
             } else {
                 // Fallback on earlier versions
+                CGFloat inset = UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0);
+                //适配iOS13,默认情况下iOS13模态出的导航条高度为56
+                if(self.navigationController.navigationBar.frame.size.height == 56){
+                    inset = 56;
+                }
+                _tableView.contentInset = UIEdgeInsetsMake(inset, 0, 0, 0);
+                _tableView.scrollIndicatorInsets = _tableView.contentInset;
             }
             _tableView.delegate = self;
             _tableView.dataSource = self;
@@ -289,6 +296,13 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
                 _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
             } else {
                 // Fallback on earlier versions
+                CGFloat inset = UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0);
+                //适配iOS13,默认情况下iOS13模态出的导航条高度为56
+                if(self.navigationController.navigationBar.frame.size.height == 56){
+                    inset = 56;
+                }
+                _collectionView.contentInset = UIEdgeInsetsMake(inset, 0, 0, 0);
+                _collectionView.scrollIndicatorInsets = _tableView.contentInset;
             }
             _collectionView.delegate = self;
             _collectionView.dataSource = self;

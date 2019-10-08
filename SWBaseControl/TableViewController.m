@@ -26,7 +26,9 @@
     self.navigationItem.title = @"Main";
     self.sw_barBottomLineImage = [UIImage new];
     self.tableView.tableFooterView = [UIView new];
-    _dataArray = @[@"PopoverViewController",
+    _dataArray = @[
+                   @"BaseViewController",
+                   @"PopoverViewController",
                    @"DatePickerViewController",
                    @"ShowPickerViewController",
                    @"ShowProvincesPickerViewController",
