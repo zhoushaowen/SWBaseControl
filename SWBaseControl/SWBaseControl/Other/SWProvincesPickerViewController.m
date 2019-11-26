@@ -190,8 +190,9 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if(component == 0){
         [pickerView reloadComponent:1];
-        [pickerView reloadComponent:2];
         [pickerView selectRow:0 inComponent:1 animated:YES];
+        //每reload上一个component之后要赶紧调用selectRow,否则reload下一个component否则会导致numberOfRowsInComponent中的数组越界
+        [pickerView reloadComponent:2];
         [pickerView selectRow:0 inComponent:2 animated:YES];
     }else if (component == 1){
         [pickerView reloadComponent:2];
