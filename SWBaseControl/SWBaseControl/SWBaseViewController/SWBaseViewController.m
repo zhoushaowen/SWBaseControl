@@ -211,9 +211,9 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 
 @implementation SWBaseViewController
 
-- (SWBaseViewControllerType)controllerType {
-    return _controllerType;
-}
+//- (SWBaseViewControllerType)controllerType {
+//    return _controllerType;
+//}
 - (instancetype)initWithControllerType:(SWBaseViewControllerType)controllerType {
     self = [super initWithNibName:nil bundle:nil];
     if(self){
@@ -446,14 +446,14 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     if(self.forceDisableScale){
         // 禁止放大缩小
         str = @"no";
+        NSString *injectionJSString = [NSString stringWithFormat:@"var script = document.createElement('meta');"
+                                       "script.name = 'viewport';"
+                                       "script.content=\"width=device-width, initial-scale=1.0,maximum-scale=%f, minimum-scale=1.0, user-scalable=%@\";"
+                                       "document.getElementsByTagName('head')[0].appendChild(script);",self.maximumScale,str];
+        [webView evaluateJavaScript:injectionJSString completionHandler:nil];
     }else{
-        str = @"yes";
+//        str = @"yes";
     }
-    NSString *injectionJSString = [NSString stringWithFormat:@"var script = document.createElement('meta');"
-                                   "script.name = 'viewport';"
-                                   "script.content=\"width=device-width, initial-scale=1.0,maximum-scale=%f, minimum-scale=1.0, user-scalable=%@\";"
-                                   "document.getElementsByTagName('head')[0].appendChild(script);",self.maximumScale,str];
-    [webView evaluateJavaScript:injectionJSString completionHandler:nil];
 }
 
 
