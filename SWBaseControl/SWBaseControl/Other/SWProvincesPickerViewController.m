@@ -172,6 +172,7 @@
         if(self.dataSource.count == 0) return 0;
         NSInteger row = [pickerView selectedRowInComponent:component - 1];
         if(row < 0) return 0;
+        if(row >= self.dataSource.count) return 0;
         SWProvincesPickerProvinceModel *province = self.dataSource[row];
         return province.cityList.count;
     }
@@ -180,8 +181,10 @@
     NSInteger row1 = [pickerView selectedRowInComponent:component - 1];
     if(row0 < 0) return 0;
     if(row1 < 0) return 0;
+    if(row0 >= self.dataSource.count) return 0;
     SWProvincesPickerProvinceModel *province = self.dataSource[row0];
     if(province.cityList.count == 0) return 0;
+    if(row1 >= province.cityList.count) return 0;
     SWProvincesPickerCityModel *city = province.cityList[row1];
     if(city.areaList == 0) return 0;
     return city.areaList.count;
