@@ -16,70 +16,70 @@
 @property (nonatomic) CGRect originalRect;
 @property (nonatomic) BOOL isKeyboardShow;
 
-- (void)addKeyboardObserver;
-- (void)removeKeyboardObserver;
+//- (void)addKeyboardObserver;
+//- (void)removeKeyboardObserver;
 
 @end
 
-@interface UIViewController (UIViewControllerSWGrowingTextViewExtension)
-
-@end
-
-@implementation UIViewController (UIViewControllerSWGrowingTextViewExtension)
-
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Method m1 = class_getInstanceMethod([self class], @selector(viewDidAppear:));
-        Method c1 = class_getInstanceMethod([self class], @selector(SWGrowingTextView_viewDidAppear:));
-        if(class_addMethod([self class], @selector(viewDidAppear:), method_getImplementation(c1), method_getTypeEncoding(c1))){
-            class_replaceMethod([self class], @selector(SWGrowingTextView_viewDidAppear:), method_getImplementation(m1), method_getTypeEncoding(m1));
-        }else{
-            method_exchangeImplementations(m1, c1);
-        }
-        
-        Method m2 = class_getInstanceMethod([self class], @selector(viewWillDisappear:));
-        Method c2 = class_getInstanceMethod([self class], @selector(SWGrowingTextView_viewWillDisappear:));
-        if(class_addMethod([self class], @selector(viewWillDisappear:), method_getImplementation(c2), method_getTypeEncoding(c2))){
-            class_replaceMethod([self class], @selector(SWGrowingTextView_viewWillDisappear:), method_getImplementation(m2), method_getTypeEncoding(m2));
-        }else{
-            method_exchangeImplementations(m2, c2);
-        }
-    });
-}
-
-- (void)SWGrowingTextView_viewDidAppear:(BOOL)animated {
-    NSArray<SWGrowingTextView *> *growingTextViews = [self findSWGrowingTextViewsWithView:self.view];
-    [growingTextViews enumerateObjectsUsingBlock:^(SWGrowingTextView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj addKeyboardObserver];
-    }];
-    [self SWGrowingTextView_viewDidAppear:animated];
-}
-
-- (void)SWGrowingTextView_viewWillDisappear:(BOOL)animated {
-    NSArray<SWGrowingTextView *> *growingTextViews = [self findSWGrowingTextViewsWithView:self.view];
-    [growingTextViews enumerateObjectsUsingBlock:^(SWGrowingTextView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj removeKeyboardObserver];
-    }];
-    [self SWGrowingTextView_viewWillDisappear:animated];
-}
-
-- (NSArray<SWGrowingTextView *> *)findSWGrowingTextViewsWithView:(UIView *)view {
-    if([view isKindOfClass:[SWGrowingTextView class]]){
-        return @[(SWGrowingTextView *)view];
-    }
-    NSMutableArray *mutableArr = [NSMutableArray arrayWithCapacity:0];
-    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if([obj isKindOfClass:[SWGrowingTextView class]]){
-            [mutableArr addObject:obj];
-        }else{
-            [mutableArr addObjectsFromArray:[self findSWGrowingTextViewsWithView:obj]];
-        }
-    }];
-    return [mutableArr copy];
-}
-
-@end
+//@interface UIViewController (UIViewControllerSWGrowingTextViewExtension)
+//
+//@end
+//
+//@implementation UIViewController (UIViewControllerSWGrowingTextViewExtension)
+//
+//+ (void)load {
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        Method m1 = class_getInstanceMethod([self class], @selector(viewDidAppear:));
+//        Method c1 = class_getInstanceMethod([self class], @selector(SWGrowingTextView_viewDidAppear:));
+//        if(class_addMethod([self class], @selector(viewDidAppear:), method_getImplementation(c1), method_getTypeEncoding(c1))){
+//            class_replaceMethod([self class], @selector(SWGrowingTextView_viewDidAppear:), method_getImplementation(m1), method_getTypeEncoding(m1));
+//        }else{
+//            method_exchangeImplementations(m1, c1);
+//        }
+//
+//        Method m2 = class_getInstanceMethod([self class], @selector(viewWillDisappear:));
+//        Method c2 = class_getInstanceMethod([self class], @selector(SWGrowingTextView_viewWillDisappear:));
+//        if(class_addMethod([self class], @selector(viewWillDisappear:), method_getImplementation(c2), method_getTypeEncoding(c2))){
+//            class_replaceMethod([self class], @selector(SWGrowingTextView_viewWillDisappear:), method_getImplementation(m2), method_getTypeEncoding(m2));
+//        }else{
+//            method_exchangeImplementations(m2, c2);
+//        }
+//    });
+//}
+//
+//- (void)SWGrowingTextView_viewDidAppear:(BOOL)animated {
+//    NSArray<SWGrowingTextView *> *growingTextViews = [self findSWGrowingTextViewsWithView:self.view];
+//    [growingTextViews enumerateObjectsUsingBlock:^(SWGrowingTextView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [obj addKeyboardObserver];
+//    }];
+//    [self SWGrowingTextView_viewDidAppear:animated];
+//}
+//
+//- (void)SWGrowingTextView_viewWillDisappear:(BOOL)animated {
+//    NSArray<SWGrowingTextView *> *growingTextViews = [self findSWGrowingTextViewsWithView:self.view];
+//    [growingTextViews enumerateObjectsUsingBlock:^(SWGrowingTextView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [obj removeKeyboardObserver];
+//    }];
+//    [self SWGrowingTextView_viewWillDisappear:animated];
+//}
+//
+//- (NSArray<SWGrowingTextView *> *)findSWGrowingTextViewsWithView:(UIView *)view {
+//    if([view isKindOfClass:[SWGrowingTextView class]]){
+//        return @[(SWGrowingTextView *)view];
+//    }
+//    NSMutableArray *mutableArr = [NSMutableArray arrayWithCapacity:0];
+//    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if([obj isKindOfClass:[SWGrowingTextView class]]){
+//            [mutableArr addObject:obj];
+//        }else{
+//            [mutableArr addObjectsFromArray:[self findSWGrowingTextViewsWithView:obj]];
+//        }
+//    }];
+//    return [mutableArr copy];
+//}
+//
+//@end
 
 
 @implementation SWGrowingTextView

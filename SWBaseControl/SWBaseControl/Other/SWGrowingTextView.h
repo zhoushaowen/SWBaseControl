@@ -45,6 +45,9 @@
 
 @property (nonatomic,weak) id<SWGrowingTextViewDelegate> delegate;
 
+- (void)addKeyboardObserver;
+- (void)removeKeyboardObserver;
+
 /**
  don't change the textView's frame immediately,using this property.
  */
