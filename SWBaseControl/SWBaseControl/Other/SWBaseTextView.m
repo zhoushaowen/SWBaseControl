@@ -90,7 +90,9 @@
     self.limitCount = -1;
     self.limitLabelRightInset = 8;
     self.limitLabelBottomInset = 8;
-    self.font = [UIFont systemFontOfSize:15];
+    if(self.font == nil){
+        self.font = [UIFont systemFontOfSize:15];
+    }
     [self addSubview:self.placeholderLabel];
     [self addSubview:self.limitLabel];
     [self updateLimitLabelStatus:self.isFirstResponder];
