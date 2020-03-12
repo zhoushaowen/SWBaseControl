@@ -1,4 +1,5 @@
 target "SWBaseControl" do
 pod 'SWBaseControl',path:'./'
 pod 'MJRefresh'
+pod 'Masonry'
 end
