@@ -63,7 +63,7 @@
 
 - (CGFloat)minimumInteritemSpacingForSection:(NSInteger)section {
     id<UICollectionViewDelegateFlowLayout> delegate = (id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate;
-    if(delegate && [delegate collectionView:self.collectionView layout:self minimumInteritemSpacingForSectionAtIndex:section]){
+    if(delegate && [delegate respondsToSelector:@selector(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]){
         return [delegate collectionView:self.collectionView layout:self minimumInteritemSpacingForSectionAtIndex:section];;
     }
     return self.minimumInteritemSpacing;
