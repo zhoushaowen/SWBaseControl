@@ -13,7 +13,13 @@ typedef NS_ENUM(NSUInteger, SWBaseTextViewLimitLabelViewMode) {
     SWBaseTextViewLimitLabelViewModeNever,
 };
 
+@interface SWBaseTextViewDelegateObserver : NSObject<UITextViewDelegate>
+
+@end
+
 @interface SWBaseTextView : UITextView
+
+@property (nonatomic,readonly,strong) SWBaseTextViewDelegateObserver *delegateObserver;
 
 @property (nonatomic,copy) IBInspectable NSString *placeholder;
 /**

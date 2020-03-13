@@ -23,7 +23,7 @@
 
 @end
 
-@interface SWBaseTextViewDelegateObserver : NSObject<UITextViewDelegate>
+@interface SWBaseTextViewDelegateObserver ()
 
 @property (nonatomic) IBInspectable NSInteger limitCount;
 @property (nonatomic,weak) UILabel *limitLabel;
