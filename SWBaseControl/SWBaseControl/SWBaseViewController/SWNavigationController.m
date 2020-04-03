@@ -61,6 +61,16 @@
     return self.topViewController.prefersStatusBarHidden;
 }
 
+/*
+ 在iOS6及以上的版本中, 增添了方法UIViewController.supportedInterfaceOrientations. 此方法返回当前viewController支持的方向. 但是, 只有两种情况下此方法才会生效:
+
+ 1.当前viewController是window的rootViewController.
+ 2.当前viewController是modal模式的. 即, 此viewController是被调用presentModalViewController而显示出来的.
+
+ 在以上两种情况中,UIViewController.supportedInterfaceOrientations方法会作用于当前viewController和所有childViewController. 以上两种情况之外, UIKit并不会理会你的supportedInterfaceOrientations方法.
+
+ 3.只有当modalPresentationStyle为UIModalPresentationFullScreen或者UIModalPresentationCustom modal出的控制器才可以自动旋转的(前提是控制器内部开启了自动旋转),否则即使控制器内部开启了自动旋转 modal出来的控制器也是不可以旋转的;
+ */
 - (BOOL)shouldAutorotate
 {
     return self.topViewController.shouldAutorotate;

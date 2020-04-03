@@ -92,28 +92,23 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     @weakify(self)
     [self rac_observeKeyPath:@"view.frame" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew observer:self block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
         @strongify(self)
-        //适配iOS13,默认情况下iOS13模态出的导航条高度为56
-        if(self.navigationController.navigationBar.frame.size.height == 56){
-            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, 56);
-        }else{
-            if(UIDevice.sw_isIPhoneXSeries){
-                self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight);
-            }else{
-                self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0));
-            }
-        }
+        [self sw_updateBarFrame];
     }];
 }
 
-//- (void)sw_layoutSubviews {
-//    if (@available(iOS 11.0, *)) {
-//        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.safeAreaInsets.top);
-//    } else {
-//        CGFloat height = 44.0;
-//        height += [UIApplication sharedApplication].isStatusBarHidden ? 0 : 20;
-//        self.sw_bar.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
-//    }
-//}
+- (void)sw_updateBarFrame {
+    //适配iOS13,默认情况下iOS13模态出的导航条高度为56
+    if(self.navigationController.navigationBar.frame.size.height == 56){
+        self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, 56);
+    }else{
+        if(UIDevice.sw_isIPhoneXSeries){
+            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight);
+        }else{
+            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0));
+        }
+    }
+}
+
 
 - (UIImage *)sw_createImageWithColor:(UIColor *)color
 {
@@ -328,30 +323,22 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     }
 }
 
+//屏幕即将反正旋转api
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    //coordinator:动画过渡协调器
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        //动画执行中
+        [self sw_updateBarFrame];//解决屏幕反正旋转之后自定义Bar frame错乱的bug
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        //动画执行完毕
+    }];
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [[[UIApplication sharedApplication].delegate window].rootViewController setNeedsStatusBarAppearanceUpdate];
 }
-
-//- (void)viewWillLayoutSubviews {
-//    [super viewWillLayoutSubviews];
-//    [self sw_layoutSubviews];
-//    switch (self.controllerType) {
-//        case SWBaseViewControllerTableViewType:
-//        {
-//            _tableView.frame = self.view.bounds;
-//        }
-//            break;
-//            case SWBaseViewControllerCollectionViewType:
-//        {
-//            _collectionView.frame = self.view.bounds;
-//        }
-//            break;
-//
-//        default:
-//            break;
-//    }
-//}
 
 - (void)addScrollViewContentOffsetObserver:(UIScrollView *)scrollView {
     @weakify(self)
