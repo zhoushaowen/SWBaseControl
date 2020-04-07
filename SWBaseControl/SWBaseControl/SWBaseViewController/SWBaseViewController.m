@@ -97,9 +97,26 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 }
 
 - (void)sw_updateBarFrame {
-    //适配iOS13,默认情况下iOS13模态出的导航条高度为56
-    if(self.navigationController.navigationBar.frame.size.height == 56){
-        self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, 56);
+    if(self.navigationController.presentingViewController){
+        //适配iOS13,默认情况下iOS13模态出的导航条高度为56
+        if (@available(iOS 13.0, *)) {
+            if(self.navigationController.modalPresentationStyle == UIModalPresentationPopover || self.navigationController.modalPresentationStyle == UIModalPresentationPageSheet || self.navigationController.modalPresentationStyle == UIModalPresentationFormSheet ||
+               self.navigationController.modalPresentationStyle ==
+               UIModalPresentationAutomatic
+               ){
+                CGFloat height = self.navigationController.navigationBar.frame.size.height;
+                self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, height);
+                return;
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    CGFloat height = self.navigationController.navigationBar.frame.size.height;
+    if(height != (UIDevice.sw_navigationBarHeight - UIDevice.sw_statusBarHeight)){
+        //在导航的titleView上放searchBar 会导致navigationBar的高度变的比正常要高 ios13上实测高度为56
+        height = MAX(height, UIDevice.sw_navigationBarHeight - UIDevice.sw_statusBarHeight);
+        self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, height + ([UIApplication sharedApplication].isStatusBarHidden?0:UIDevice.sw_statusBarHeight));
     }else{
         if(UIDevice.sw_isIPhoneXSeries){
             self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight);
