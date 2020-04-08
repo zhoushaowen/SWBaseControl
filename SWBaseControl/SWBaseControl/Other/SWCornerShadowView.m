@@ -7,7 +7,6 @@
 //
 
 #import "SWCornerShadowView.h"
-#import "Masonry.h"
 
 @interface SWCornerShadowView ()
 
