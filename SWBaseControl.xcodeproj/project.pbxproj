@@ -44,6 +44,8 @@
 		36C67B572418D906009FADCC /* LeftAlignCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C67B562418D906009FADCC /* LeftAlignCollectionViewController.m */; };
 		36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CA95B820DB99E000713474 /* ChatViewController.m */; };
 		36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CA95B920DB99E000713474 /* ChatViewController.xib */; };
+		36CAFADF243D6C6D002BE344 /* ShadowViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CAFADD243D6C6D002BE344 /* ShadowViewTestController.m */; };
+		36CAFAE0243D6C6D002BE344 /* ShadowViewTestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CAFADE243D6C6D002BE344 /* ShadowViewTestController.xib */; };
 		36CB63C121E86EC000314317 /* XibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CB63BF21E86EC000314317 /* XibViewController.m */; };
 		36CB63C221E86EC000314317 /* XibViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CB63C021E86EC000314317 /* XibViewController.xib */; };
 		36D2AD8D21183B5300B1BA4E /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2AD8C21183B5300B1BA4E /* PickerViewController.m */; };
@@ -113,6 +115,9 @@
 		36CA95B720DB99E000713474 /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		36CA95B820DB99E000713474 /* ChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		36CA95B920DB99E000713474 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		36CAFADC243D6C6D002BE344 /* ShadowViewTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShadowViewTestController.h; sourceTree = "<group>"; };
+		36CAFADD243D6C6D002BE344 /* ShadowViewTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadowViewTestController.m; sourceTree = "<group>"; };
+		36CAFADE243D6C6D002BE344 /* ShadowViewTestController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShadowViewTestController.xib; sourceTree = "<group>"; };
 		36CB63BE21E86EC000314317 /* XibViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XibViewController.h; sourceTree = "<group>"; };
 		36CB63BF21E86EC000314317 /* XibViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XibViewController.m; sourceTree = "<group>"; };
 		36CB63C021E86EC000314317 /* XibViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XibViewController.xib; sourceTree = "<group>"; };
@@ -238,6 +243,9 @@
 				3626CEC222E15D6900ECBE23 /* ShowProvincesPickerViewController.xib */,
 				36C67B552418D906009FADCC /* LeftAlignCollectionViewController.h */,
 				36C67B562418D906009FADCC /* LeftAlignCollectionViewController.m */,
+				36CAFADC243D6C6D002BE344 /* ShadowViewTestController.h */,
+				36CAFADD243D6C6D002BE344 /* ShadowViewTestController.m */,
+				36CAFADE243D6C6D002BE344 /* ShadowViewTestController.xib */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -320,6 +328,7 @@
 			files = (
 				36CB63C221E86EC000314317 /* XibViewController.xib in Resources */,
 				36911FED20E603EE00674BFA /* DatePickerViewController.xib in Resources */,
+				36CAFAE0243D6C6D002BE344 /* ShadowViewTestController.xib in Resources */,
 				360F505220DA2785008B3AEB /* LaunchScreen.storyboard in Resources */,
 				360F504F20DA2785008B3AEB /* Assets.xcassets in Resources */,
 				362859CA22B1235E00236BA3 /* BaseTextViewController.xib in Resources */,
@@ -399,6 +408,7 @@
 				3675B4D920EF43BD007B8CF0 /* SlideViewController.m in Sources */,
 				36B42E1220E9BB1600CFBCC6 /* MyMoveableViewController1.m in Sources */,
 				36B42E2920EA1EC900CFBCC6 /* People.m in Sources */,
+				36CAFADF243D6C6D002BE344 /* ShadowViewTestController.m in Sources */,
 				36CB63C121E86EC000314317 /* XibViewController.m in Sources */,
 				3699819421E8814F006C6A25 /* XibTableViewController.m in Sources */,
 				36911FEC20E603EE00674BFA /* DatePickerViewController.m in Sources */,

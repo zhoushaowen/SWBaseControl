@@ -42,7 +42,8 @@
                    @"XibTableViewController",
                    @"XibCollectionViewController",
                    @"BaseTextViewController",
-                   @"LeftAlignCollectionViewController"
+                   @"LeftAlignCollectionViewController",
+                   @"ShadowViewTestController"
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

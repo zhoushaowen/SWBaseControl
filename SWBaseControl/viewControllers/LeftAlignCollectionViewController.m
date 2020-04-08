@@ -9,6 +9,7 @@
 #import "LeftAlignCollectionViewController.h"
 #import <Masonry.h>
 #import <SWCollectionViewLeftAlignLayout.h>
+#import <SWCornerShadowView.h>
 
 @interface LeftAlignCollectionViewController ()
 
@@ -31,7 +32,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
@@ -63,20 +64,27 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
-    UILabel *label = [cell.contentView viewWithTag:100];
+    SWCornerShadowView *shadowView = [cell.contentView viewWithTag:200];
+    if(shadowView == nil){
+        shadowView = [[SWCornerShadowView alloc] init];
+        shadowView.tag = 200;
+        [cell.contentView addSubview:shadowView];
+        [shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(UIEdgeInsetsZero);
+        }];
+    }
+    UILabel *label = [shadowView.contentView viewWithTag:100];
     if(label == nil){
         label = [[UILabel alloc] init];
         label.tag = 100;
-        [cell.contentView addSubview:label];
+        [shadowView.contentView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsZero);
         }];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor whiteColor];
     }
-    cell.contentView.backgroundColor = indexPath.section == 0? [UIColor redColor]:[UIColor blueColor];
+    shadowView.shadowBackgroundColor = indexPath.section == 0? [UIColor redColor]:[UIColor blueColor];
     label.text = [NSString stringWithFormat:@"%d",indexPath.item];
     
     return cell;
