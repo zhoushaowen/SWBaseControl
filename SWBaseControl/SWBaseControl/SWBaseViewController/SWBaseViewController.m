@@ -94,6 +94,12 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
         @strongify(self)
         [self sw_updateBarFrame];
     }];
+    if(self.navigationController){
+        [self rac_observeKeyPath:@"self.navigationController.navigationBar.frame" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew observer:self block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
+            @strongify(self)
+            [self sw_updateBarFrame];
+        }];
+    }
 }
 
 - (void)sw_updateBarFrame {
