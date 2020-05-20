@@ -280,8 +280,8 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
         }
             break;
         case SWBaseViewControllerTableViewType:{
-            _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
-            _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            _tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom) style:self.tableViewStyle];
+//            _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             //去除UITableViewStyleGrouped样式导致的tableView头部空白间隙
             UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0.001)];
             _tableView.tableHeaderView = headerView;
@@ -307,8 +307,8 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             break;
         case SWBaseViewControllerCollectionViewType:
         {
-            _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-            _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom) collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+//            _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             //防止外界全局更改了这个属性
             if (@available(iOS 11.0, *)) {
                 _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
@@ -330,8 +330,8 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             break;
         case SWBaseViewControllerWebViewType:
         {
-            self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
-            self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom)];
+//            self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             self.webView.navigationDelegate = self;
             self.webView.UIDelegate = self;
             [self.view addSubview:self.webView];
@@ -344,6 +344,37 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
         default:
             break;
     }
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    switch (self.controllerType) {
+        case SWBaseViewControllerTableViewType:
+            {
+                _tableView.frame = CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom);
+            }
+            break;
+        case SWBaseViewControllerCollectionViewType:
+        {
+            _collectionView.frame = CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom);
+        }
+            break;
+        case SWBaseViewControllerWebViewType:
+        {
+            _webView.frame = CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom);
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)setContentViewInsets:(UIEdgeInsets)contentViewInsets {
+    _contentViewInsets = contentViewInsets;
+    [self.view setNeedsLayout];
+//不能立即调用layoutIfNeeded 会处方tableView/collectionView的dataSource方法 在registerCell之前执行会crash
+//    [self.view layoutIfNeeded];
 }
 
 //屏幕即将反正旋转api
@@ -465,7 +496,6 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 //        str = @"yes";
     }
 }
-
 
 - (BOOL)shouldAutorotate {
     return YES;

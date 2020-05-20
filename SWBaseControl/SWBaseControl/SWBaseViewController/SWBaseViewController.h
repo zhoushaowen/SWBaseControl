@@ -67,6 +67,8 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
 @property (nonatomic,readonly) SWBaseViewControllerType controllerType;
 #endif
 
+@property (nonatomic) UIEdgeInsets contentViewInsets;
+
 @property (nonatomic,readonly,strong,nullable) UITableView *tableView;
 @property (nonatomic,readonly) UITableViewStyle tableViewStyle;
 ///default is UICollectionViewFlowLayout
