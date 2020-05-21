@@ -78,6 +78,7 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
 #pragma mark - WKWebView
 @property (nonatomic,readonly,strong,nullable) WKWebView *webView;
 @property (nonatomic,strong) NSURL *url;
+@property (nonatomic,copy) NSString *htmlString;
 ///是否强制禁止缩放
 @property (nonatomic) BOOL forceDisableScale;
 /// default is 3.0

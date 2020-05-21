@@ -337,7 +337,10 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             [self.view addSubview:self.webView];
             if(self.url){
                 [self.webView loadRequest:[NSURLRequest requestWithURL:_url]];
+            }else if(self.htmlString.length > 0){
+                [self.webView loadHTMLString:self.htmlString baseURL:nil];
             }
+
         }
             break;
             
@@ -476,6 +479,13 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
         [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     }
 }
+- (void)setHtmlString:(NSString *)htmlString {
+    _htmlString = [htmlString copy];
+    if(self.controllerType == SWBaseViewControllerWebViewType && htmlString.length > 0){
+        [_webView loadHTMLString:htmlString baseURL:nil];
+    }
+}
+
 - (void)setMaximumScale:(CGFloat)maximumScale {
     if(maximumScale < 1.0) maximumScale = 1.0;
     _maximumScale = maximumScale;
