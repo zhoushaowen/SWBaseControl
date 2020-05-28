@@ -1,39 +1,49 @@
 //
-//  SWCollectionViewLeftAlignLayout.m
+//  SWCollectionViewAlignedLayout.m
 //  SWBaseControl
 //
 //  Created by zhoushaowen on 2020/3/11.
 //  Copyright © 2020 zhoushaowen. All rights reserved.
 //
 
-#import "SWCollectionViewLeftAlignLayout.h"
+#import "SWCollectionViewAlignedLayout.h"
 
-@implementation SWCollectionViewLeftAlignLayout
+@implementation SWCollectionViewAlignedLayout
+
+- (void)setAlignment:(SWCollectionViewAlignment)alignment {
+    _alignment = alignment;
+    [self.collectionView reloadData];
+}
 
 //UICollectionViewFlowLayout内部默认已经做好了布局了 只是每行的布局方式是左右两边对齐 所以只需要调整每行元素的x轴坐标就行了
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    //如果是第一个item 位置默认不动
     UICollectionViewLayoutAttributes *currentAttri = [super layoutAttributesForItemAtIndexPath:indexPath];
     UIEdgeInsets insets = [self sectionInsetForSection:indexPath.section];
+    //如果是第一个item 位置默认不动
     if(indexPath.item == 0) {
         CGRect frame = currentAttri.frame;
-        frame.origin.x = insets.left;
+        frame.origin.x = self.alignment == SWCollectionViewAlignmentLeft? insets.left:(CGRectGetWidth(self.collectionView.frame) - frame.size.width - insets.right);
         currentAttri.frame = frame;
         return currentAttri;
     }
     //获取上一个UICollectionViewLayoutAttributes一定要调用self的layoutAttributesForItemAtIndexPath获取上一次处理之后的attributes(递归操作) 不能调用super
     UICollectionViewLayoutAttributes *previousAttri = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:indexPath.item - 1 inSection:indexPath.section]];
+    //previousAttri所在的矩形框位置
     CGRect rect = CGRectMake(insets.left, previousAttri.frame.origin.y - insets.top, CGRectGetWidth(self.collectionView.frame) - insets.left - insets.right, previousAttri.size.height);
     if(CGRectIntersectsRect(rect, currentAttri.frame)){
         //当前UICollectionViewLayoutAttributes与上一个在同一行
         CGRect frame = currentAttri.frame;
-        frame.origin.x = CGRectGetMaxX(previousAttri.frame) + [self minimumInteritemSpacingForSection:indexPath.section];
+        if(self.alignment == SWCollectionViewAlignmentLeft){
+            frame.origin.x = CGRectGetMaxX(previousAttri.frame) + [self minimumInteritemSpacingForSection:indexPath.section];
+        }else if (self.alignment == SWCollectionViewAlignmentRight){
+            frame.origin.x = CGRectGetMinX(previousAttri.frame) - [self minimumInteritemSpacingForSection:indexPath.section] - frame.size.width;
+        }
         currentAttri.frame = frame;
         return currentAttri;
     }else{
         //不在同一行
         CGRect frame = currentAttri.frame;
-        frame.origin.x = insets.left;
+        frame.origin.x = self.alignment == SWCollectionViewAlignmentLeft? insets.left:(CGRectGetWidth(self.collectionView.frame) - frame.size.width - insets.right);
         currentAttri.frame = frame;
         return currentAttri;
     }

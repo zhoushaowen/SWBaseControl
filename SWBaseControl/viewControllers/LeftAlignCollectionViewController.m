@@ -8,11 +8,13 @@
 
 #import "LeftAlignCollectionViewController.h"
 #import <Masonry.h>
-#import <SWCollectionViewLeftAlignLayout.h>
+#import <SWCollectionViewAlignedLayout.h>
 #import <SWCornerShadowView.h>
 
 @interface LeftAlignCollectionViewController ()
-
+{
+    SWCollectionViewAlignedLayout *_layout;
+}
 @end
 
 @implementation LeftAlignCollectionViewController
@@ -22,7 +24,10 @@ static NSString * const reuseIdentifier = @"Cell";
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
-        self = [super initWithCollectionViewLayout:[[SWCollectionViewLeftAlignLayout alloc] init]];
+        SWCollectionViewAlignedLayout *layout = [[SWCollectionViewAlignedLayout alloc] init];
+        layout.alignment = SWCollectionViewAlignmentLeft;
+        _layout = layout;
+        self = [super initWithCollectionViewLayout:layout];
     }
     return self;
 }
@@ -35,8 +40,13 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.backgroundColor = [UIColor whiteColor];
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"改变对方方式" style:UIBarButtonItemStylePlain target:self action:@selector(changeAlignment)];
     
     // Do any additional setup after loading the view.
+}
+
+- (void)changeAlignment {
+    _layout.alignment = _layout.alignment == SWCollectionViewAlignmentLeft?SWCollectionViewAlignmentRight:SWCollectionViewAlignmentLeft;
 }
 
 /*
