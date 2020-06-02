@@ -17,5 +17,8 @@
 @property (nonatomic) IBInspectable CGFloat rightInset;
 @property (nonatomic) IBInspectable CGFloat cornerRadius;
 
+@property (nonatomic) IBInspectable BOOL enableContentSizeWhenTextEmpty;
+@property (nonatomic) IBInspectable BOOL enableContentSizeWhenHidden;
+
 @end
 

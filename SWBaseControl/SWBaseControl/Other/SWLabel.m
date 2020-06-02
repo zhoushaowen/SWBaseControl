@@ -21,6 +21,8 @@
 }
 
 - (CGSize)intrinsicContentSize {
+    if((self.text.length < 1) && !self.enableContentSizeWhenTextEmpty) return CGSizeZero;
+    if(self.isHidden && !self.enableContentSizeWhenHidden) return CGSizeZero;
     CGSize size = [super intrinsicContentSize];
     size.width += (self.leftInset + self.rightInset);
     size.height += (self.topInset + self.bottomInset);

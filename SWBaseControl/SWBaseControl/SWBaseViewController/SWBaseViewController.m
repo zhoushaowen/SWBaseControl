@@ -132,7 +132,6 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     }
 }
 
-
 - (UIImage *)sw_createImageWithColor:(UIColor *)color
 {
     CGRect rect = CGRectMake(0, 0, 1, 1);
@@ -281,6 +280,12 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             break;
         case SWBaseViewControllerTableViewType:{
             _tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom) style:self.tableViewStyle];
+            _tableView.rowHeight = UITableViewAutomaticDimension;
+            _tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+            _tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+            _tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension;
+            _tableView.sectionFooterHeight = UITableViewAutomaticDimension;
+            _tableView.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
 //            _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             //去除UITableViewStyleGrouped样式导致的tableView头部空白间隙
             UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0.001)];
