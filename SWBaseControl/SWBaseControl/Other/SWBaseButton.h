@@ -25,4 +25,8 @@
 @property (nonatomic,strong,nullable) IBInspectable UIImage *backgroundImageForSelected;
 @property (nonatomic,strong,nullable) IBInspectable UIImage *backgroundImageForDisabled;
 
+
+@property (nonatomic) IBInspectable BOOL enableContentSizeWhenTextEmpty;
+@property (nonatomic) IBInspectable BOOL enableContentSizeWhenHidden;
+
 @end

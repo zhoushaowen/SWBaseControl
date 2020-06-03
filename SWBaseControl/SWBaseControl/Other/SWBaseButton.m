@@ -11,6 +11,12 @@
 
 @implementation SWBaseButton
 
+- (CGSize)intrinsicContentSize {
+    if(self.isHidden && !self.enableContentSizeWhenHidden) return CGSizeZero;
+    if((self.currentTitle.length < 1) && !self.enableContentSizeWhenTextEmpty) return CGSizeZero;
+    return [super intrinsicContentSize];
+}
+
 - (void)setHexColorStringForNormalBackgroundImage:(NSString *)hexColorStringForNormalBackgroundImage {
     _hexColorStringForNormalBackgroundImage = [hexColorStringForNormalBackgroundImage copy];
     if(_hexColorStringForNormalBackgroundImage.length < 1){
