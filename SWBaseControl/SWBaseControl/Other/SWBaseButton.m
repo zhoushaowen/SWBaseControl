@@ -17,6 +17,26 @@
     return [super intrinsicContentSize];
 }
 
+- (void)setHidden:(BOOL)hidden {
+    [super setHidden:hidden];
+    [self invalidateIntrinsicContentSize];
+}
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state {
+    [super setTitle:title forState:state];
+    [self invalidateIntrinsicContentSize];
+}
+
+- (void)setEnableContentSizeWhenHidden:(BOOL)enableContentSizeWhenHidden {
+    _enableContentSizeWhenHidden = enableContentSizeWhenHidden;
+    [self invalidateIntrinsicContentSize];
+}
+
+- (void)setEnableContentSizeWhenTextEmpty:(BOOL)enableContentSizeWhenTextEmpty {
+    _enableContentSizeWhenTextEmpty = enableContentSizeWhenTextEmpty;
+    [self invalidateIntrinsicContentSize];
+}
+
 - (void)setHexColorStringForNormalBackgroundImage:(NSString *)hexColorStringForNormalBackgroundImage {
     _hexColorStringForNormalBackgroundImage = [hexColorStringForNormalBackgroundImage copy];
     if(_hexColorStringForNormalBackgroundImage.length < 1){

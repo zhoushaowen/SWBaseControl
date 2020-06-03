@@ -29,6 +29,26 @@
     return size;
 }
 
+- (void)setHidden:(BOOL)hidden {
+    [super setHidden:hidden];
+    [self invalidateIntrinsicContentSize];
+}
+
+- (void)setText:(NSString *)text {
+    [super setText:text];
+    [self invalidateIntrinsicContentSize];
+}
+
+- (void)setEnableContentSizeWhenHidden:(BOOL)enableContentSizeWhenHidden {
+    _enableContentSizeWhenHidden = enableContentSizeWhenHidden;
+    [self invalidateIntrinsicContentSize];
+}
+
+- (void)setEnableContentSizeWhenTextEmpty:(BOOL)enableContentSizeWhenTextEmpty {
+    _enableContentSizeWhenTextEmpty = enableContentSizeWhenTextEmpty;
+    [self invalidateIntrinsicContentSize];
+}
+
 - (void)sizeToFit {
     [super sizeToFit];
     CGRect rect = self.bounds;
