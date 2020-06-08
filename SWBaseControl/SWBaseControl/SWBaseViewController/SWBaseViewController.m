@@ -482,6 +482,16 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if([self tableView:self.tableView viewForHeaderInSection:section] == nil ) return 0.1;
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if([self tableView:self.tableView viewForFooterInSection:section] == nil) return 0.1;
+    return UITableViewAutomaticDimension;
+}
+
 #pragma mark - UICollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 0;
