@@ -12,6 +12,7 @@
 #import <SWExtension.h>
 #import <NSObject+RACKVOWrapper.h>
 #import <RACEXTScope.h>
+#import <ReactiveObjC.h>
 
 @implementation UIView (SWBaseViewController)
 
@@ -66,7 +67,7 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 - (void)sw_initSubViews {
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
     if(self.view.backgroundColor == nil){
         self.view.backgroundColor = [UIColor whiteColor];
@@ -100,35 +101,47 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             [self sw_updateBarFrame];
         }];
     }
+    [[self rac_signalForSelector:@selector(viewWillLayoutSubviews)] subscribeNext:^(RACTuple * _Nullable x) {
+        @strongify(self)
+        [self sw_updateBarFrame];
+    }];
 }
 
 - (void)sw_updateBarFrame {
-    if(self.navigationController.presentingViewController){
-        //适配iOS13,默认情况下iOS13模态出的导航条高度为56
-        if (@available(iOS 13.0, *)) {
-            if(self.navigationController.modalPresentationStyle == UIModalPresentationPopover || self.navigationController.modalPresentationStyle == UIModalPresentationPageSheet || self.navigationController.modalPresentationStyle == UIModalPresentationFormSheet ||
-               self.navigationController.modalPresentationStyle ==
-               UIModalPresentationAutomatic
-               ){
-                CGFloat height = self.navigationController.navigationBar.frame.size.height;
-                self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, height);
-                return;
-            }
-        } else {
-            // Fallback on earlier versions
-        }
-    }
-    CGFloat height = self.navigationController.navigationBar.frame.size.height;
-    if(height != (UIDevice.sw_navigationBarHeight - UIDevice.sw_statusBarHeight)){
-        //在导航的titleView上放searchBar 会导致navigationBar的高度变的比正常要高 ios13上实测高度为56
-        height = MAX(height, UIDevice.sw_navigationBarHeight - UIDevice.sw_statusBarHeight);
-        self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, height + ([UIApplication sharedApplication].isStatusBarHidden?0:UIDevice.sw_statusBarHeight));
-    }else{
-        if(UIDevice.sw_isIPhoneXSeries){
-            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight);
-        }else{
-            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0));
-        }
+//    if(self.navigationController.presentingViewController){
+//        //适配iOS13,默认情况下iOS13模态出的导航条高度为56
+//        if (@available(iOS 13.0, *)) {
+//            if(self.navigationController.modalPresentationStyle == UIModalPresentationPopover || self.navigationController.modalPresentationStyle == UIModalPresentationPageSheet || self.navigationController.modalPresentationStyle == UIModalPresentationFormSheet ||
+//               self.navigationController.modalPresentationStyle ==
+//               UIModalPresentationAutomatic
+//               ){
+//                CGFloat height = self.navigationController.navigationBar.frame.size.height;
+//                self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, height);
+//                return;
+//            }
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//    }
+//    CGFloat height = self.navigationController.navigationBar.frame.size.height;
+//    if(height != (UIDevice.sw_navigationBarHeight - UIDevice.sw_statusBarHeight)){
+//        //在导航的titleView上放searchBar 会导致navigationBar的高度变的比正常要高 ios13上实测高度为56
+//        height = MAX(height, UIDevice.sw_navigationBarHeight - UIDevice.sw_statusBarHeight);
+//        self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, height + ([UIApplication sharedApplication].isStatusBarHidden?0:UIDevice.sw_statusBarHeight));
+//    }else{
+//        if(UIDevice.sw_isIPhoneXSeries){
+//            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight);
+//        }else{
+//            self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0));
+//        }
+//    }
+    CGRect convertViewRect = [self.view convertRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) toCoordinateSpace:[UIScreen mainScreen].coordinateSpace];
+    CGRect convertNavbarRect = [self.navigationController.navigationBar convertRect:CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height) toCoordinateSpace:[UIScreen mainScreen].coordinateSpace];
+    CGFloat diffValue = (convertNavbarRect.origin.y - convertViewRect.origin.y);//导航高度的原点y和self.view的原点y的差值(就是状态栏的高度)
+    //这样的高度才是导航的真实高度
+    CGFloat realNavHeight = diffValue + convertNavbarRect.size.height;
+    if(realNavHeight > 0){
+        self.sw_bar.frame = CGRectMake(0, -self.view.frame.origin.y, self.view.bounds.size.width, realNavHeight);
     }
 }
 
@@ -214,7 +227,9 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 
 
 @interface SWBaseViewController ()
-
+{
+    UIScrollView *_scrollView;
+}
 #if TARGET_INTERFACE_BUILDER
 @property (nonatomic) IBInspectable NSUInteger controllerType;
 #else
@@ -280,30 +295,20 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
             break;
         case SWBaseViewControllerTableViewType:{
             _tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom) style:self.tableViewStyle];
+            _scrollView = _tableView;
             _tableView.rowHeight = UITableViewAutomaticDimension;
-            _tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+            _tableView.estimatedRowHeight = 44.0f;
             _tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
-            _tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension;
+            _tableView.estimatedSectionHeaderHeight = 44.0f;
             _tableView.sectionFooterHeight = UITableViewAutomaticDimension;
-            _tableView.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
+            //不要设置UITableViewAutomaticDimension 否则UITableViewStyleGrouped 底部有间隙
+            _tableView.estimatedSectionFooterHeight = 44.0f;
 //            _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             //去除UITableViewStyleGrouped样式导致的tableView头部空白间隙
-            UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0.001)];
+            UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0.01)];
+            UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0.01)];
             _tableView.tableHeaderView = headerView;
-            _tableView.tableFooterView = [UIView new];
-            //防止外界全局更改了这个属性
-            if (@available(iOS 11.0, *)) {
-                _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
-            } else {
-                // Fallback on earlier versions
-                CGFloat inset = UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0);
-                //适配iOS13,默认情况下iOS13模态出的导航条高度为56
-                if(self.navigationController.navigationBar.frame.size.height == 56){
-                    inset = 56;
-                }
-                _tableView.contentInset = UIEdgeInsetsMake(inset, 0, 0, 0);
-                _tableView.scrollIndicatorInsets = _tableView.contentInset;
-            }
+            _tableView.tableFooterView = footerView;
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
@@ -313,20 +318,8 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
         case SWBaseViewControllerCollectionViewType:
         {
             _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom) collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+            _scrollView = _collectionView;
 //            _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-            //防止外界全局更改了这个属性
-            if (@available(iOS 11.0, *)) {
-                _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
-            } else {
-                // Fallback on earlier versions
-                CGFloat inset = UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0);
-                //适配iOS13,默认情况下iOS13模态出的导航条高度为56
-                if(self.navigationController.navigationBar.frame.size.height == 56){
-                    inset = 56;
-                }
-                _collectionView.contentInset = UIEdgeInsetsMake(inset, 0, 0, 0);
-                _collectionView.scrollIndicatorInsets = _tableView.contentInset;
-            }
             _collectionView.delegate = self;
             _collectionView.dataSource = self;
             [self.view addSubview:_collectionView];
@@ -337,6 +330,12 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
         {
             self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom)];
 //            self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            if (@available(iOS 11.0, *)) {
+                self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+            } else {
+                // Fallback on earlie   r versions
+                self.automaticallyAdjustsScrollViewInsets = YES;
+            }
             self.webView.navigationDelegate = self;
             self.webView.UIDelegate = self;
             [self.view addSubview:self.webView];
@@ -356,33 +355,80 @@ static void *SW_barBottomLineImage_key = &SW_barBottomLineImage_key;
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
+    UIView *contentView = nil;
     switch (self.controllerType) {
         case SWBaseViewControllerTableViewType:
             {
-                _tableView.frame = CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom);
+                contentView = _tableView;
             }
             break;
         case SWBaseViewControllerCollectionViewType:
         {
-            _collectionView.frame = CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom);
+            contentView = _collectionView;
         }
             break;
         case SWBaseViewControllerWebViewType:
         {
-            _webView.frame = CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom);
+            contentView = _webView;
         }
             break;
             
         default:
             break;
     }
+    CGRect contentViewFrame = contentView.frame;
+    contentViewFrame = CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom);
+    if(!CGRectEqualToRect(contentViewFrame, contentView.frame)){
+        contentView.frame = contentViewFrame;
+    }
+    if(_scrollView){
+        //关闭自动自动计算insets 解决与MJRefresh不兼容的问题
+        if (@available(iOS 11.0, *)) {
+            _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            // Fallback on earlier versions
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        UIEdgeInsets insets = UIEdgeInsetsZero;
+//        insets.top = UIDevice.sw_navigationBarHeight - ([UIApplication sharedApplication].isStatusBarHidden?UIDevice.sw_statusBarHeight:0);
+//        //适配iOS13,默认情况下iOS13模态出的导航条高度为56
+//        if(self.navigationController.navigationBar.frame.size.height == 56){
+//            insets.top = 56;
+//        }
+        
+        CGRect convertContentViewRect = [self.view convertRect:contentView.frame toCoordinateSpace:[UIScreen mainScreen].coordinateSpace];
+        CGRect convertNavbarRect = [self.navigationController.navigationBar convertRect:CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height) toCoordinateSpace:[UIScreen mainScreen].coordinateSpace];
+        BOOL isIntersect1 = CGRectIntersectsRect(convertContentViewRect, convertNavbarRect);
+        BOOL isNavRouteVc = [self.navigationController.viewControllers indexOfObject:self] != NSNotFound;
+        if(isNavRouteVc && isIntersect1){
+            CGFloat diffValue = (convertNavbarRect.origin.y - convertContentViewRect.origin.y);//导航高度的原点y和contentView的原点y的差值(就是状态栏的高度)
+            insets.top = diffValue + convertNavbarRect.size.height;
+        }
+        CGRect convertTabbarRect = [self.tabBarController.tabBar convertRect:CGRectMake(0, 0, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height) toCoordinateSpace:[UIScreen mainScreen].coordinateSpace];
+        BOOL isIntersect2 = CGRectIntersectsRect(convertContentViewRect, convertTabbarRect);
+        if(self.tabBarController && isIntersect2 && !self.tabBarController.tabBar.isHidden && isNavRouteVc && !self.hidesBottomBarWhenPushed){
+            insets.bottom = self.tabBarController.tabBar.frame.size.height;
+        }else{
+            CGRect unsafeRect = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - UIDevice.sw_safeBottomInset, [UIScreen mainScreen].bounds.size.width, UIDevice.sw_safeBottomInset);
+            if(CGRectIntersectsRect(convertContentViewRect, unsafeRect)){
+                insets.bottom = UIDevice.sw_safeBottomInset - (CGRectGetMaxY(unsafeRect) - CGRectGetMaxY(convertContentViewRect));
+            }
+        }
+        if(!UIEdgeInsetsEqualToEdgeInsets(_scrollView.contentInset, insets)){
+            _scrollView.contentInset = insets;
+            _scrollView.contentOffset = CGPointMake(0, -insets.top);
+        }
+    }
+
 }
 
 - (void)setContentViewInsets:(UIEdgeInsets)contentViewInsets {
-    _contentViewInsets = contentViewInsets;
-    [self.view setNeedsLayout];
-//不能立即调用layoutIfNeeded 会处方tableView/collectionView的dataSource方法 在registerCell之前执行会crash
-//    [self.view layoutIfNeeded];
+    if(!UIEdgeInsetsEqualToEdgeInsets(contentViewInsets, _contentViewInsets)){
+        _contentViewInsets = contentViewInsets;
+        [self.view setNeedsLayout];
+        //不能立即调用layoutIfNeeded 会处方tableView/collectionView的dataSource方法 在registerCell之前执行会crash
+        //    [self.view layoutIfNeeded];
+    }
 }
 
 //屏幕即将反正旋转api
