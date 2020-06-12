@@ -4,28 +4,28 @@ PODS:
   - MJExtension (3.1.0)
   - MJRefresh (3.1.15.3)
   - ReactiveObjC (3.1.1)
-  - SWBaseControl (1.3.8.24):
+  - SWBaseControl (1.4.2):
     - MJExtension
     - ReactiveObjC
-    - SWBaseControl/Other (= 1.3.8.24)
-    - SWBaseControl/SWBaseViewController (= 1.3.8.24)
-    - SWBaseControl/SWPopover (= 1.3.8.24)
+    - SWBaseControl/Other (= 1.4.2)
+    - SWBaseControl/SWBaseViewController (= 1.4.2)
+    - SWBaseControl/SWPopover (= 1.4.2)
     - SWCustomPresentation
     - SWExtension/Core
     - SWMultipleDelegateProxy
-  - SWBaseControl/Other (1.3.8.24):
-    - MJExtension
-    - ReactiveObjC
-    - SWCustomPresentation
-    - SWExtension/Core
-    - SWMultipleDelegateProxy
-  - SWBaseControl/SWBaseViewController (1.3.8.24):
+  - SWBaseControl/Other (1.4.2):
     - MJExtension
     - ReactiveObjC
     - SWCustomPresentation
     - SWExtension/Core
     - SWMultipleDelegateProxy
-  - SWBaseControl/SWPopover (1.3.8.24):
+  - SWBaseControl/SWBaseViewController (1.4.2):
+    - MJExtension
+    - ReactiveObjC
+    - SWCustomPresentation
+    - SWExtension/Core
+    - SWMultipleDelegateProxy
+  - SWBaseControl/SWPopover (1.4.2):
     - MJExtension
     - ReactiveObjC
     - SWCustomPresentation
@@ -69,7 +69,7 @@ SPEC CHECKSUMS:
   MJExtension: 6b69b3bef2864fd550ce1a184eda219e321209d2
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  SWBaseControl: f3937d686f2f4da3ea4462bcf947a99c4b8fb5fe
+  SWBaseControl: 8f642e8a4551652ddf33c977df946ff1e760af33
   SWCustomPresentation: f7fe50b7fa4b6f660b13f26d61285924c4e75668
   SWExtension: c2a3ad97c98e8daf9e5083af6a70204f4df07d91
   SWMultipleDelegateProxy: a6ec2862c7e6eb5cd056777ddd5c97bec43b3c3c

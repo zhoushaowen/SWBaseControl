@@ -24,8 +24,6 @@
     [super viewDidLoad];
 //    self.sw_barColor = [UIColor redColor];
     self.navigationItem.title = @"Main";
-    self.sw_barBottomLineImage = [UIImage new];
-    self.tableView.tableFooterView = [UIView new];
     _dataArray = @[
                    @"BaseViewController",
                    @"PopoverViewController",
@@ -68,9 +66,9 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 120;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
 
 
 @end

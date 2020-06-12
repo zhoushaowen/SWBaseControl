@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <ReactiveObjC.h>
+#import "TableViewController.h"
+#import <SWNavigationController.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +20,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    TableViewController *vc = [[TableViewController alloc] init];
+//    SWNavigationController *nav = [[SWNavigationController alloc] initWithRootViewController:vc];
+//    self.window.rootViewController = nav;
+//    [self.window makeKeyAndVisible];
     return YES;
 }
 

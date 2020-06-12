@@ -65,6 +65,17 @@
 
 @implementation SWTabBarController
 
+- (UIColor *)tabBarBackgroundColor {
+    return [UIColor whiteColor];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    //设置一下颜色 避免导航在push或pop的时候出现黑色阴影
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.tabBarController.tabBar setBarTintColor:self.tabBarBackgroundColor];
+}
+
 - (UIViewController *)childViewControllerForStatusBarHidden {
     return nil;
 }

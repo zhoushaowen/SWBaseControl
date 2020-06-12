@@ -10,4 +10,6 @@
 
 @interface SWTabBarController : UITabBarController
 
+@property (nonatomic,readonly,strong) UIColor *tabBarBackgroundColor;
+
 @end

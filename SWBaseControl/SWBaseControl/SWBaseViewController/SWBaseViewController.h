@@ -11,40 +11,35 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (SWBaseViewController)
-
-@end
-
-@interface UIViewController (SWBaseViewController)
-
-/**
- 自定义的类似系统导航上的UINavigationBar
- */
-@property (nonatomic,strong,readonly) UIView *sw_bar;
-/**
- 自定义bar下面的下划线，设置之后为非nil之后自动使用默认的下划线
- */
-@property (nonatomic,strong) UIImage *sw_barBottomLineImage;
-/**
- 自定义bar的颜色
- */
-@property (nonatomic,strong) UIColor *sw_barColor;
-/**
- 自定义bar的背景图片,设置之后为非nil之后毛玻璃效果会自动消失
- */
-@property (nonatomic,strong) UIImage *sw_barBackgroundImage;
-
-/**
- 初始化自定义导航视图(SWBaseViewController内部已经默认调用了,不要重复调用)
- */
-- (void)sw_initSubViews;
-
+//@interface UIView (SWBaseViewController)
+//
+//@end
+//
+//@interface UIViewController (SWBaseViewController)
+//
 ///**
-// 设置自定义导航的frame(必须在viewWillLayoutSubviews之后调用,SWBaseViewController内部已经默认调用了,不要重复调用)
+// 自定义的类似系统导航上的UINavigationBar
 // */
-//- (void)sw_layoutSubviews;
-
-@end
+//@property (nonatomic,strong,readonly) UIView *sw_bar;
+///**
+// 自定义bar下面的下划线，设置之后为非nil之后自动使用默认的下划线
+// */
+//@property (nonatomic,strong) UIImage *sw_barBottomLineImage;
+///**
+// 自定义bar的颜色
+// */
+//@property (nonatomic,strong) UIColor *sw_barColor;
+///**
+// 自定义bar的背景图片,设置之后为非nil之后毛玻璃效果会自动消失
+// */
+//@property (nonatomic,strong) UIImage *sw_barBackgroundImage;
+//
+///**
+// 初始化自定义导航视图(SWBaseViewController内部已经默认调用了,不要重复调用)
+// */
+//- (void)sw_initSubViews;
+//
+//@end
 
 typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
     SWBaseViewControllerNormalType = 0,
@@ -60,6 +55,15 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
 - (instancetype)initWithStyle:(UITableViewStyle)style;
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *_Nonnull)collectionViewLayout;
 - (instancetype)initWithURL:(NSURL *)url;
+
+#pragma mark - Nav
+@property (nonatomic,readonly) BOOL navigationBarBottomLineHidden;
+@property (nonatomic,readonly) BOOL navigationBarHidden;
+@property (nonatomic,readonly) BOOL translucentNavigationBar;
+@property (nonatomic,readonly,strong) UIColor *navigationBarBackgroundColor;
+@property (nonatomic,readonly,strong) UIImage *navigationBarBackgroundImage;
+
+- (UIImage *)sw_createImageWithColor:(UIColor *)color;
 
 #if TARGET_INTERFACE_BUILDER
 @property (nonatomic,readonly) IBInspectable NSUInteger controllerType;

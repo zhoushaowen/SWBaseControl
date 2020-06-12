@@ -39,8 +39,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.interactivePopGestureRecognizer.delegate = self;
-    [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationBar setShadowImage:[UIImage new]];
+    //设置一下颜色 避免导航在push或pop的时候出现黑色阴影
+    self.view.backgroundColor = [UIColor whiteColor];
+//    [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationBar setShadowImage:[UIImage new]];
 }
 
 - (UIViewController *)childViewControllerForStatusBarHidden {
