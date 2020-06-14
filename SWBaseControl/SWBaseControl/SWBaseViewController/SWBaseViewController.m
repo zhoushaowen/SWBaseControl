@@ -391,7 +391,7 @@
 }
 
 - (void)backItemAction {
-    if(self.presentingViewController){
+    if(self.presentingViewController && self.navigationController.viewControllers.count <= 1){
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }else{
         [self.navigationController popViewControllerAnimated:YES];
