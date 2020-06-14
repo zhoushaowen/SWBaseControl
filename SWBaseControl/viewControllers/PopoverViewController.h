@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SWBaseViewController.h>
 
-@interface PopoverViewController : UIViewController
+@interface PopoverViewController : SWBaseViewController
 
 @end

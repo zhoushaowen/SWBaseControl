@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "SWBaseControl"
 
-  s.version      = "1.5"
+  s.version      = "1.6"
 
   s.homepage      = 'https://github.com/zhoushaowen/SWBaseControl'
 
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/zhoushaowen/SWBaseControl.git", :tag => s.version }
   
-  s.resource  = "SWBaseControl/SWBaseControl/Source/*.json"
+  s.resource  = "SWBaseControl/SWBaseControl/Source/*"
   
   s.dependency 'SWCustomPresentation'
 
@@ -27,6 +27,8 @@ Pod::Spec.new do |s|
   s.dependency 'ReactiveObjC'
 
   s.dependency 'MJExtension'
+
+  s.dependency 'DZNEmptyDataSet'
   
   s.requires_arc = true
 

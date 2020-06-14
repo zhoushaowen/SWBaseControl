@@ -269,10 +269,18 @@
     return YES;
 }
 
+- (BOOL)enableScrollViewInsetsAdjust {
+    return YES;
+}
+
+- (UIColor *)navigationItemColor {
+    return [UIColor blackColor];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self sw_initSubViews];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = self.scrollViewInsetsAdjustType == SWBaseViewControllerScrollViewInsetsAdjustTypeAutomaticBySystem?YES:NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
     if(self.view.backgroundColor == nil){
         self.view.backgroundColor = [UIColor whiteColor];
@@ -285,6 +293,11 @@
             break;
         case SWBaseViewControllerTableViewType:{
             _tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom) style:self.tableViewStyle];
+            if (@available(iOS 11.0, *)) {
+                _tableView.contentInsetAdjustmentBehavior = self.scrollViewInsetsAdjustType == SWBaseViewControllerScrollViewInsetsAdjustTypeAutomaticBySystem? UIScrollViewContentInsetAdjustmentAutomatic:UIScrollViewContentInsetAdjustmentNever;
+            } else {
+                // Fallback on earlie   r versions
+            }
             _scrollView = _tableView;
             _tableView.rowHeight = UITableViewAutomaticDimension;
             _tableView.estimatedRowHeight = 44.0f;
@@ -308,6 +321,11 @@
         case SWBaseViewControllerCollectionViewType:
         {
             _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom) collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+            if (@available(iOS 11.0, *)) {
+                _collectionView.contentInsetAdjustmentBehavior = self.scrollViewInsetsAdjustType == SWBaseViewControllerScrollViewInsetsAdjustTypeAutomaticBySystem? UIScrollViewContentInsetAdjustmentAutomatic:UIScrollViewContentInsetAdjustmentNever;
+            } else {
+                // Fallback on earlie   r versions
+            }
             _scrollView = _collectionView;
 //            _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             _collectionView.delegate = self;
@@ -341,11 +359,43 @@
         default:
             break;
     }
-    @weakify(self)
-    [RACObserve(self.navigationController.navigationBar, frame) subscribeNext:^(id  _Nullable x) {
-        @strongify(self)
-        [self updateScrollViewContentInsets];
-    }];
+    _scrollView.emptyDataSetSource = self;
+    _scrollView.emptyDataSetDelegate = self;
+    NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
+    if(self.navigationController && index != NSNotFound && (self.navigationController.viewControllers.count > 1 || self.forceDisplayBackItemBtn)){
+        [self configNavBackItem];
+    }
+}
+
+- (void)configNavBackItem {
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"SWBaseControl.bundle" ofType:nil];
+    NSString *imageName = [path stringByAppendingPathComponent:@"fanhui"];
+    [backBtn setImage:[[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    backBtn.contentMode = UIViewContentModeLeft;
+    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [backBtn addTarget:self action:@selector(backItemAction) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.frame = CGRectMake(0, 0, 44, 44);
+    backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
+    [self.navigationController.navigationBar setTitleTextAttributes:self.navigationBarTitleTextAttributes];
+}
+
+- (void)setForceDisplayBackItemBtn:(BOOL)forceDisplayBackItemBtn {
+    _forceDisplayBackItemBtn = forceDisplayBackItemBtn;
+    NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
+    if(forceDisplayBackItemBtn && self.navigationController && index != NSNotFound && self.isViewLoaded){
+        [self configNavBackItem];
+    }
+}
+
+- (void)backItemAction {
+    if(self.presentingViewController){
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)viewWillLayoutSubviews {
@@ -380,6 +430,7 @@
 }
 
 - (void)updateScrollViewContentInsets {
+    if(self.scrollViewInsetsAdjustType != SWBaseViewControllerScrollViewInsetsAdjustTypeDefault) return;
     if(_scrollView){
         UIView *contentView = nil;
         switch (self.controllerType) {
@@ -462,6 +513,12 @@
     [self.navigationController.navigationBar setBarTintColor:self.navigationBarBackgroundColor];
     [self.navigationController.navigationBar setBackgroundImage:self.navigationBarBackgroundImage forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:self.navigationBarHidden animated:animated];
+    self.navigationController.navigationBar.tintColor = self.navigationItemColor;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self updateScrollViewContentInsets];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -583,6 +640,16 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
+}
+
+#pragma mark - DZN
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+    return YES;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    return [[NSAttributedString alloc] initWithString:@"空空如也" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
 }
 
 #pragma mark - WKWebView

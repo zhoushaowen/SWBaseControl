@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
+#import <UIScrollView+EmptyDataSet.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,8 +49,14 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
     SWBaseViewControllerWebViewType,
 };
 
+typedef NS_ENUM(NSUInteger, SWBaseViewControllerScrollViewInsetsAdjustType) {
+    SWBaseViewControllerScrollViewInsetsAdjustTypeDefault,
+    SWBaseViewControllerScrollViewInsetsAdjustTypeAutomaticBySystem,
+    SWBaseViewControllerScrollViewInsetsAdjustTypeNoAdjust,
+};
+
 @interface SWBaseViewController : UIViewController
-<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WKNavigationDelegate,WKUIDelegate>
+<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WKNavigationDelegate,WKUIDelegate,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource>
 
 - (instancetype)initWithControllerType:(SWBaseViewControllerType)controllerType;
 - (instancetype)initWithStyle:(UITableViewStyle)style;
@@ -60,8 +67,18 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
 @property (nonatomic,readonly) BOOL navigationBarBottomLineHidden;
 @property (nonatomic,readonly) BOOL navigationBarHidden;
 @property (nonatomic,readonly) BOOL translucentNavigationBar;
+/// default is white
 @property (nonatomic,readonly,strong) UIColor *navigationBarBackgroundColor;
 @property (nonatomic,readonly,strong) UIImage *navigationBarBackgroundImage;
+/// 需要将image renderingMode设为UIImageRenderingModeAlwaysTemplate default is block
+@property (nonatomic,readonly,strong) UIColor *navigationItemColor;
+
+/// default is nil
+@property (nonatomic,readonly,strong) NSDictionary<NSAttributedStringKey, id> *navigationBarTitleTextAttributes;
+
+@property (nonatomic) BOOL forceDisplayBackItemBtn;
+- (void)configNavBackItem;
+- (void)backItemAction;
 
 - (UIImage *)sw_createImageWithColor:(UIColor *)color;
 
@@ -72,6 +89,8 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerType) {
 #endif
 
 @property (nonatomic) UIEdgeInsets contentViewInsets;
+
+@property (nonatomic,readonly) SWBaseViewControllerScrollViewInsetsAdjustType scrollViewInsetsAdjustType;
 
 @property (nonatomic,readonly,strong,nullable) UITableView *tableView;
 @property (nonatomic,readonly) UITableViewStyle tableViewStyle;
