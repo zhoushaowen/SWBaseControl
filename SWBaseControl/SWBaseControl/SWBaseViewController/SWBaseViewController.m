@@ -361,10 +361,14 @@
     }
     _scrollView.emptyDataSetSource = self;
     _scrollView.emptyDataSetDelegate = self;
-    NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
-    if(self.navigationController && index != NSNotFound && (self.navigationController.viewControllers.count > 1 || self.forceDisplayBackItemBtn)){
+    if(self.navigationController && [self isNavigationRouteVc] && (self.navigationController.viewControllers.count > 1 || self.forceDisplayBackItemBtn)){
         [self configNavBackItem];
     }
+}
+
+- (BOOL)isNavigationRouteVc {
+    NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
+    return index != NSNotFound;
 }
 
 - (void)configNavBackItem {
@@ -384,8 +388,7 @@
 
 - (void)setForceDisplayBackItemBtn:(BOOL)forceDisplayBackItemBtn {
     _forceDisplayBackItemBtn = forceDisplayBackItemBtn;
-    NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
-    if(forceDisplayBackItemBtn && self.navigationController && index != NSNotFound && self.isViewLoaded){
+    if(forceDisplayBackItemBtn && self.navigationController && [self isNavigationRouteVc] && self.isViewLoaded){
         [self configNavBackItem];
     }
 }
@@ -508,6 +511,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if(![self isNavigationRouteVc]) return;
     [self.navigationController.navigationBar setTranslucent:self.translucentNavigationBar];
     [self.navigationController.navigationBar setShadowImage:self.navigationBarBottomLineHidden?[UIImage new]:nil];
     [self.navigationController.navigationBar setBarTintColor:self.navigationBarBackgroundColor];
