@@ -77,6 +77,7 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerScrollViewInsetsAdjustType) {
 @property (nonatomic,readonly,strong) NSDictionary<NSAttributedStringKey, id> *navigationBarTitleTextAttributes;
 
 @property (nonatomic) BOOL forceDisplayBackItemBtn;
+@property (nonatomic) BOOL automaticallyHidesBottomBarWhenPushed;
 - (void)configNavBackItem;
 - (void)backItemAction;
 

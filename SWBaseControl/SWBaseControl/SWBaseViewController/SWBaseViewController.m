@@ -219,6 +219,29 @@
 
 @implementation SWBaseViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self beforeLoadViewInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self beforeLoadViewInit];
+    }
+    return self;
+}
+
+- (void)beforeLoadViewInit  {
+    self.automaticallyHidesBottomBarWhenPushed = YES;
+}
+
+
 - (instancetype)initWithControllerType:(SWBaseViewControllerType)controllerType {
     self = [super initWithNibName:nil bundle:nil];
     if(self){

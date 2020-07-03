@@ -7,6 +7,7 @@
 //
 
 #import "SWNavigationController.h"
+#import "SWBaseViewController.h"
 
 @interface SWNavigationController ()<UIGestureRecognizerDelegate>
 
@@ -43,6 +44,13 @@
     self.view.backgroundColor = [UIColor whiteColor];
 //    [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 //    [self.navigationBar setShadowImage:[UIImage new]];
+}
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if([viewController isKindOfClass:[SWBaseViewController class]] && ((SWBaseViewController *)viewController).automaticallyHidesBottomBarWhenPushed){
+        viewController.hidesBottomBarWhenPushed = self.viewControllers.count > 0 ;
+    }
+    [super pushViewController:viewController animated:animated];
 }
 
 - (UIViewController *)childViewControllerForStatusBarHidden {
