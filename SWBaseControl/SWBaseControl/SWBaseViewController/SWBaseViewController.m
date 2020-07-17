@@ -406,7 +406,6 @@
     backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = backItem;
-    [self.navigationController.navigationBar setTitleTextAttributes:self.navigationBarTitleTextAttributes];
 }
 
 - (void)setForceDisplayBackItemBtn:(BOOL)forceDisplayBackItemBtn {
@@ -541,6 +540,7 @@
     [self.navigationController.navigationBar setBackgroundImage:self.navigationBarBackgroundImage forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:self.navigationBarHidden animated:animated];
     self.navigationController.navigationBar.tintColor = self.navigationItemColor;
+    [self.navigationController.navigationBar setTitleTextAttributes:self.navigationBarTitleTextAttributes];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
