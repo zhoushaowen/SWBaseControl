@@ -303,6 +303,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self sw_initSubViews];
+    [self sw_configNavigation:NO];
     self.automaticallyAdjustsScrollViewInsets = self.scrollViewInsetsAdjustType == SWBaseViewControllerScrollViewInsetsAdjustTypeAutomaticBySystem?YES:NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
     if(self.view.backgroundColor == nil){
@@ -533,6 +534,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self sw_configNavigation:animated];
+}
+
+- (void)sw_configNavigation:(BOOL)animated {
     if(![self isNavigationRouteVc]) return;
     [self.navigationController.navigationBar setTranslucent:self.translucentNavigationBar];
     [self.navigationController.navigationBar setShadowImage:self.navigationBarBottomLineHidden?[UIImage new]:nil];
