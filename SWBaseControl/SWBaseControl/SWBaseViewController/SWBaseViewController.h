@@ -66,7 +66,19 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerScrollViewInsetsAdjustType) {
 #pragma mark - Nav
 @property (nonatomic,readonly) BOOL navigationBarBottomLineHidden;
 @property (nonatomic,readonly) BOOL navigationBarHidden;
-@property (nonatomic,readonly) BOOL translucentNavigationBar;
+//@property (nonatomic,readonly) BOOL translucentNavigationBar;
+
+/// 是否开启导航渐变色
+@property (nonatomic) BOOL enableGradientNavigationBarColor;
+/// 开始渐变需要移动的距离,默认值100
+@property (nonatomic) CGFloat gradientNavigationColorBeginOffset;
+/// 渐变导航不透明的时候的标题
+@property (nonatomic,copy) NSString *gradientNavigationTitleForOpacity;
+/// 渐变导航透明的时候的标题
+@property (nonatomic,copy) NSString *gradientNavigationTitleForTranslucent;
+/// 渐变导航不透明的时候的颜色
+@property (nonatomic,strong) UIColor *gradientNavigationColorForOpacity;
+
 /// default is white
 @property (nonatomic,readonly,strong) UIColor *navigationBarBackgroundColor;
 @property (nonatomic,readonly,strong) UIImage *navigationBarBackgroundImage;

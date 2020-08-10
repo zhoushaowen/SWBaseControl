@@ -288,12 +288,24 @@
     return [UIColor whiteColor];
 }
 
-- (BOOL)translucentNavigationBar {
-    return YES;
+- (BOOL)enableGradientNavigationBarColor {
+    return NO;
 }
+
+- (UIColor *)gradientNavigationColorForOpacity {
+    return [UIColor whiteColor];
+}
+
+//- (BOOL)translucentNavigationBar {
+//    return YES;
+//}
 
 - (BOOL)enableScrollViewInsetsAdjust {
     return YES;
+}
+
+- (CGFloat)gradientNavigationColorBeginOffset {
+    return 100;
 }
 
 - (UIColor *)navigationItemColor {
@@ -535,17 +547,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self sw_configNavigation:animated];
+    [self updateNavigationBarWithScrollViewDidScroll:self.tableView?self.tableView:(self.collectionView?self.collectionView:nil)];
 }
 
 - (void)sw_configNavigation:(BOOL)animated {
     if(![self isNavigationRouteVc]) return;
-    [self.navigationController.navigationBar setTranslucent:self.translucentNavigationBar];
+//    [self.navigationController.navigationBar setTranslucent:self.translucentNavigationBar];
     [self.navigationController.navigationBar setShadowImage:self.navigationBarBottomLineHidden?[UIImage new]:nil];
     [self.navigationController.navigationBar setBarTintColor:self.navigationBarBackgroundColor];
     [self.navigationController.navigationBar setBackgroundImage:self.navigationBarBackgroundImage forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:self.navigationBarHidden animated:animated];
     self.navigationController.navigationBar.tintColor = self.navigationItemColor;
     [self.navigationController.navigationBar setTitleTextAttributes:self.navigationBarTitleTextAttributes];
+    self.navigationItem.titleView.alpha = 0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -717,6 +731,20 @@
     }else{
 //        str = @"yes";
     }
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self updateNavigationBarWithScrollViewDidScroll:scrollView];
+}
+
+- (void)updateNavigationBarWithScrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.enableGradientNavigationBarColor) return;
+    CGFloat percent = (scrollView.contentOffset.y - scrollView.contentInset.top - self.gradientNavigationColorBeginOffset)/UIDevice.sw_navigationBarHeight;
+    percent = percent < 0?0:percent;
+    percent = percent >= 1.0?1.0:percent;
+    self.navigationItem.title = percent > 0.5?self.gradientNavigationTitleForOpacity:self.gradientNavigationTitleForTranslucent;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage sw_createImageWithColor:[self.gradientNavigationColorForOpacity colorWithAlphaComponent:percent]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
 }
 
 - (BOOL)shouldAutorotate {
