@@ -559,12 +559,12 @@
     [self.navigationController setNavigationBarHidden:self.navigationBarHidden animated:animated];
     self.navigationController.navigationBar.tintColor = self.navigationItemColor;
     [self.navigationController.navigationBar setTitleTextAttributes:self.navigationBarTitleTextAttributes];
-    self.navigationItem.titleView.alpha = 0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self updateScrollViewContentInsets];
+    [self updateNavigationBarWithScrollViewDidScroll:self.tableView?self.tableView:(self.collectionView?self.collectionView:nil)];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
