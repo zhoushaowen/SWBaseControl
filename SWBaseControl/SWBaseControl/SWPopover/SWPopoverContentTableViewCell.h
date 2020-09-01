@@ -27,9 +27,14 @@
  */
 @property (nonatomic,copy) UIColor *lineStrokeColor;
 
+
+@property (nonatomic,copy) NSString *text;
+
 /**
  config your UI with data
  */
-@property (nonatomic,strong) id model;
+@property (nonatomic,strong) id model __deprecated_msg("Use 'text'");
+
+
 
 @end

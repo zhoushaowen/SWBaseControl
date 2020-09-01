@@ -29,8 +29,6 @@
     BOOL _didChangePosition;
 }
 
-@property (nonatomic) SWPopoverArrowDirection arrowDirection;
-
 @end
 
 @implementation SWPopoverView
@@ -165,6 +163,27 @@
     _contentViewColor = contentViewColor;
     _contentView.backgroundColor = _contentViewColor;
     [self setNeedsDisplay];
+}
+
+- (void)setContentViewSize:(CGSize)contentViewSize {
+    _contentViewSize = contentViewSize;
+    [self setContentViewFrame];
+    [self.contentView layoutIfNeeded];
+}
+
+- (void)setContentViewCenterOffset:(CGFloat)contentViewCenterOffset {
+    _contentViewCenterOffset = contentViewCenterOffset;
+    [self setContentViewFrame];
+}
+
+- (void)setArrowDirection:(SWPopoverArrowDirection)arrowDirection {
+    _arrowDirection = arrowDirection;
+    [self setContentViewFrame];
+}
+
+- (void)setArrowPoint:(CGPoint)arrowPoint {
+    _arrowPoint = arrowPoint;
+    [self setContentViewFrame];
 }
 
 - (void)showAnimated:(BOOL)isAnimated {

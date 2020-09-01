@@ -32,6 +32,7 @@
     self.sw_separatorInset = UIEdgeInsetsMake(0, 8, 0, 8);
     self.backgroundColor = [UIColor clearColor];
     self.textLabel.textColor = [UIColor whiteColor];
+    self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.selectedBackgroundView = [UIView new];
     self.selectedBackgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3f];
 }
@@ -49,6 +50,11 @@
 - (void)setShouldStrokeLine:(BOOL)shouldStrokeLine {
     _shouldStrokeLine = shouldStrokeLine;
     [self setNeedsDisplay];
+}
+
+- (void)setText:(NSString *)text {
+    _text = [text copy];
+    self.textLabel.text = text;
 }
 
 

@@ -20,7 +20,17 @@
     // Do any additional setup after loading the view from its nib.
 }
 - (IBAction)show:(id)sender {
+    SWProvincesPickerViewController *picker = [[SWProvincesPickerViewController alloc] initWithSelectedProvinceCode:nil selectedCityCode:@"330100xxx" areaCode:@"330108"];
+    [self sw_presentPickerViewController:picker withDelegate:self];
+}
+- (IBAction)show2:(UIButton *)sender {
     SWProvincesPickerViewController *picker = [[SWProvincesPickerViewController alloc] init];
+    picker.provincesPickerMode = SWProvincesPickerModeCity;
+    [self sw_presentPickerViewController:picker withDelegate:self];
+}
+- (IBAction)show3:(id)sender {
+    SWProvincesPickerViewController *picker = [[SWProvincesPickerViewController alloc] init];
+    picker.provincesPickerMode = SWProvincesPickerModeProvince;
     [self sw_presentPickerViewController:picker withDelegate:self];
 }
 

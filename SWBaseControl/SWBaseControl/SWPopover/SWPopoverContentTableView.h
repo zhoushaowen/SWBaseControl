@@ -19,6 +19,10 @@
  */
 @property (nonatomic) CGFloat rowHeight;
 
+@property (nonatomic) UIFont *textFont;
+
+@property (nonatomic) NSTextAlignment textAlignment;
+
 @property (nonatomic,strong) void(^didSelectedIndex)(NSInteger index);
 /**
  you can overrid the method.

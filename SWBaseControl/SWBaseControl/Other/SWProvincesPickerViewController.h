@@ -36,11 +36,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+typedef NS_ENUM(NSUInteger, SWProvincesPickerMode) {
+    SWProvincesPickerModeArea,//显示省市区
+    SWProvincesPickerModeCity,//显示省市
+    SWProvincesPickerModeProvince,//显示省
+};
+
 
 @interface SWProvincesPickerViewController : SWPickerViewController
 
-//- (instancetype)initWithSelectedProvinceCode:(NSString *_Nullable)provinceCode selectedCityCode:(NSString *_Nullable)cityCode areaCode:(NSString *_Nullable)areaCode;
+- (instancetype)initWithSelectedProvinceCode:(NSString *_Nullable)provinceCode selectedCityCode:(NSString *_Nullable)cityCode areaCode:(NSString *_Nullable)areaCode;
 + (NSArray<SWProvincesPickerProvinceModel *> *)loadAllProvincesData;
+
+@property (nonatomic) SWProvincesPickerMode provincesPickerMode;
 
 @property (nonatomic,strong,nullable) SWProvincesPickerProvinceModel *selectedProvinceModel;
 @property (nonatomic,strong,nullable) SWProvincesPickerCityModel *selectedCityModel;

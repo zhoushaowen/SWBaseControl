@@ -60,15 +60,15 @@
 @implementation SWProvincesPickerViewController
 
 
-//- (instancetype)initWithSelectedProvinceCode:(NSString *)provinceCode selectedCityCode:(NSString *)cityCode areaCode:(NSString *)areaCode {
-//    self = [super initWithNibName:nil bundle:nil];
-//    if(self){
-//        self.provinceCode = provinceCode;
-//        self.cityCode = cityCode;
-//        self.areaCode = areaCode;
-//    }
-//    return self;
-//}
+- (instancetype)initWithSelectedProvinceCode:(NSString *)provinceCode selectedCityCode:(NSString *)cityCode areaCode:(NSString *)areaCode {
+    self = [super initWithNibName:nil bundle:nil];
+    if(self){
+        self.provinceCode = provinceCode;
+        self.cityCode = cityCode;
+        self.areaCode = areaCode;
+    }
+    return self;
+}
 
 + (NSArray<SWProvincesPickerProvinceModel *> *)loadAllProvincesData {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"2019年5月中华人民共和国县以上行政区划代码.json" ofType:nil];
@@ -81,7 +81,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataSource = [SWProvincesPickerViewController loadAllProvincesData];
-//    [self.pickerView selectRow:0 inComponent:0 animated:NO];
+//    [self setInitialSelected];
+//    [self getSelectedModel];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setInitialSelected];
     [self getSelectedModel];
 }
 
@@ -90,80 +96,80 @@
     [self.pickerView reloadAllComponents];
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    if(self.areaCode){
-//        [self.dataSource enumerateObjectsUsingBlock:^(SWProvincesPickerProvinceModel*  _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
-//            [obj1.cityList enumerateObjectsUsingBlock:^(SWProvincesPickerCityModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
-//                [obj2.areaList enumerateObjectsUsingBlock:^(SWProvincesPickerAreaModel * _Nonnull obj3, NSUInteger idx3, BOOL * _Nonnull stop3) {
-//                    if([obj3.code isEqualToString:self.areaCode]){
-//                        [self.pickerView selectRow:idx1 inComponent:0 animated:NO];
-//                        [self.pickerView reloadComponent:1];
-//                        [self.pickerView selectRow:idx2 inComponent:1 animated:NO];
-//                        [self.pickerView reloadComponent:2];
-//                        [self.pickerView selectRow:idx3 inComponent:2 animated:NO];
-//                        *stop3 = YES;
-//                        *stop2 = YES;
-//                        *stop1 = YES;
-//                    }
-//                }];
-//            }];
-//        }];
-//    }else if (self.cityCode){
-//        [self.dataSource enumerateObjectsUsingBlock:^(SWProvincesPickerProvinceModel*  _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
-//            [obj1.cityList enumerateObjectsUsingBlock:^(SWProvincesPickerCityModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
-//                if([obj2.code isEqualToString:self.cityCode]){
-//                    [self.pickerView selectRow:idx1 inComponent:0 animated:NO];
-//                    [self.pickerView reloadComponent:1];
-//                    [self.pickerView selectRow:idx2 inComponent:1 animated:NO];
-//                    [self.pickerView reloadComponent:2];
-//                    [self.pickerView selectRow:0 inComponent:2 animated:YES];
-//                    *stop2 = YES;
-//                    *stop1 = YES;
-//                }
-//            }];
-//        }];
-//    }else if (self.provinceCode){
-//        [self.dataSource enumerateObjectsUsingBlock:^(SWProvincesPickerProvinceModel*  _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
-//            if([obj1.code isEqualToString:self.provinceCode]){
-//                [self.pickerView selectRow:idx1 inComponent:0 animated:NO];
-//                [self.pickerView reloadComponent:1];
-//                [self.pickerView selectRow:0 inComponent:1 animated:NO];
-//                [self.pickerView reloadComponent:2];
-//                [self.pickerView selectRow:0 inComponent:2 animated:NO];
-//                *stop1 = YES;
-//            }
-//        }];
-//    }else{
-//        [self.pickerView selectRow:0 inComponent:0 animated:NO];
-//        [self.pickerView reloadComponent:1];
-//        [self.pickerView selectRow:0 inComponent:1 animated:NO];
-//        [self.pickerView reloadComponent:2];
-//        [self.pickerView selectRow:0 inComponent:2 animated:NO];
-//    }
-//    [self getSelectedModel];
-//}
+- (void)setInitialSelected {
+    if(self.areaCode && self.provincesPickerMode == SWProvincesPickerModeArea){
+        [self.dataSource enumerateObjectsUsingBlock:^(SWProvincesPickerProvinceModel*  _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+            [obj1.cityList enumerateObjectsUsingBlock:^(SWProvincesPickerCityModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                [obj2.areaList enumerateObjectsUsingBlock:^(SWProvincesPickerAreaModel * _Nonnull obj3, NSUInteger idx3, BOOL * _Nonnull stop3) {
+                    if([obj3.code isEqualToString:self.areaCode]){
+                        [self.pickerView selectRow:idx1 inComponent:0 animated:YES];
+                        [self.pickerView reloadComponent:1];
+                        [self.pickerView selectRow:idx2 inComponent:1 animated:YES];
+                        [self.pickerView reloadComponent:2];
+                        [self.pickerView selectRow:idx3 inComponent:2 animated:YES];
+                        *stop3 = YES;
+                        *stop2 = YES;
+                        *stop1 = YES;
+                    }
+                }];
+            }];
+        }];
+    }else if (self.cityCode && self.provincesPickerMode != SWProvincesPickerModeProvince){
+        [self.dataSource enumerateObjectsUsingBlock:^(SWProvincesPickerProvinceModel*  _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+            [obj1.cityList enumerateObjectsUsingBlock:^(SWProvincesPickerCityModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                if([obj2.code isEqualToString:self.cityCode]){
+                    [self.pickerView selectRow:idx1 inComponent:0 animated:NO];
+                    [self.pickerView reloadComponent:1];
+                    [self.pickerView selectRow:idx2 inComponent:1 animated:NO];
+                    [self.pickerView reloadComponent:2];
+                    [self.pickerView selectRow:0 inComponent:2 animated:YES];
+                    *stop2 = YES;
+                    *stop1 = YES;
+                }
+            }];
+        }];
+    }else if (self.provinceCode){
+        [self.dataSource enumerateObjectsUsingBlock:^(SWProvincesPickerProvinceModel*  _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+            if([obj1.code isEqualToString:self.provinceCode]){
+                [self.pickerView selectRow:idx1 inComponent:0 animated:NO];
+                [self.pickerView reloadComponent:1];
+                [self.pickerView selectRow:0 inComponent:1 animated:NO];
+                [self.pickerView reloadComponent:2];
+                [self.pickerView selectRow:0 inComponent:2 animated:NO];
+                *stop1 = YES;
+            }
+        }];
+    }
+}
 
 - (void)getSelectedModel {
+    self.provinceCode = nil;
+    self.cityCode = nil;
+    self.areaCode = nil;
     if(self.dataSource.count > 0){
         self.selectedProvinceModel = self.dataSource[[self.pickerView selectedRowInComponent:0]];
     }else{
         self.selectedProvinceModel = nil;
     }
-    if(self.selectedProvinceModel.cityList.count > 0 && [self.pickerView selectedRowInComponent:1] < self.selectedProvinceModel.cityList.count){
+    if(self.provincesPickerMode != SWProvincesPickerModeProvince && self.selectedProvinceModel.cityList.count > 0 && [self.pickerView selectedRowInComponent:1] < self.selectedProvinceModel.cityList.count){
         self.selectedCityModel = self.selectedProvinceModel.cityList[[self.pickerView selectedRowInComponent:1]];
     }else{
         self.selectedCityModel = nil;
     }
-    if(self.selectedCityModel.areaList.count > 0 && [self.pickerView selectedRowInComponent:2] < self.selectedCityModel.areaList.count){
+    if(self.provincesPickerMode == SWProvincesPickerModeArea && self.selectedCityModel.areaList.count > 0 && [self.pickerView selectedRowInComponent:2] < self.selectedCityModel.areaList.count){
         self.selectedAreaModel = self.selectedCityModel.areaList[[self.pickerView selectedRowInComponent:2]];
     }else{
         self.selectedAreaModel = nil;
     }
 }
 
+- (void)setProvincesPickerMode:(SWProvincesPickerMode)provincesPickerMode {
+    _provincesPickerMode = provincesPickerMode;
+    [self.pickerView reloadAllComponents];
+}
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 3;
+    return self.provincesPickerMode == SWProvincesPickerModeArea ? 3:(self.provincesPickerMode == SWProvincesPickerModeCity ? 2:1);
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -191,15 +197,21 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    //每reload上一个component之后要赶紧调用selectRow,否则reload下一个component否则会导致numberOfRowsInComponent中的数组越界
     if(component == 0){
-        [pickerView reloadComponent:1];
-        [pickerView selectRow:0 inComponent:1 animated:YES];
-        //每reload上一个component之后要赶紧调用selectRow,否则reload下一个component否则会导致numberOfRowsInComponent中的数组越界
-        [pickerView reloadComponent:2];
-        [pickerView selectRow:0 inComponent:2 animated:YES];
+        if(self.provincesPickerMode != SWProvincesPickerModeProvince){
+            [pickerView reloadComponent:1];
+            [pickerView selectRow:0 inComponent:1 animated:YES];
+        }
+        if(self.provincesPickerMode == SWProvincesPickerModeArea){
+            [pickerView reloadComponent:2];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+        }
     }else if (component == 1){
-        [pickerView reloadComponent:2];
-        [pickerView selectRow:0 inComponent:2 animated:YES];
+        if(self.provincesPickerMode == SWProvincesPickerModeArea){
+            [pickerView reloadComponent:2];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+        }
     }
     [self getSelectedModel];
 }
@@ -212,22 +224,29 @@
         label.adjustsFontSizeToFitWidth = YES;
         label.textAlignment = NSTextAlignmentCenter;
     }
-    if(component == 0){
+    if(component == 0 && row >= 0){
         SWProvincesPickerProvinceModel *province = self.dataSource[row];
         label.text = province.name;
     }else if(component == 1){
-        SWProvincesPickerProvinceModel *province = self.dataSource[[pickerView selectedRowInComponent:component - 1]];
-        if(row < province.cityList.count){
-            SWProvincesPickerCityModel *city = province.cityList[row];
-            label.text = city.name;
+        NSInteger row0 = [pickerView selectedRowInComponent:0];
+        if(row0 >= 0 && row0 < self.dataSource.count){
+            SWProvincesPickerProvinceModel *province = self.dataSource[row0];
+            if(row >= 0 && row < province.cityList.count){
+                SWProvincesPickerCityModel *city = province.cityList[row];
+                label.text = city.name;
+            }
         }
     }else{
-        SWProvincesPickerProvinceModel *province = self.dataSource[[pickerView selectedRowInComponent:component - 2]];
-        if([pickerView selectedRowInComponent:component - 1] < province.cityList.count){
-            SWProvincesPickerCityModel *city = province.cityList[[pickerView selectedRowInComponent:component - 1]];
-            if(row < city.areaList.count){
-                SWProvincesPickerAreaModel *area = city.areaList[row];
-                label.text = area.name;
+        NSInteger row0 = [pickerView selectedRowInComponent:0];
+        if(row0 >= 0 && row0 < self.dataSource.count){
+            SWProvincesPickerProvinceModel *province = self.dataSource[row0];
+            NSInteger row1 = [pickerView selectedRowInComponent:1];
+            if(row1 >= 0 && row1 < province.cityList.count){
+                SWProvincesPickerCityModel *city = province.cityList[row1];
+                if(row >= 0 && row < city.areaList.count){
+                    SWProvincesPickerAreaModel *area = city.areaList[row];
+                    label.text = area.name;
+                }
             }
         }
     }

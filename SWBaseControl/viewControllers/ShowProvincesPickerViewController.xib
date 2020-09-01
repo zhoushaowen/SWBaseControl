@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,8 +18,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0k-V0-epv" customClass="SWBaseButton">
-                    <rect key="frame" x="175" y="433" width="64" height="30"/>
-                    <state key="normal" title="Click me!"/>
+                    <rect key="frame" x="184" y="433" width="46" height="30"/>
+                    <state key="normal" title="省市区"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="hexColorStringForNormalBackgroundImage" value="2fc295"/>
                     </userDefinedRuntimeAttributes>
@@ -29,12 +27,37 @@
                         <action selector="show:" destination="-1" eventType="touchUpInside" id="mYu-U6-L4A"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJf-Yy-8IN" customClass="SWBaseButton">
+                    <rect key="frame" x="191.5" y="483" width="31" height="30"/>
+                    <state key="normal" title="省市"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="hexColorStringForNormalBackgroundImage" value="2fc295"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="show2:" destination="-1" eventType="touchUpInside" id="hdr-n2-ecc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="097-Fj-dEM" customClass="SWBaseButton">
+                    <rect key="frame" x="192" y="533" width="30" height="30"/>
+                    <state key="normal" title="省"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="hexColorStringForNormalBackgroundImage" value="2fc295"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="show3:" destination="-1" eventType="touchUpInside" id="e6q-e1-xTz"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="eJf-Yy-8IN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4p2-5b-qTm"/>
+                <constraint firstItem="eJf-Yy-8IN" firstAttribute="top" secondItem="e0k-V0-epv" secondAttribute="bottom" constant="20" id="Ax6-JS-fFc"/>
+                <constraint firstItem="097-Fj-dEM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Lyz-dT-QX9"/>
                 <constraint firstItem="e0k-V0-epv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="S7k-AU-3c3"/>
+                <constraint firstItem="097-Fj-dEM" firstAttribute="top" secondItem="eJf-Yy-8IN" secondAttribute="bottom" constant="20" id="XVE-3n-fhC"/>
                 <constraint firstItem="e0k-V0-epv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="mwK-Bt-9p9"/>
             </constraints>
+            <point key="canvasLocation" x="139" y="94"/>
         </view>
     </objects>
 </document>

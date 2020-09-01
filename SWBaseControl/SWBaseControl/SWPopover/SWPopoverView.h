@@ -17,8 +17,9 @@ typedef NS_ENUM(NSUInteger, SWPopoverArrowDirection) {
 
 @interface SWPopoverView : UIView<UIGestureRecognizerDelegate>
 
-@property (nonatomic,readonly) SWPopoverArrowDirection arrowDirection;
+@property (nonatomic) SWPopoverArrowDirection arrowDirection;
 
+@property (nonatomic,readonly) UIView *contentView;
 /**
  the color of contentView include arrow,default is black
  */
@@ -26,7 +27,10 @@ typedef NS_ENUM(NSUInteger, SWPopoverArrowDirection) {
 
 @property (nonatomic,strong) void(^popoverViewDidHidden)(void);
 
-@property (nonatomic,readonly) CGSize contentViewSize;
+@property (nonatomic) CGSize contentViewSize;
+@property (nonatomic) CGFloat contentViewCenterOffset;
+@property (nonatomic) CGPoint arrowPoint;
+
 
 /**
  designated initializer

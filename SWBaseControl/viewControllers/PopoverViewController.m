@@ -7,8 +7,8 @@
 //
 
 #import "PopoverViewController.h"
-#import "MyPopoverContentTableView.h"
 #import <SWPopoverView.h>
+#import "SWTextPopoverView.h"
 
 @interface PopoverViewController ()
 
@@ -20,19 +20,37 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightItemClick)];
 }
 
-- (void)rightItemClick {
-    MyPopoverContentTableView *contentView = [MyPopoverContentTableView new];
-    contentView.dataSource = @[@"1",@"2",@"3",@"4",@"5"];
-    contentView.didSelectedIndex = ^(NSInteger index) {
-        NSLog(@"%ld",(long)index);
+- (IBAction)btn1Action:(UIButton *)sender {
+    SWTextPopoverView *popoverView = [[SWTextPopoverView alloc] initWithTargetView:sender titles:@[@"测试1",@"测试2",@"测试3"]];
+    popoverView.didSelectedItem = ^(NSInteger index, NSString * _Nonnull text) {
+        NSLog(@"%d---%@",index,text);
     };
-    SWPopoverView *popoverView = [[SWPopoverView alloc] initWithContentView:contentView contentViewSize:CGSizeMake(130, contentView.rowHeight*5) arrowPoint:CGPointMake(self.view.bounds.size.width - 30, 70) arrowDirection:SWPopoverArrowDirectionTop contentViewCenterOffset:-50];
-    popoverView.popoverViewDidHidden = ^{
-        NSLog(@"popoverViewDidHidden");
-    };
+    [popoverView showAnimated:YES];
+}
+- (IBAction)btn2Action:(UIButton *)sender {
+    SWTextPopoverView *popoverView = [[SWTextPopoverView alloc] initWithTargetView:sender titles:@[@"1",@"2",@"3"]];
+    [popoverView showAnimated:YES];
+}
+- (IBAction)btn3Action:(UIButton *)sender {
+    SWTextPopoverView *popoverView = [[SWTextPopoverView alloc] initWithTargetView:sender titles:@[@"1",@"2",@"3"]];
+    [popoverView showAnimated:YES];
+}
+- (IBAction)btn4Action:(UIButton *)sender {
+    SWTextPopoverView *popoverView = [[SWTextPopoverView alloc] initWithTargetView:sender titles:@[@"1",@"2",@"3"]];
+    [popoverView showAnimated:YES];
+}
+- (IBAction)btn5Action:(UIButton *)sender {
+    SWTextPopoverView *popoverView = [[SWTextPopoverView alloc] initWithTargetView:sender titles:@[@"1",@"2",@"3"]];
+    [popoverView showAnimated:YES];
+}
+- (IBAction)btn6Action:(UIButton *)sender {
+    SWTextPopoverView *popoverView = [[SWTextPopoverView alloc] initWithTargetView:sender titles:@[@"1",@"2",@"3"]];
+    [popoverView showAnimated:YES];
+}
+- (IBAction)btn7Action:(UIButton *)sender {
+    SWTextPopoverView *popoverView = [[SWTextPopoverView alloc] initWithTargetView:sender titles:@[@"1",@"2",@"3"]];
     [popoverView showAnimated:YES];
 }
 

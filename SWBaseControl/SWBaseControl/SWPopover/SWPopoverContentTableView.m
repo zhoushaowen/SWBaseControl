@@ -38,6 +38,7 @@
     self.rowHeight = 44.0f;
     self.layer.cornerRadius = 2.0f;
     self.clipsToBounds = YES;
+    self.textFont = [UIFont systemFontOfSize:13];
     _tableView = [[UITableView alloc] initWithFrame:self.bounds];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _tableView.delegate = self;
@@ -76,6 +77,21 @@
     [self layoutIfNeeded];
 }
 
+- (void)setRowHeight:(CGFloat)rowHeight {
+    _rowHeight = rowHeight;
+    [_tableView reloadData];
+}
+
+- (void)setTextFont:(UIFont *)textFont {
+    _textFont = textFont;
+    [_tableView reloadData];
+}
+
+- (void)setTextAlignment:(NSTextAlignment)textAlignment {
+    _textAlignment = textAlignment;
+    [_tableView reloadData];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;
 }
@@ -87,7 +103,11 @@
     }else{
         cell.shouldStrokeLine = YES;
     }
+    cell.textLabel.font = self.textFont;
+    cell.textLabel.textAlignment = self.textAlignment;
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.model = self.dataSource[indexPath.row];
+    cell.text = self.dataSource[indexPath.row];
     return cell;
 }
 
