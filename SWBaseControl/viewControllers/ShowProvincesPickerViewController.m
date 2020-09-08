@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    SWProvincesPickerProvinceModel *model = [SWProvincesPickerViewController getProvinceModelWithProvinceName:@"浙江"];
+    NSLog(@"%@",model);
 }
 - (IBAction)show:(id)sender {
     SWProvincesPickerViewController *picker = [[SWProvincesPickerViewController alloc] initWithSelectedProvinceCode:nil selectedCityCode:@"330100xxx" areaCode:@"330108"];

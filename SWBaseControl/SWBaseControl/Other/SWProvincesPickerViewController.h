@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,copy) NSString *code;
 @property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString *shortName;
 
 @end
 
@@ -23,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,copy) NSString *code;
 @property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString *shortName;
 @property (nonatomic,copy,nullable) NSArray<SWProvincesPickerAreaModel *> *areaList;
 
 @end
@@ -32,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,copy) NSString *code;
 @property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString *shortName;
 @property (nonatomic,copy,nullable) NSArray<SWProvincesPickerCityModel *> *cityList;
 
 @end
@@ -47,6 +50,9 @@ typedef NS_ENUM(NSUInteger, SWProvincesPickerMode) {
 
 - (instancetype)initWithSelectedProvinceCode:(NSString *_Nullable)provinceCode selectedCityCode:(NSString *_Nullable)cityCode areaCode:(NSString *_Nullable)areaCode;
 + (NSArray<SWProvincesPickerProvinceModel *> *)loadAllProvincesData;
++ (SWProvincesPickerProvinceModel *)getProvinceModelWithProvinceName:(NSString *)provinceName;
++ (SWProvincesPickerCityModel *)getCityModelWithCityName:(NSString *)cityName;
++ (SWProvincesPickerAreaModel *)getAreaModelWithAreaName:(NSString *)areaName;
 
 @property (nonatomic) SWProvincesPickerMode provincesPickerMode;
 

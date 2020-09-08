@@ -9,8 +9,42 @@
 #import "SWProvincesPickerViewController.h"
 #import <MJExtension.h>
 
+NS_INLINE BOOL HasSuffix(NSString *name,NSString *removeString){
+    if(name.length > removeString.length){
+        NSRange range = [name rangeOfString:removeString options:NSBackwardsSearch range:NSMakeRange(name.length - removeString.length, removeString.length)];
+        if(range.location != NSNotFound && range.location > 1){
+            return YES;
+        }
+    }
+    return NO;
+}
+
+NS_INLINE NSString *GetShortName(NSString *name,NSString *removeString){
+    return [name stringByReplacingOccurrencesOfString:removeString withString:@"" options:NSBackwardsSearch range:NSMakeRange(name.length - removeString.length, removeString.length)];
+}
 
 @implementation SWProvincesPickerAreaModel
+
+- (void)mj_keyValuesDidFinishConvertingToObject {
+    if(self.name.length > 0){
+        if(HasSuffix(self.name, @"市")){
+            self.shortName = GetShortName(self.name, @"市");
+        }
+        else if (HasSuffix(self.name, @"县")){
+            self.shortName = GetShortName(self.name, @"县");
+        }
+        else if (HasSuffix(self.name, @"新区")){
+            self.shortName = GetShortName(self.name, @"新区");
+        }
+        else if (HasSuffix(self.name, @"区")){
+            self.shortName = GetShortName(self.name, @"区");
+        }
+        else{
+            self.shortName = self.name;
+        }
+
+    }
+}
 
 @end
 
@@ -26,6 +60,19 @@
     }
     return self;
 }
+
+- (void)mj_keyValuesDidFinishConvertingToObject {
+    if(self.name.length > 0){
+        if(HasSuffix(self.name, @"市")){
+            self.shortName = GetShortName(self.name, @"市");
+        }
+        else{
+            self.shortName = self.name;
+        }
+
+    }
+}
+
 
 @end
 
@@ -46,6 +93,37 @@
     if(_cityList.count == 0) return nil;
     return _cityList;
 }
+
+- (void)mj_keyValuesDidFinishConvertingToObject {
+    if(self.name.length > 0){
+        if(HasSuffix(self.name, @"市")){
+            self.shortName = GetShortName(self.name, @"市");
+        }
+        else if (HasSuffix(self.name, @"省")){
+            self.shortName = GetShortName(self.name, @"省");
+        }
+        else if (HasSuffix(self.name, @"特别行政区")){
+            self.shortName = GetShortName(self.name, @"特别行政区");
+        }
+        else if (HasSuffix(self.name, @"壮族自治区")){
+            self.shortName = GetShortName(self.name, @"壮族自治区");
+        }
+        else if (HasSuffix(self.name, @"回族自治区")){
+            self.shortName = GetShortName(self.name, @"回族自治区");
+        }
+        else if (HasSuffix(self.name, @"维吾尔自治区")){
+            self.shortName = GetShortName(self.name, @"维吾尔自治区");
+        }
+        else if (HasSuffix(self.name, @"自治区")){
+            self.shortName = GetShortName(self.name, @"自治区");
+        }
+        else{
+            self.shortName = self.name;
+        }
+
+    }
+}
+
 
 @end
 
@@ -78,11 +156,60 @@
     return provinces;
 }
 
++ (SWProvincesPickerProvinceModel *)getProvinceModelWithProvinceName:(NSString *)provinceName {
+    if(provinceName.length > 0){
+        __block SWProvincesPickerProvinceModel *model = nil;
+        [[self loadAllProvincesData] enumerateObjectsUsingBlock:^(SWProvincesPickerProvinceModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if([obj.name isEqualToString:provinceName] || [obj.shortName isEqualToString:provinceName]){
+                model = obj;
+                *stop = YES;
+            }
+        }];
+        return model;
+    }
+    return nil;
+}
+
++ (SWProvincesPickerCityModel *)getCityModelWithCityName:(NSString *)cityName {
+    if(cityName.length > 0){
+        __block SWProvincesPickerCityModel *model = nil;
+        [[self loadAllProvincesData] enumerateObjectsUsingBlock:^(SWProvincesPickerProvinceModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.cityList enumerateObjectsUsingBlock:^(SWProvincesPickerCityModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                if([obj2.name isEqualToString:cityName] || [obj2.shortName isEqualToString:cityName]){
+                    model = obj2;
+                    *stop = YES;
+                    *stop2 = YES;
+                }
+            }];
+        }];
+        return model;
+    }
+    return nil;
+}
+
++ (SWProvincesPickerAreaModel *)getAreaModelWithAreaName:(NSString *)areaName {
+    if(areaName.length > 0){
+        __block SWProvincesPickerAreaModel *model = nil;
+        [[self loadAllProvincesData] enumerateObjectsUsingBlock:^(SWProvincesPickerProvinceModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.cityList enumerateObjectsUsingBlock:^(SWProvincesPickerCityModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                [obj2.areaList enumerateObjectsUsingBlock:^(SWProvincesPickerAreaModel * _Nonnull obj3, NSUInteger idx3, BOOL * _Nonnull stop3) {
+                    if([obj3.name isEqualToString:areaName] || [obj3.shortName isEqualToString:areaName]){
+                        model = obj3;
+                        *stop = YES;
+                        *stop2 = YES;
+                        *stop3 = YES;
+                    }
+                }];
+            }];
+        }];
+        return model;
+    }
+    return nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataSource = [SWProvincesPickerViewController loadAllProvincesData];
-//    [self setInitialSelected];
-//    [self getSelectedModel];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
