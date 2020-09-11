@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SWBaseViewController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseTextViewController : UIViewController
+@interface BaseTextViewController : SWBaseViewController
 
 @end
 

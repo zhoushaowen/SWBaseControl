@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) void(^drawTextInRect)(CGRect rect);
 @property (nonatomic,strong) void(^drawPlaceholderInRect)(CGRect rect);
 
+@property (nonatomic,strong) void(^textDidEndEditing)(NSString *text,NSNotification *noti);
+@property (nonatomic,strong) void(^textDidChange)(NSString *text,NSNotification *noti);
+@property (nonatomic,strong) void(^textDidBeginEditing)(NSNotification *noti);
+
 @end
 
 NS_ASSUME_NONNULL_END

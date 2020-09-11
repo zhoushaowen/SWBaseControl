@@ -7,6 +7,7 @@
 //
 
 #import "SWBaseTextField.h"
+#import <ReactiveObjC.h>
 
 @implementation SWBaseTextField
 
@@ -75,7 +76,53 @@
     [super drawPlaceholderInRect:rect];
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+        [self addObserver];
+    }
+    return self;
+}
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+        [self addObserver];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.clearButtonMode = UITextFieldViewModeWhileEditing;
+}
+
+- (void)addObserver {
+    @weakify(self)
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextFieldTextDidEndEditingNotification object:self] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNotification * _Nullable x) {
+        @strongify(self)
+        if(self.textDidEndEditing) self.textDidEndEditing(self.text,x);
+    }];
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextFieldTextDidChangeNotification object:self] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNotification * _Nullable x) {
+        @strongify(self)
+        if(self.textDidChange) self.textDidChange(self.text,x);
+    }];
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextFieldTextDidBeginEditingNotification object:self] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNotification * _Nullable x) {
+        @strongify(self)
+        if(self.textDidBeginEditing) self.textDidBeginEditing(x);
+    }];
+}
+
+//- (void)dealloc
+//{
+//    NSLog(@"%s",__func__);
+//}
 
 @end

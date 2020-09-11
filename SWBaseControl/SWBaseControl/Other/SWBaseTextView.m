@@ -8,7 +8,7 @@
 #import "SWBaseTextView.h"
 #import <SWMultipleDelegateProxy.h>
 #import <RACDelegateProxy.h>
-#import <RACEXTScope.h>
+#import <ReactiveObjC.h>
 
 @class SWBaseTextViewDelegateObserver;
 
@@ -57,15 +57,13 @@
 }
 
 - (void)dealloc {
+    NSLog(@"%s",__func__);
 }
 
 @end
 
 
 @implementation SWBaseTextView
-{
-    __weak id _textDidChangeObserver;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
     self = [super initWithFrame:frame textContainer:textContainer];
@@ -250,18 +248,20 @@
 
 - (void)addObserver {
     @weakify(self)
-    _textDidChangeObserver = [[NSNotificationCenter defaultCenter] addObserverForName:UITextViewTextDidChangeNotification object:self queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextViewTextDidEndEditingNotification object:self] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNotification * _Nullable x) {
         @strongify(self)
-        if(note.object != self) return;
+        if(self.textDidEndEditing) self.textDidEndEditing(self.text,x);
+    }];
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextViewTextDidChangeNotification object:self] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNotification * _Nullable x) {
+        @strongify(self)
+        if(self.textDidChange) self.textDidChange(self.text,x);
         [self changeLabelStatus];
     }];
-}
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextViewTextDidBeginEditingNotification object:self] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNotification * _Nullable x) {
+        @strongify(self)
+        if(self.textDidBeginEditing) self.textDidBeginEditing(x);
+    }];
 
-- (void)removeObserver {
-    if(_textDidChangeObserver){
-        [[NSNotificationCenter defaultCenter] removeObserver:_textDidChangeObserver];
-        _textDidChangeObserver = nil;
-    }
 }
 
 - (void)changeLabelStatus {
@@ -290,7 +290,7 @@
 
 
 - (void)dealloc {
-    [self removeObserver];
+    NSLog(@"%s",__func__);
 }
 
 

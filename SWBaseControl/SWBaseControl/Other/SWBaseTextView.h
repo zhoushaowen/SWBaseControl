@@ -55,5 +55,9 @@ typedef NS_ENUM(NSUInteger, SWBaseTextViewLimitLabelViewMode) {
  */
 @property (nonatomic) IBInspectable CGFloat limitLabelBottomInset;
 
+@property (nonatomic,strong) void(^textDidEndEditing)(NSString *text,NSNotification *noti);
+@property (nonatomic,strong) void(^textDidChange)(NSString *text,NSNotification *noti);
+@property (nonatomic,strong) void(^textDidBeginEditing)(NSNotification *noti);
+
 
 @end

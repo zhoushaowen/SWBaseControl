@@ -219,10 +219,18 @@
 
 @implementation SWBaseViewController
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
+//- (instancetype)init
+//{
+//    self = [super init];
+//    if (self) {
+//        [self beforeLoadViewInit];
+//    }
+//    return self;
+//}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self){
         [self beforeLoadViewInit];
     }
     return self;
@@ -243,7 +251,7 @@
 
 
 - (instancetype)initWithControllerType:(SWBaseViewControllerType)controllerType {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [[[self class] alloc] initWithNibName:nil bundle:nil];
     if(self){
         self.controllerType = controllerType;
     }
@@ -251,7 +259,7 @@
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [[[self class] alloc] initWithNibName:nil bundle:nil];
     if(self){
         self.tableViewStyle = style;
         self.controllerType = SWBaseViewControllerTableViewType;
@@ -260,7 +268,7 @@
 }
 
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *_Nonnull)collectionViewLayout {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [[[self class] alloc] initWithNibName:nil bundle:nil];
     if(self){
         if(collectionViewLayout == nil){
             collectionViewLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -272,7 +280,7 @@
 }
 
 - (instancetype)initWithURL:(NSURL *)url {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [[[self class] alloc] initWithNibName:nil bundle:nil];
     if(self){
         self.controllerType = SWBaseViewControllerWebViewType;
         self.url = url;

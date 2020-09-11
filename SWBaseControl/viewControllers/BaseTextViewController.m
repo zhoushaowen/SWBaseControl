@@ -19,6 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.textView.textDidBeginEditing = ^(NSNotification * _Nonnull noti) {
+        NSLog(@"%@",noti);
+    };
+    self.textView.textDidChange = ^(NSString * _Nonnull text, NSNotification * _Nonnull noti) {
+        NSLog(@"%@---%@",noti,text);
+    };
+    self.textView.textDidEndEditing = ^(NSString * _Nonnull text, NSNotification * _Nonnull noti) {
+        NSLog(@"%@---%@",noti,text);
+    };
     self.textView.delegate = self;
 }
 

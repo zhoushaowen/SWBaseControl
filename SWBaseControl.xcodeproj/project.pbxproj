@@ -18,6 +18,8 @@
 		3626CEC422E15D6900ECBE23 /* ShowProvincesPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3626CEC222E15D6900ECBE23 /* ShowProvincesPickerViewController.xib */; };
 		362859C822B1233D00236BA3 /* BaseTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362859C722B1233D00236BA3 /* BaseTextViewController.m */; };
 		362859CA22B1235E00236BA3 /* BaseTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362859C922B1235E00236BA3 /* BaseTextViewController.xib */; };
+		36420616250B4CAD00224D78 /* BaseTextFieldController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36420614250B4CAD00224D78 /* BaseTextFieldController.m */; };
+		36420617250B4CAD00224D78 /* BaseTextFieldController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36420615250B4CAD00224D78 /* BaseTextFieldController.xib */; };
 		3675B4D520EF4325007B8CF0 /* DisplaySlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675B4D320EF4325007B8CF0 /* DisplaySlideViewController.m */; };
 		3675B4D620EF4325007B8CF0 /* DisplaySlideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3675B4D420EF4325007B8CF0 /* DisplaySlideViewController.xib */; };
 		3675B4D920EF43BD007B8CF0 /* SlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675B4D820EF43BD007B8CF0 /* SlideViewController.m */; };
@@ -68,6 +70,9 @@
 		362859C622B1233D00236BA3 /* BaseTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTextViewController.h; sourceTree = "<group>"; };
 		362859C722B1233D00236BA3 /* BaseTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTextViewController.m; sourceTree = "<group>"; };
 		362859C922B1235E00236BA3 /* BaseTextViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseTextViewController.xib; sourceTree = "<group>"; };
+		36420613250B4CAD00224D78 /* BaseTextFieldController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTextFieldController.h; sourceTree = "<group>"; };
+		36420614250B4CAD00224D78 /* BaseTextFieldController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTextFieldController.m; sourceTree = "<group>"; };
+		36420615250B4CAD00224D78 /* BaseTextFieldController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseTextFieldController.xib; sourceTree = "<group>"; };
 		3675B4D220EF4325007B8CF0 /* DisplaySlideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisplaySlideViewController.h; sourceTree = "<group>"; };
 		3675B4D320EF4325007B8CF0 /* DisplaySlideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisplaySlideViewController.m; sourceTree = "<group>"; };
 		3675B4D420EF4325007B8CF0 /* DisplaySlideViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplaySlideViewController.xib; sourceTree = "<group>"; };
@@ -228,6 +233,9 @@
 				362859C622B1233D00236BA3 /* BaseTextViewController.h */,
 				362859C722B1233D00236BA3 /* BaseTextViewController.m */,
 				362859C922B1235E00236BA3 /* BaseTextViewController.xib */,
+				36420613250B4CAD00224D78 /* BaseTextFieldController.h */,
+				36420614250B4CAD00224D78 /* BaseTextFieldController.m */,
+				36420615250B4CAD00224D78 /* BaseTextFieldController.xib */,
 				3626CEC022E15D6900ECBE23 /* ShowProvincesPickerViewController.h */,
 				3626CEC122E15D6900ECBE23 /* ShowProvincesPickerViewController.m */,
 				3626CEC222E15D6900ECBE23 /* ShowProvincesPickerViewController.xib */,
@@ -332,6 +340,7 @@
 				3699819A21E88175006C6A25 /* XibCollectionViewController.xib in Resources */,
 				360A65D722A90FBA00FA429D /* 1@2x.png in Resources */,
 				36911FE820E6030300674BFA /* PopoverViewController.xib in Resources */,
+				36420617250B4CAD00224D78 /* BaseTextFieldController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +410,7 @@
 				36CB63C121E86EC000314317 /* XibViewController.m in Sources */,
 				3699819421E8814F006C6A25 /* XibTableViewController.m in Sources */,
 				36911FEC20E603EE00674BFA /* DatePickerViewController.m in Sources */,
+				36420616250B4CAD00224D78 /* BaseTextFieldController.m in Sources */,
 				36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */,
 				36911FF120E605CA00674BFA /* PlaceholderTextViewController.m in Sources */,
 				3675B4D520EF4325007B8CF0 /* DisplaySlideViewController.m in Sources */,

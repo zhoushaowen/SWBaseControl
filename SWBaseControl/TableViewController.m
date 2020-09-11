@@ -40,6 +40,7 @@
                    @"XibTableViewController",
                    @"XibCollectionViewController",
                    @"BaseTextViewController",
+                   @"BaseTextFieldController",
                    @"LeftAlignCollectionViewController",
                    @"ShadowViewTestController"
                    ];
