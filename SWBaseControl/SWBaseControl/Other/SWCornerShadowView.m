@@ -31,6 +31,13 @@
     self = [super initWithCoder:coder];
     if (self) {
         [self config];
+        //支持直接在xib上操作
+        //在xib上添加的view移动到contentView上
+        [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if(obj != self.contentView && obj != self.shadowView){
+                [self.contentView addSubview:obj];
+            }
+        }];
     }
     return self;
 }
@@ -38,39 +45,20 @@
 - (void)config {
     self.shadowView = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:self.shadowView];
-//    self.shadowView.translatesAutoresizingMaskIntoConstraints = NO;
-//    if (@available(iOS 9.0, *)) {
-//        [[self.shadowView.topAnchor constraintEqualToAnchor:self.topAnchor] setActive:YES];
-//        [[self.shadowView.leftAnchor constraintEqualToAnchor:self.leftAnchor] setActive:YES];
-//        [[self.shadowView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor] setActive:YES];
-//        [[self.shadowView.rightAnchor constraintEqualToAnchor:self.rightAnchor] setActive:YES];
-//    } else {
-//        // Fallback on earlier versions
-//    }
-    
     self.contentView = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:self.contentView];
-//    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-//    if (@available(iOS 9.0, *)) {
-//        [[self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor] setActive:YES];
-//        [[self.contentView.leftAnchor constraintEqualToAnchor:self.leftAnchor] setActive:YES];
-//        [[self.contentView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor] setActive:YES];
-//        [[self.contentView.rightAnchor constraintEqualToAnchor:self.rightAnchor] setActive:YES];
-//    } else {
-//        // Fallback on earlier versions
-//    }
-    
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];
     
-    self.shadowColor = [UIColor blackColor];
-    self.shadowOpacity = 0.5;
-    self.shadowOffset = CGSizeMake(0.0, -3.0);
+    self.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+    self.shadowOpacity = 1.0;
+    self.shadowOffset = CGSizeZero;
     self.shadowRadius = 3.0;
     self.shadowBackgroundColor = [UIColor whiteColor];
     self.shadowCornerRadius = 10.0;
     
     self.contentView.clipsToBounds = YES;
+    
 }
 
 - (void)layoutSubviews {
@@ -114,3 +102,4 @@
 
 
 @end
+

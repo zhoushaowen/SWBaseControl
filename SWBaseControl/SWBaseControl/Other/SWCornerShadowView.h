@@ -13,17 +13,17 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SWCornerShadowView : UIView
 
 /// default is 10.0
-@property (nonatomic) CGFloat shadowCornerRadius;
+@property (nonatomic) IBInspectable CGFloat shadowCornerRadius;
 /// default is whiteColor
-@property (nonatomic,strong) UIColor *shadowBackgroundColor;
-/// default is blackColor
-@property (nonatomic,strong) UIColor *shadowColor;
-/// default is 0.5
-@property (nonatomic) float shadowOpacity;
-/// default is CGSizeMake(0.0, -3.0)
-@property (nonatomic) CGSize shadowOffset;
+@property (nonatomic,strong) IBInspectable UIColor *shadowBackgroundColor;
+/// default is blackColor alpha:0.1
+@property (nonatomic,strong) IBInspectable UIColor *shadowColor;
+/// default is 1.0
+@property (nonatomic) IBInspectable float shadowOpacity;
+/// default is CGSizeMake(0.0, 0.0)
+@property (nonatomic) IBInspectable CGSize shadowOffset;
 /// default is 3.0
-@property (nonatomic) CGFloat shadowRadius;
+@property (nonatomic) IBInspectable CGFloat shadowRadius;
 
 /// please add subView on this view
 @property (nonatomic,readonly,strong) UIView *contentView;
