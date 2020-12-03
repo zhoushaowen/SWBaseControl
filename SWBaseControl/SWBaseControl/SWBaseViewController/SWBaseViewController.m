@@ -678,12 +678,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if([self tableView:self.tableView viewForHeaderInSection:section] == nil ) return 0.01;
+    if([self tableView:self.tableView viewForHeaderInSection:section] == nil ) return 0;
     return UITableViewAutomaticDimension;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if([self tableView:self.tableView viewForFooterInSection:section] == nil) return 0.01;
+    if([self tableView:self.tableView viewForFooterInSection:section] == nil) return 0;
     return UITableViewAutomaticDimension;
 }
 
