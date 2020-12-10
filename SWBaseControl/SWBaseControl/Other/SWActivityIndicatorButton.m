@@ -27,6 +27,18 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        if(!_activityIndicatorView){
+            _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            [self addSubview:_activityIndicatorView];
+        }
+    }
+    return self;
+}
+
 - (instancetype)initWithType:(UIButtonType)buttonType style:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle {
     self = [SWActivityIndicatorButton buttonWithType:buttonType];
     if(self){

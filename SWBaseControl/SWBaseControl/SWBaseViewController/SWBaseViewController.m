@@ -380,7 +380,10 @@
             break;
         case SWBaseViewControllerWebViewType:
         {
-            self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom)];
+            WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+            WKUserContentController *userContent = [[WKUserContentController alloc] init];
+            config.userContentController = userContent;
+            self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(self.contentViewInsets.left, self.contentViewInsets.top, self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right, self.view.bounds.size.height - self.contentViewInsets.top - self.contentViewInsets.bottom) configuration:config];
 //            self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             if (@available(iOS 11.0, *)) {
                 self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
