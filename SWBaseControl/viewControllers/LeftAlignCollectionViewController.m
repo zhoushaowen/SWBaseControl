@@ -37,6 +37,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
+    self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -63,7 +64,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 #warning Incomplete implementation, return the number of sections
-    return 2;
+    return 1;
+//    return 5;
 }
 
 
@@ -104,7 +106,8 @@ static NSString * const reuseIdentifier = @"Cell";
     if(indexPath.item == 0){
         return CGSizeMake(self.view.bounds.size.width, 40);
     }
-    return CGSizeMake(20+arc4random_uniform(80), 40+arc4random_uniform(10));
+    return CGSizeMake(40+indexPath.item*1, 40);
+//    return CGSizeMake(20+arc4random_uniform(80), 40+arc4random_uniform(10));
 //    return CGSizeMake(20+indexPath.item*40, 40);
 }
 

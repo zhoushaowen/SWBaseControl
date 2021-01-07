@@ -50,8 +50,8 @@
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    NSArray *attributes = [super layoutAttributesForElementsInRect:rect];
-    NSMutableArray *mutableArr = [NSMutableArray arrayWithArray:attributes];
+    NSArray<UICollectionViewLayoutAttributes *> *attributes = [super layoutAttributesForElementsInRect:rect];
+    NSMutableArray<UICollectionViewLayoutAttributes *> *mutableArr = [NSMutableArray arrayWithArray:attributes];
     [attributes enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //representedElementKind为空表示当前attribute是cell 不是UICollectionElementKindSectionHeader或者UICollectionElementKindSectionFooter
         if(obj.representedElementKind == nil){

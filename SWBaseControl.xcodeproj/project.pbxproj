@@ -51,6 +51,9 @@
 		36D2AD8D21183B5300B1BA4E /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2AD8C21183B5300B1BA4E /* PickerViewController.m */; };
 		36D2AD9121183CD100B1BA4E /* ShowPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2AD8F21183CD100B1BA4E /* ShowPickerViewController.m */; };
 		36D2AD9221183CD100B1BA4E /* ShowPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2AD9021183CD100B1BA4E /* ShowPickerViewController.xib */; };
+		36E929CF25A6E8D7006387EA /* TestBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E929CE25A6E8D6006387EA /* TestBannerViewController.m */; };
+		36E929D225A6EA0E006387EA /* 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E929D025A6EA0E006387EA /* 3@2x.png */; };
+		36E929D325A6EA0E006387EA /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E929D125A6EA0E006387EA /* 2@2x.png */; };
 		36EC1481234C864B00F420B5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EC147F234C864B00F420B5 /* BaseViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +128,10 @@
 		36D2AD8E21183CD100B1BA4E /* ShowPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowPickerViewController.h; sourceTree = "<group>"; };
 		36D2AD8F21183CD100B1BA4E /* ShowPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowPickerViewController.m; sourceTree = "<group>"; };
 		36D2AD9021183CD100B1BA4E /* ShowPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowPickerViewController.xib; sourceTree = "<group>"; };
+		36E929CD25A6E8D6006387EA /* TestBannerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestBannerViewController.h; sourceTree = "<group>"; };
+		36E929CE25A6E8D6006387EA /* TestBannerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestBannerViewController.m; sourceTree = "<group>"; };
+		36E929D025A6EA0E006387EA /* 3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3@2x.png"; sourceTree = "<group>"; };
+		36E929D125A6EA0E006387EA /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@2x.png"; sourceTree = "<group>"; };
 		36EC147F234C864B00F420B5 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		36EC1480234C864B00F420B5 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4D1F1953B369AD1068F399A8 /* Pods-SWBaseControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWBaseControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-SWBaseControl/Pods-SWBaseControl.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +190,8 @@
 				36B42E2820EA1EC900CFBCC6 /* People.m */,
 				360F504B20DA2783008B3AEB /* Main.storyboard */,
 				360A65D622A90FBA00FA429D /* 1@2x.png */,
+				36E929D125A6EA0E006387EA /* 2@2x.png */,
+				36E929D025A6EA0E006387EA /* 3@2x.png */,
 				360F504E20DA2785008B3AEB /* Assets.xcassets */,
 				360F505020DA2785008B3AEB /* LaunchScreen.storyboard */,
 				360F505320DA2785008B3AEB /* Info.plist */,
@@ -244,6 +253,8 @@
 				36CAFADC243D6C6D002BE344 /* ShadowViewTestController.h */,
 				36CAFADD243D6C6D002BE344 /* ShadowViewTestController.m */,
 				36CAFADE243D6C6D002BE344 /* ShadowViewTestController.xib */,
+				36E929CD25A6E8D6006387EA /* TestBannerViewController.h */,
+				36E929CE25A6E8D6006387EA /* TestBannerViewController.m */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -324,6 +335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E929D225A6EA0E006387EA /* 3@2x.png in Resources */,
 				36CB63C221E86EC000314317 /* XibViewController.xib in Resources */,
 				36911FED20E603EE00674BFA /* DatePickerViewController.xib in Resources */,
 				36CAFAE0243D6C6D002BE344 /* ShadowViewTestController.xib in Resources */,
@@ -333,6 +345,7 @@
 				3626CEC422E15D6900ECBE23 /* ShowProvincesPickerViewController.xib in Resources */,
 				36CA95BB20DB99E000713474 /* ChatViewController.xib in Resources */,
 				360F504D20DA2783008B3AEB /* Main.storyboard in Resources */,
+				36E929D325A6EA0E006387EA /* 2@2x.png in Resources */,
 				3675B4D620EF4325007B8CF0 /* DisplaySlideViewController.xib in Resources */,
 				36911FFC20E6198500674BFA /* MoveableTableViewController.xib in Resources */,
 				3699819521E8814F006C6A25 /* XibTableViewController.xib in Resources */,
@@ -395,6 +408,7 @@
 				36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */,
 				36D2AD9121183CD100B1BA4E /* ShowPickerViewController.m in Sources */,
 				36EC1481234C864B00F420B5 /* BaseViewController.m in Sources */,
+				36E929CF25A6E8D7006387EA /* TestBannerViewController.m in Sources */,
 				360F505520DA2785008B3AEB /* main.m in Sources */,
 				36911FE620E6015D00674BFA /* PopoverViewController.m in Sources */,
 				36D2AD8D21183B5300B1BA4E /* PickerViewController.m in Sources */,

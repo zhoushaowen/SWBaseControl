@@ -1,35 +1,35 @@
 PODS:
   - DZNEmptyDataSet (1.8.1)
   - Masonry (1.1.0)
-  - MBProgressHUD (1.1.0)
+  - MBProgressHUD (1.2.0)
   - MJExtension (3.1.0)
   - MJRefresh (3.1.15.3)
   - ReactiveObjC (3.1.1)
-  - SWBaseControl (1.8):
+  - SWBaseControl (1.10.4):
     - DZNEmptyDataSet
     - MJExtension
     - ReactiveObjC
-    - SWBaseControl/Other (= 1.8)
-    - SWBaseControl/SWBaseViewController (= 1.8)
-    - SWBaseControl/SWPopover (= 1.8)
+    - SWBaseControl/Other (= 1.10.4)
+    - SWBaseControl/SWBaseViewController (= 1.10.4)
+    - SWBaseControl/SWPopover (= 1.10.4)
     - SWCustomPresentation
     - SWExtension/Core
     - SWMultipleDelegateProxy
-  - SWBaseControl/Other (1.8):
-    - DZNEmptyDataSet
-    - MJExtension
-    - ReactiveObjC
-    - SWCustomPresentation
-    - SWExtension/Core
-    - SWMultipleDelegateProxy
-  - SWBaseControl/SWBaseViewController (1.8):
+  - SWBaseControl/Other (1.10.4):
     - DZNEmptyDataSet
     - MJExtension
     - ReactiveObjC
     - SWCustomPresentation
     - SWExtension/Core
     - SWMultipleDelegateProxy
-  - SWBaseControl/SWPopover (1.8):
+  - SWBaseControl/SWBaseViewController (1.10.4):
+    - DZNEmptyDataSet
+    - MJExtension
+    - ReactiveObjC
+    - SWCustomPresentation
+    - SWExtension/Core
+    - SWMultipleDelegateProxy
+  - SWBaseControl/SWPopover (1.10.4):
     - DZNEmptyDataSet
     - MJExtension
     - ReactiveObjC
@@ -37,14 +37,20 @@ PODS:
     - SWExtension/Core
     - SWMultipleDelegateProxy
   - SWCustomPresentation (0.0.4)
-  - SWExtension/Core (1.7.1):
+  - SWExtension/Core (1.17.2):
     - MBProgressHUD
-    - SWExtension/Core/Foundation (= 1.7.1)
-    - SWExtension/Core/UIKit (= 1.7.1)
-  - SWExtension/Core/Foundation (1.7.1):
+    - MJExtension
+    - ReactiveObjC
+    - SWExtension/Core/Foundation (= 1.17.2)
+    - SWExtension/Core/UIKit (= 1.17.2)
+  - SWExtension/Core/Foundation (1.17.2):
     - MBProgressHUD
-  - SWExtension/Core/UIKit (1.7.1):
+    - MJExtension
+    - ReactiveObjC
+  - SWExtension/Core/UIKit (1.17.2):
     - MBProgressHUD
+    - MJExtension
+    - ReactiveObjC
   - SWMultipleDelegateProxy (0.0.6)
 
 DEPENDENCIES:
@@ -54,15 +60,15 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - MBProgressHUD
     - MJExtension
     - MJRefresh
     - ReactiveObjC
     - SWCustomPresentation
-    - SWExtension
   trunk:
     - DZNEmptyDataSet
     - Masonry
+    - MBProgressHUD
+    - SWExtension
     - SWMultipleDelegateProxy
 
 EXTERNAL SOURCES:
@@ -72,15 +78,15 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: 6b69b3bef2864fd550ce1a184eda219e321209d2
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  SWBaseControl: 7d147cab310cae449ba1e0559f430390a0883c7d
+  SWBaseControl: ff30c8c27994d52d8f7a5b10eb15549c77445ee6
   SWCustomPresentation: f7fe50b7fa4b6f660b13f26d61285924c4e75668
-  SWExtension: c2a3ad97c98e8daf9e5083af6a70204f4df07d91
+  SWExtension: 767bde898e6d9185aa5dba55acdf426c1d2f7bed
   SWMultipleDelegateProxy: a6ec2862c7e6eb5cd056777ddd5c97bec43b3c3c
 
 PODFILE CHECKSUM: fc5211e1ef9bfa51c882bc3b8f09740ef8eb30fe
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

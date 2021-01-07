@@ -42,7 +42,8 @@
                    @"BaseTextViewController",
                    @"BaseTextFieldController",
                    @"LeftAlignCollectionViewController",
-                   @"ShadowViewTestController"
+                   @"ShadowViewTestController",
+                   @"TestBannerViewController"
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

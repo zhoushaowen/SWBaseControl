@@ -31,7 +31,8 @@
     datePickerViewController.delegate = delegate;
     datePickerViewController.datePickerConfig = datePickerConfig;
     [self sw_presentCustomModalPresentationWithViewController:datePickerViewController containerViewWillLayoutSubViewsBlock:^(SWPresentationController * _Nonnull presentationController) {
-        presentationController.presentedView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width, 300);
+//        presentationController.presentedView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width, 300);
+        presentationController.presentedView.frame = presentationController.containerView.bounds;
     } animatedTransitioningModel:nil completion:nil];
     return datePickerViewController;
 }
