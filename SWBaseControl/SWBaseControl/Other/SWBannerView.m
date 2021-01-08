@@ -289,7 +289,7 @@ static NSString *const Cell = @"cell";
     }
 }
 
-- (void)reload
+- (void)reloadData
 {
     [_collectionView reloadData];
     _pageControl.currentPage = 0;
@@ -308,7 +308,7 @@ static NSString *const Cell = @"cell";
 - (void)setEnableInfiniteScroll:(BOOL)enableInfiniteScroll
 {
     _enableInfiniteScroll = enableInfiniteScroll;
-    [self reload];
+    [self reloadData];
 }
 
 - (void)setDisableUserScroll:(BOOL)disableUserScroll {

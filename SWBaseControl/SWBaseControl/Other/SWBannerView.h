@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  刷新数据
  */
-- (void)reload;
+- (void)reloadData;
 
 @end
 
