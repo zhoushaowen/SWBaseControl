@@ -141,7 +141,7 @@
     CGFloat pickerHeight = 390;
     if (@available(iOS 13.4, *)) {
         if(_datePicker.datePickerStyle == UIDatePickerStyleWheels){
-            pickerHeight = 330;
+            pickerHeight = 240;
         }
         else if(_datePicker.datePickerStyle == UIDatePickerStyleCompact){
             pickerHeight = 60;
