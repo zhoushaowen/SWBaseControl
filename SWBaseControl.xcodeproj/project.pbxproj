@@ -56,6 +56,7 @@
 		36E929D325A6EA0E006387EA /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E929D125A6EA0E006387EA /* 2@2x.png */; };
 		36E929DD25A80192006387EA /* TestCollectionPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E929DB25A80192006387EA /* TestCollectionPagingViewController.m */; };
 		36E929DE25A80192006387EA /* TestCollectionPagingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E929DC25A80192006387EA /* TestCollectionPagingViewController.xib */; };
+		36E929E425A85AC3006387EA /* TestCollectionAlignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E929E325A85AC3006387EA /* TestCollectionAlignmentViewController.m */; };
 		36EC1481234C864B00F420B5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EC147F234C864B00F420B5 /* BaseViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +138,8 @@
 		36E929DA25A80192006387EA /* TestCollectionPagingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionPagingViewController.h; sourceTree = "<group>"; };
 		36E929DB25A80192006387EA /* TestCollectionPagingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionPagingViewController.m; sourceTree = "<group>"; };
 		36E929DC25A80192006387EA /* TestCollectionPagingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestCollectionPagingViewController.xib; sourceTree = "<group>"; };
+		36E929E225A85AC3006387EA /* TestCollectionAlignmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionAlignmentViewController.h; sourceTree = "<group>"; };
+		36E929E325A85AC3006387EA /* TestCollectionAlignmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionAlignmentViewController.m; sourceTree = "<group>"; };
 		36EC147F234C864B00F420B5 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		36EC1480234C864B00F420B5 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4D1F1953B369AD1068F399A8 /* Pods-SWBaseControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWBaseControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-SWBaseControl/Pods-SWBaseControl.release.xcconfig"; sourceTree = "<group>"; };
@@ -263,6 +266,8 @@
 				36E929DA25A80192006387EA /* TestCollectionPagingViewController.h */,
 				36E929DB25A80192006387EA /* TestCollectionPagingViewController.m */,
 				36E929DC25A80192006387EA /* TestCollectionPagingViewController.xib */,
+				36E929E225A85AC3006387EA /* TestCollectionAlignmentViewController.h */,
+				36E929E325A85AC3006387EA /* TestCollectionAlignmentViewController.m */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */,
 				36911FF120E605CA00674BFA /* PlaceholderTextViewController.m in Sources */,
 				3675B4D520EF4325007B8CF0 /* DisplaySlideViewController.m in Sources */,
+				36E929E425A85AC3006387EA /* TestCollectionAlignmentViewController.m in Sources */,
 				36B42E2020EA043B00CFBCC6 /* ScaleableTableViewController.m in Sources */,
 				3626CEC322E15D6900ECBE23 /* ShowProvincesPickerViewController.m in Sources */,
 				36E929DD25A80192006387EA /* TestCollectionPagingViewController.m in Sources */,

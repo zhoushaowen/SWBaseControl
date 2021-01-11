@@ -45,6 +45,7 @@
                    @"ShadowViewTestController",
                    @"TestBannerViewController",
                    @"TestCollectionPagingViewController",
+                   @"TestCollectionAlignmentViewController",
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

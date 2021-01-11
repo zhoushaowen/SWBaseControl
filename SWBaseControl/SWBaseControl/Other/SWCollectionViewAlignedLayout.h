@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger, SWCollectionViewAlignment) {
     SWCollectionViewAlignmentRight,
 };
 
+/// 建议使用SWCollectionViewAlignmentLayout替代
 @interface SWCollectionViewAlignedLayout : UICollectionViewFlowLayout
 
 @property (nonatomic) SWCollectionViewAlignment alignment;
