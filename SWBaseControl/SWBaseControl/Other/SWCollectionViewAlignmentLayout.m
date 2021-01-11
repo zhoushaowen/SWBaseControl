@@ -20,8 +20,7 @@
 - (void)prepareLayout {
     [super prepareLayout];
     [self.layoutAttributes removeAllObjects];
-    CGSize collectionViewSize = self.collectionView.frame.size;
-    [self.layoutAttributes addObjectsFromArray:[self createLayoutAttributesWithCollectionViewWidth:collectionViewSize.width]];
+    [self.layoutAttributes addObjectsFromArray:[self createLayoutAttributesWithCollectionViewWidth:self.collectionView.frame.size.width]];
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)createLayoutAttributesWithCollectionViewWidth:(CGFloat)collectionViewWidth {
@@ -106,7 +105,7 @@
 }
 
 - (CGSize)collectionViewContentSize {
-    return CGSizeMake(self.collectionView.frame.size.width, MAX(self.collectionView.frame.size.height, CGRectGetMaxY(self.layoutAttributes.lastObject.frame) + [self layoutInsets].bottom));
+    return CGSizeMake(self.collectionView.frame.size.width,  CGRectGetMaxY(self.layoutAttributes.lastObject.frame) + [self layoutInsets].bottom);
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {

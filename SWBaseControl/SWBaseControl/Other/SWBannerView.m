@@ -9,13 +9,13 @@
 #import "SWBannerView.h"
 #import <SWExtension/NSTimer+SWUnRetainTimer.h>
 
-@interface SWCarouselCollectionViewCell : UICollectionViewCell
+@interface SWBannerViewCollectionCell : UICollectionViewCell
 
 @property (nonatomic,strong) UIImageView *imageView;
 
 @end
 
-@implementation SWCarouselCollectionViewCell
+@implementation SWBannerViewCollectionCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -96,7 +96,7 @@ static NSString *const Cell = @"cell";
     }
     self.scrollView = _collectionView;
     self.panGesture = _collectionView.panGestureRecognizer;
-    [_collectionView registerClass:[SWCarouselCollectionViewCell class] forCellWithReuseIdentifier:Cell];
+    [_collectionView registerClass:[SWBannerViewCollectionCell class] forCellWithReuseIdentifier:Cell];
     [self addSubview:_collectionView];
     _pageControl = [[UIPageControl alloc] init];
     _pageControl.hidesForSinglePage = YES;
@@ -163,7 +163,7 @@ static NSString *const Cell = @"cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SWCarouselCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Cell forIndexPath:indexPath];
+    SWBannerViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Cell forIndexPath:indexPath];
     if(_delegate && [_delegate respondsToSelector:@selector(sw_bannerView:imageView:forIndex:)]){
         NSInteger index = _enableInfiniteScroll?indexPath.item%_numberOfItems:indexPath.item;
         [_delegate sw_bannerView:self imageView:cell.imageView forIndex:index];
