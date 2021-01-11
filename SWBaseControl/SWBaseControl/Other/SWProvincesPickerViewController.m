@@ -344,13 +344,19 @@ NS_INLINE NSString *GetShortName(NSString *name,NSString *removeString){
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-    UILabel *label = (UILabel *)view;
-    if(!label){
-        label = [[UILabel alloc] init];
+    if(!view){
+        view = [UIView new];
+        UILabel *label = [[UILabel alloc] init];
         label.font = [UIFont systemFontOfSize:19];
+        label.tag = 100;
         label.adjustsFontSizeToFitWidth = YES;
         label.textAlignment = NSTextAlignmentCenter;
+        [view addSubview:label];
+        label.translatesAutoresizingMaskIntoConstraints = NO;
+        [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[label]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(label)]];
+        [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(label)]];
     }
+    UILabel *label = (UILabel *)[view viewWithTag:100];
     if(component == 0 && row >= 0){
         SWProvincesPickerProvinceModel *province = self.dataSource[row];
         label.text = province.name;
@@ -378,7 +384,7 @@ NS_INLINE NSString *GetShortName(NSString *name,NSString *removeString){
         }
     }
 
-    return label;
+    return view;
 }
 
 
