@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, SWCollectionViewAlignment) {
 
 @property (nonatomic) SWCollectionViewAlignment alignment;
 
-- (CGSize)getCollectionViewContentSizeWithPreCollectionViewSize:(CGSize)preCollectionViewSize;
+- (CGSize)getCollectionViewContentSizeWithPreCollectionViewWidth:     (CGFloat)preCollectionViewWidth;
 
 @end
 

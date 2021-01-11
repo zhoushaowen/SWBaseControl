@@ -21,10 +21,10 @@
     [super prepareLayout];
     [self.layoutAttributes removeAllObjects];
     CGSize collectionViewSize = self.collectionView.frame.size;
-    [self.layoutAttributes addObjectsFromArray:[self createLayoutAttributesWithCollectionViewSize:collectionViewSize]];
+    [self.layoutAttributes addObjectsFromArray:[self createLayoutAttributesWithCollectionViewWidth:collectionViewSize.width]];
 }
 
-- (NSArray<UICollectionViewLayoutAttributes *> *)createLayoutAttributesWithCollectionViewSize:(CGSize)collectionViewSize {
+- (NSArray<UICollectionViewLayoutAttributes *> *)createLayoutAttributesWithCollectionViewWidth:(CGFloat)collectionViewWidth {
     id delegate = self.collectionView.delegate;
     self.delegate = delegate;
     NSInteger count = [self.collectionView numberOfItemsInSection:0];
@@ -50,13 +50,13 @@
                 attributes.frame = CGRectMake(insets.left, insets.top, size.width, size.height);
             }
             else if (self.alignment == SWCollectionViewAlignmentRight){
-                attributes.frame = CGRectMake(collectionViewSize.width - size.width - insets.right, insets.top, size.width, size.height);
+                attributes.frame = CGRectMake(collectionViewWidth - size.width - insets.right, insets.top, size.width, size.height);
             }
         }else{
             UICollectionViewLayoutAttributes *previousAttributes = layoutAttributes[i - 1];
             if(self.alignment == SWCollectionViewAlignmentLeft){
                 CGRect frame = CGRectMake(CGRectGetMaxX(previousAttributes.frame) + interitemSpacing, CGRectGetMinY(previousAttributes.frame), size.width, size.height);
-                if(CGRectGetMaxX(frame) + insets.right > collectionViewSize.width){
+                if(CGRectGetMaxX(frame) + insets.right > collectionViewWidth){
                     frame = CGRectMake(insets.left, CGRectGetMaxY(previousAttributes.frame) + lineSpacing, size.width, size.height);
                     attributes.frame = frame;
                 }
@@ -66,7 +66,7 @@
             }else{
                 CGRect frame = CGRectMake(CGRectGetMinX(previousAttributes.frame) - interitemSpacing - size.width, CGRectGetMinY(previousAttributes.frame), size.width, size.height);
                 if(CGRectGetMinX(frame) < insets.left){
-                    frame = CGRectMake(collectionViewSize.width - size.width - insets.right, CGRectGetMaxY(previousAttributes.frame) + lineSpacing, size.width, size.height);
+                    frame = CGRectMake(collectionViewWidth - size.width - insets.right, CGRectGetMaxY(previousAttributes.frame) + lineSpacing, size.width, size.height);
                     attributes.frame = frame;
                 }
                 else{
@@ -80,9 +80,9 @@
 }
 
 
-- (CGSize)getCollectionViewContentSizeWithPreCollectionViewSize:(CGSize)preCollectionViewSize {
-    NSArray<UICollectionViewLayoutAttributes *> *layoutAttributes = [self createLayoutAttributesWithCollectionViewSize:preCollectionViewSize];
-    return CGSizeMake(preCollectionViewSize.width, MAX(preCollectionViewSize.height, CGRectGetMaxY(layoutAttributes.lastObject.frame) + [self layoutInsets].bottom));
+- (CGSize)getCollectionViewContentSizeWithPreCollectionViewWidth:(CGFloat)preCollectionViewWidth {
+    NSArray<UICollectionViewLayoutAttributes *> *layoutAttributes = [self createLayoutAttributesWithCollectionViewWidth:preCollectionViewWidth];
+    return CGSizeMake(preCollectionViewWidth,  CGRectGetMaxY(layoutAttributes.lastObject.frame) + [self layoutInsets].bottom);
 }
 
 - (void)setAlignment:(SWCollectionViewAlignment)alignment {
