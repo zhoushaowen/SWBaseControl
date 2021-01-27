@@ -36,6 +36,8 @@
 		3699819521E8814F006C6A25 /* XibTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3699819321E8814F006C6A25 /* XibTableViewController.xib */; };
 		3699819921E88175006C6A25 /* XibCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3699819721E88175006C6A25 /* XibCollectionViewController.m */; };
 		3699819A21E88175006C6A25 /* XibCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3699819821E88175006C6A25 /* XibCollectionViewController.xib */; };
+		36A97C2425C1365C0029CCB8 /* TestSWLabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A97C2225C1365C0029CCB8 /* TestSWLabelController.m */; };
+		36A97C2525C1365D0029CCB8 /* TestSWLabelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A97C2325C1365C0029CCB8 /* TestSWLabelController.xib */; };
 		36B42E1220E9BB1600CFBCC6 /* MyMoveableViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1120E9BB1600CFBCC6 /* MyMoveableViewController1.m */; };
 		36B42E1520E9BDD700CFBCC6 /* MyMoveableViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1420E9BDD700CFBCC6 /* MyMoveableViewController2.m */; };
 		36B42E1820E9BF6500CFBCC6 /* MyMoveableViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B42E1720E9BF6500CFBCC6 /* MyMoveableViewController3.m */; };
@@ -107,6 +109,9 @@
 		3699819621E88175006C6A25 /* XibCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XibCollectionViewController.h; sourceTree = "<group>"; };
 		3699819721E88175006C6A25 /* XibCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XibCollectionViewController.m; sourceTree = "<group>"; };
 		3699819821E88175006C6A25 /* XibCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XibCollectionViewController.xib; sourceTree = "<group>"; };
+		36A97C2125C1365C0029CCB8 /* TestSWLabelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSWLabelController.h; sourceTree = "<group>"; };
+		36A97C2225C1365C0029CCB8 /* TestSWLabelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestSWLabelController.m; sourceTree = "<group>"; };
+		36A97C2325C1365C0029CCB8 /* TestSWLabelController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestSWLabelController.xib; sourceTree = "<group>"; };
 		36B42E1020E9BB1600CFBCC6 /* MyMoveableViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoveableViewController1.h; sourceTree = "<group>"; };
 		36B42E1120E9BB1600CFBCC6 /* MyMoveableViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMoveableViewController1.m; sourceTree = "<group>"; };
 		36B42E1320E9BDD700CFBCC6 /* MyMoveableViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoveableViewController2.h; sourceTree = "<group>"; };
@@ -276,6 +281,9 @@
 				36E72E3B25BFF212009AEA34 /* TestDotViewController.h */,
 				36E72E3C25BFF212009AEA34 /* TestDotViewController.m */,
 				36E72E3D25BFF212009AEA34 /* TestDotViewController.xib */,
+				36A97C2125C1365C0029CCB8 /* TestSWLabelController.h */,
+				36A97C2225C1365C0029CCB8 /* TestSWLabelController.m */,
+				36A97C2325C1365C0029CCB8 /* TestSWLabelController.xib */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 				360F504D20DA2783008B3AEB /* Main.storyboard in Resources */,
 				36E929D325A6EA0E006387EA /* 2@2x.png in Resources */,
 				36E72E3F25BFF212009AEA34 /* TestDotViewController.xib in Resources */,
+				36A97C2525C1365D0029CCB8 /* TestSWLabelController.xib in Resources */,
 				3675B4D620EF4325007B8CF0 /* DisplaySlideViewController.xib in Resources */,
 				36E929DE25A80192006387EA /* TestCollectionPagingViewController.xib in Resources */,
 				36911FFC20E6198500674BFA /* MoveableTableViewController.xib in Resources */,
@@ -425,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36A97C2425C1365C0029CCB8 /* TestSWLabelController.m in Sources */,
 				3699819921E88175006C6A25 /* XibCollectionViewController.m in Sources */,
 				36B42E1820E9BF6500CFBCC6 /* MyMoveableViewController3.m in Sources */,
 				362859C822B1233D00236BA3 /* BaseTextViewController.m in Sources */,

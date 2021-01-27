@@ -47,6 +47,7 @@
                    @"TestCollectionPagingViewController",
                    @"TestCollectionAlignmentViewController",
                    @"TestDotViewController",
+                   @"TestSWLabelController",
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

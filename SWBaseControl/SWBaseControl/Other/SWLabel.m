@@ -7,10 +7,12 @@
 //
 
 #import "SWLabel.h"
+#import "SWBaseControl.h"
 
 @implementation SWLabel
 
 - (void)drawTextInRect:(CGRect)rect {
+    
     [super drawTextInRect:UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(self.topInset, self.leftInset, self.bottomInset, self.rightInset))];
 }
 
@@ -21,11 +23,15 @@
 }
 
 - (CGSize)intrinsicContentSize {
-    if((self.text.length < 1) && !self.enableContentSizeWhenTextEmpty) return CGSizeZero;
-    if(self.isHidden && !self.enableContentSizeWhenHidden) return CGSizeZero;
+    if(self.isHidden && !self.enableContentSizeWhenHidden) return CGSizeMake(UIViewNoIntrinsicMetric, UIViewNoIntrinsicMetric);
+    if(self.text.length < 1){
+        return CGSizeMake(UIViewNoIntrinsicMetric, UIViewNoIntrinsicMetric);
+    }
     CGSize size = [super intrinsicContentSize];
+    
     size.width += (self.leftInset + self.rightInset);
     size.height += (self.topInset + self.bottomInset);
+
     return size;
 }
 
@@ -34,27 +40,47 @@
     [self invalidateIntrinsicContentSize];
 }
 
-- (void)setText:(NSString *)text {
-    [super setText:text];
-    [self invalidateIntrinsicContentSize];
-}
-
 - (void)setEnableContentSizeWhenHidden:(BOOL)enableContentSizeWhenHidden {
     _enableContentSizeWhenHidden = enableContentSizeWhenHidden;
     [self invalidateIntrinsicContentSize];
 }
 
-- (void)setEnableContentSizeWhenTextEmpty:(BOOL)enableContentSizeWhenTextEmpty {
-    _enableContentSizeWhenTextEmpty = enableContentSizeWhenTextEmpty;
+- (void)setTopInset:(CGFloat)topInset {
+    _topInset = topInset;
     [self invalidateIntrinsicContentSize];
 }
 
-- (void)sizeToFit {
-    [super sizeToFit];
-    CGRect rect = self.bounds;
-    rect.size.width += (self.leftInset + self.rightInset);
-    rect.size.height += (self.topInset + self.bottomInset);
-    self.bounds = rect;
+- (void)setLeftInset:(CGFloat)leftInset {
+    _leftInset = leftInset;
+    [self invalidateIntrinsicContentSize];
+}
+
+- (void)setBottomInset:(CGFloat)bottomInset {
+    _bottomInset = bottomInset;
+    [self invalidateIntrinsicContentSize];
+}
+
+- (void)setRightInset:(CGFloat)rightInset {
+    _rightInset = rightInset;
+    [self invalidateIntrinsicContentSize];
+}
+
+
+//- (void)sizeToFit {
+//    [super sizeToFit];
+//    CGRect rect = self.bounds;
+//    rect.size.width += (self.leftInset + self.rightInset);
+//    rect.size.height += (self.topInset + self.bottomInset);
+//    self.bounds = rect;
+//}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize bestSize = [super sizeThatFits:size];
+    if(self.text.length < 1) return bestSize;
+    bestSize.width += (self.leftInset + self.rightInset);
+    bestSize.height += (self.topInset + self.bottomInset);
+    
+    return bestSize;
 }
 
 
