@@ -51,7 +51,6 @@
 		36D2AD8D21183B5300B1BA4E /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2AD8C21183B5300B1BA4E /* PickerViewController.m */; };
 		36D2AD9121183CD100B1BA4E /* ShowPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2AD8F21183CD100B1BA4E /* ShowPickerViewController.m */; };
 		36D2AD9221183CD100B1BA4E /* ShowPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2AD9021183CD100B1BA4E /* ShowPickerViewController.xib */; };
-		36E72E3A25BFECFC009AEA34 /* SWDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E72E3925BFECFC009AEA34 /* SWDotView.m */; };
 		36E72E3E25BFF212009AEA34 /* TestDotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E72E3C25BFF212009AEA34 /* TestDotViewController.m */; };
 		36E72E3F25BFF212009AEA34 /* TestDotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E72E3D25BFF212009AEA34 /* TestDotViewController.xib */; };
 		36E929CF25A6E8D7006387EA /* TestBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E929CE25A6E8D6006387EA /* TestBannerViewController.m */; };
@@ -134,8 +133,6 @@
 		36D2AD8E21183CD100B1BA4E /* ShowPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowPickerViewController.h; sourceTree = "<group>"; };
 		36D2AD8F21183CD100B1BA4E /* ShowPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowPickerViewController.m; sourceTree = "<group>"; };
 		36D2AD9021183CD100B1BA4E /* ShowPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowPickerViewController.xib; sourceTree = "<group>"; };
-		36E72E3825BFECFC009AEA34 /* SWDotView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWDotView.h; sourceTree = "<group>"; };
-		36E72E3925BFECFC009AEA34 /* SWDotView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWDotView.m; sourceTree = "<group>"; };
 		36E72E3B25BFF212009AEA34 /* TestDotViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestDotViewController.h; sourceTree = "<group>"; };
 		36E72E3C25BFF212009AEA34 /* TestDotViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestDotViewController.m; sourceTree = "<group>"; };
 		36E72E3D25BFF212009AEA34 /* TestDotViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestDotViewController.xib; sourceTree = "<group>"; };
@@ -190,8 +187,6 @@
 			children = (
 				360F504520DA2783008B3AEB /* AppDelegate.h */,
 				360F504620DA2783008B3AEB /* AppDelegate.m */,
-				36E72E3825BFECFC009AEA34 /* SWDotView.h */,
-				36E72E3925BFECFC009AEA34 /* SWDotView.m */,
 				36911FE120E600A400674BFA /* TableViewController.h */,
 				36911FE220E600A400674BFA /* TableViewController.m */,
 				36CB63BE21E86EC000314317 /* XibViewController.h */,
@@ -431,7 +426,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3699819921E88175006C6A25 /* XibCollectionViewController.m in Sources */,
-				36E72E3A25BFECFC009AEA34 /* SWDotView.m in Sources */,
 				36B42E1820E9BF6500CFBCC6 /* MyMoveableViewController3.m in Sources */,
 				362859C822B1233D00236BA3 /* BaseTextViewController.m in Sources */,
 				36CA95BA20DB99E000713474 /* ChatViewController.m in Sources */,

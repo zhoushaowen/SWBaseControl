@@ -7,7 +7,7 @@
 //
 
 #import "TestDotViewController.h"
-#import "SWDotView.h"
+#import <SWDotView.h>
 
 @interface TestDotViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *btn;
