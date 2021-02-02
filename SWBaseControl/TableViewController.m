@@ -48,6 +48,7 @@
                    @"TestCollectionAlignmentViewController",
                    @"TestDotViewController",
                    @"TestSWLabelController",
+                   @"TestWebViewController",
                    ];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

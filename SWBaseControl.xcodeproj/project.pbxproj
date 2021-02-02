@@ -20,6 +20,7 @@
 		362859CA22B1235E00236BA3 /* BaseTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362859C922B1235E00236BA3 /* BaseTextViewController.xib */; };
 		36420616250B4CAD00224D78 /* BaseTextFieldController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36420614250B4CAD00224D78 /* BaseTextFieldController.m */; };
 		36420617250B4CAD00224D78 /* BaseTextFieldController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36420615250B4CAD00224D78 /* BaseTextFieldController.xib */; };
+		364D1F2525C8DFF2009261EA /* TestWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364D1F2425C8DFF2009261EA /* TestWebViewController.m */; };
 		3675B4D520EF4325007B8CF0 /* DisplaySlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675B4D320EF4325007B8CF0 /* DisplaySlideViewController.m */; };
 		3675B4D620EF4325007B8CF0 /* DisplaySlideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3675B4D420EF4325007B8CF0 /* DisplaySlideViewController.xib */; };
 		3675B4D920EF43BD007B8CF0 /* SlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675B4D820EF43BD007B8CF0 /* SlideViewController.m */; };
@@ -83,6 +84,8 @@
 		36420613250B4CAD00224D78 /* BaseTextFieldController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTextFieldController.h; sourceTree = "<group>"; };
 		36420614250B4CAD00224D78 /* BaseTextFieldController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTextFieldController.m; sourceTree = "<group>"; };
 		36420615250B4CAD00224D78 /* BaseTextFieldController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseTextFieldController.xib; sourceTree = "<group>"; };
+		364D1F2325C8DFF2009261EA /* TestWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestWebViewController.h; sourceTree = "<group>"; };
+		364D1F2425C8DFF2009261EA /* TestWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestWebViewController.m; sourceTree = "<group>"; };
 		3675B4D220EF4325007B8CF0 /* DisplaySlideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisplaySlideViewController.h; sourceTree = "<group>"; };
 		3675B4D320EF4325007B8CF0 /* DisplaySlideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisplaySlideViewController.m; sourceTree = "<group>"; };
 		3675B4D420EF4325007B8CF0 /* DisplaySlideViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplaySlideViewController.xib; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				36A97C2125C1365C0029CCB8 /* TestSWLabelController.h */,
 				36A97C2225C1365C0029CCB8 /* TestSWLabelController.m */,
 				36A97C2325C1365C0029CCB8 /* TestSWLabelController.xib */,
+				364D1F2325C8DFF2009261EA /* TestWebViewController.h */,
+				364D1F2425C8DFF2009261EA /* TestWebViewController.m */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 				36CB63C121E86EC000314317 /* XibViewController.m in Sources */,
 				3699819421E8814F006C6A25 /* XibTableViewController.m in Sources */,
 				36911FEC20E603EE00674BFA /* DatePickerViewController.m in Sources */,
+				364D1F2525C8DFF2009261EA /* TestWebViewController.m in Sources */,
 				36420616250B4CAD00224D78 /* BaseTextFieldController.m in Sources */,
 				36E72E3E25BFF212009AEA34 /* TestDotViewController.m in Sources */,
 				36911FF420E606C900674BFA /* AnimateBtnViewController.m in Sources */,

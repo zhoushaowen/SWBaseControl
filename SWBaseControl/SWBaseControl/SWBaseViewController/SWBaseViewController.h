@@ -113,6 +113,7 @@ typedef NS_ENUM(NSUInteger, SWBaseViewControllerScrollViewInsetsAdjustType) {
 
 #pragma mark - WKWebView
 @property (nonatomic,readonly,strong,nullable) WKWebView *webView;
+@property (nonatomic,strong) UIProgressView *webLoadingProgressView;
 @property (nonatomic,strong) NSURL *url;
 @property (nonatomic,copy) NSString *htmlString;
 ///是否强制禁止缩放

@@ -320,6 +320,23 @@
     return [UIColor blackColor];
 }
 
+- (UIProgressView *)webLoadingProgressView {
+    if(!_webLoadingProgressView){
+        _webLoadingProgressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+        @weakify(self)
+        [RACObserve(self.webView, estimatedProgress) subscribeNext:^(id  _Nullable x) {
+            @strongify(self)
+            [self->_webLoadingProgressView setProgress:self.webView.estimatedProgress animated:YES];
+            if(self.webView.estimatedProgress >= 1){
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self->_webLoadingProgressView.hidden = YES;
+                });
+            }
+        }];
+    }
+    return _webLoadingProgressView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self sw_initSubViews];
@@ -394,6 +411,9 @@
             self.webView.navigationDelegate = self;
             self.webView.UIDelegate = self;
             [self.view addSubview:self.webView];
+            
+            [self.view addSubview:self.webLoadingProgressView];
+            
             if(self.url){
                 [self.webView loadRequest:[NSURLRequest requestWithURL:_url]];
             }else if(self.htmlString.length > 0){
@@ -464,6 +484,10 @@
         case SWBaseViewControllerWebViewType:
         {
             contentView = _webView;
+            CGRect webLoadingProgressViewFrame = self.webLoadingProgressView.frame;
+            webLoadingProgressViewFrame.origin = CGPointMake(self.contentViewInsets.left, self.contentViewInsets.top + self.view.safeAreaInsets.top);
+            webLoadingProgressViewFrame.size.width = self.view.bounds.size.width - self.contentViewInsets.left - self.contentViewInsets.right;
+            self.webLoadingProgressView.frame = webLoadingProgressViewFrame;
         }
             break;
             
@@ -594,74 +618,6 @@
     UIGraphicsEndImageContext();
     return image;
 }
-
-
-//- (void)addScrollViewContentOffsetObserver:(UIScrollView *)scrollView {
-//    @weakify(self)
-//    [scrollView rac_observeKeyPath:@"contentOffset" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew observer:self block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
-//        @strongify(self)
-//        //        NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
-//        if (@available(iOS 13.0, *)) {
-//#ifdef __IPHONE_13_0
-//            self.sw_visualView.sw_tintColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-//                @strongify(self)
-//                if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark && self.sw_barColor == nil){
-//                    self.sw_visualView.visualView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-//                }else{
-//                    self.sw_visualView.visualView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//                }
-//                CGFloat percent = (scrollView.contentOffset.y + self.sw_bar.bounds.size.height)/self.sw_bar.bounds.size.height;
-//                if(percent >= 1.0){
-//                    percent = 1.0;
-//                }
-//                //                NSLog(@"percent:%f",percent);
-//                if(percent > 0){
-//                    if(self.sw_barColor){
-//                        return [self.sw_barColor colorWithAlphaComponent:1.0-0.1*percent];
-//                    }else{
-//                        if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
-//                            return [[UIColor blackColor] colorWithAlphaComponent:1.0 - 0.9*percent];
-//                        }else{
-//                            return [[UIColor whiteColor] colorWithAlphaComponent:1.0-0.1*percent];
-//                        }
-//                    }
-//                }else{
-//                    if(self.sw_barColor){
-//                        return self.sw_barColor;
-//                    }else{
-//                        if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
-//                            return [UIColor blackColor];
-//                        }else{
-//                            return [UIColor whiteColor];
-//                        }
-//                    }
-//                }
-//
-//            }];
-//#endif
-//        }else{
-//            CGFloat percent = (scrollView.contentOffset.y + self.sw_bar.bounds.size.height)/self.sw_bar.bounds.size.height;
-//            if(percent >= 1.0){
-//                percent = 1.0;
-//            }
-//            //            NSLog(@"percent:%f",percent);
-//            if(percent > 0){
-//                if(self.sw_barColor){
-//                    self.sw_visualView.sw_tintColor = [self.sw_barColor colorWithAlphaComponent:1.0-0.1*percent];
-//                }else{
-//                    self.sw_visualView.sw_tintColor = [[UIColor whiteColor] colorWithAlphaComponent:1.0-0.1*percent];
-//                }
-//            }else{
-//                if(self.sw_barColor){
-//                    self.sw_visualView.sw_tintColor = self.sw_barColor;
-//                }else{
-//                    self.sw_visualView.sw_tintColor = [UIColor whiteColor];
-//                }
-//            }
-//        }
-//
-//    }];
-//}
 
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
