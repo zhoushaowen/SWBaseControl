@@ -9,6 +9,7 @@
 #import <SWMultipleDelegateProxy.h>
 #import <RACDelegateProxy.h>
 #import <ReactiveObjC.h>
+#import <SWExtension/SWExtension.h>
 
 @class SWBaseTextViewDelegateObserver;
 
@@ -39,12 +40,12 @@
     if([text isEqualToString:@"\n"]){
         if(self.textView.didClickReturnKeyBlock){
             self.textView.didClickReturnKeyBlock();
+            return NO;
         }
-        return NO;
     }
-    if(self.limitCount < 0) return YES;
-    NSString *replacedText = [textView.text stringByReplacingCharactersInRange:range withString:text];
-    if(replacedText.length > self.limitCount) return NO;
+//    if(self.limitCount < 0) return YES;
+//    NSString *replacedText = [textView.text stringByReplacingCharactersInRange:range withString:text];
+//    if(replacedText.length > self.limitCount) return NO;
     return YES;
 }
 
@@ -254,6 +255,7 @@
     }];
     [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextViewTextDidChangeNotification object:self] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNotification * _Nullable x) {
         @strongify(self)
+        [self limitWord];
         if(self.textDidChange) self.textDidChange(self.text,x);
         [self changeLabelStatus];
     }];
@@ -262,6 +264,28 @@
         if(self.textDidBeginEditing) self.textDidBeginEditing(x);
     }];
 
+}
+
+- (void)limitWord {
+    if(self.limitCount > 0){
+        NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage];//键盘输入模式
+        if ([lang isEqualToString:@"zh-Hans"]) {
+            UITextRange *selectedRange = self.markedTextRange;
+            //获取高亮的文字
+            UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];
+            //如果没有选择的高亮文字才对文字数量进行限制
+            if(!position){
+                if(self.text.length > self.limitCount){
+                    self.text = [self.text substringToIndex:self.limitCount];
+                }
+            }
+        }
+        else{
+            if(self.text.length > self.limitCount){
+                self.text = [self.text substringToIndex:self.limitCount];
+            }
+        }
+    }
 }
 
 - (void)changeLabelStatus {
