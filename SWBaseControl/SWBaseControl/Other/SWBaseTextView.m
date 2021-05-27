@@ -6,9 +6,8 @@
 //
 
 #import "SWBaseTextView.h"
-#import <SWMultipleDelegateProxy.h>
-#import <RACDelegateProxy.h>
-#import <ReactiveObjC.h>
+#import <SWMultipleDelegateProxy/SWMultipleDelegateProxy.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 #import <SWExtension/SWExtension.h>
 
 @class SWBaseTextViewDelegateObserver;

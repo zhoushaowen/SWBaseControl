@@ -6,7 +6,7 @@
 //
 
 #import "SWPickerViewController.h"
-#import <SWCustomPresentation.h>
+#import <SWCustomPresentation/SWCustomPresentation.h>
 
 
 @interface SWPickerViewController ()

@@ -6,8 +6,8 @@
 //
 
 #import "SWBaseButton.h"
-#import <UIImage+SWExtension.h>
-#import <UIColor+SWHex.h>
+#import <SWExtension/UIImage+SWExtension.h>
+#import <SWExtension/UIColor+SWHex.h>
 
 @implementation SWBaseButton
 

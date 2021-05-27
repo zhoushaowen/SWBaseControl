@@ -7,7 +7,7 @@
 //
 
 #import "SWBaseTextField.h"
-#import <ReactiveObjC.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @implementation SWBaseTextField
 

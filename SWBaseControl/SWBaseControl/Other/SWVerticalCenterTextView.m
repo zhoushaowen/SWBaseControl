@@ -7,8 +7,8 @@
 // 内容垂直居中的textView
 
 #import "SWVerticalCenterTextView.h"
-#import <NSObject+RACKVOWrapper.h>
-#import <RACEXTScope.h>
+#import <ReactiveObjC/NSObject+RACKVOWrapper.h>
+#import <ReactiveObjC/RACEXTScope.h>
 
 @implementation SWVerticalCenterTextView
 

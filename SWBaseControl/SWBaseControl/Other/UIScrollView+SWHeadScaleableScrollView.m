@@ -8,7 +8,7 @@
 
 #import "UIScrollView+SWHeadScaleableScrollView.h"
 #import <objc/runtime.h>
-#import <SWMultipleDelegateProxy.h>
+#import <SWMultipleDelegateProxy/SWMultipleDelegateProxy.h>
 
 @class SWHeadScaleableScrollViewInnerDelegate;
 

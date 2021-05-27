@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SWBaseTextView.h>
+#import <SWBaseControl/SWBaseTextView.h>
 
 @class SWGrowingTextView;
 

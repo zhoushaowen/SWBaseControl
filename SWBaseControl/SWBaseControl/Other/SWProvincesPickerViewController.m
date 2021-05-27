@@ -7,7 +7,7 @@
 // 省市区选择器
 
 #import "SWProvincesPickerViewController.h"
-#import <MJExtension.h>
+#import <MJExtension/MJExtension.h>
 
 NS_INLINE BOOL HasSuffix(NSString *name,NSString *removeString){
     if(name.length > removeString.length){

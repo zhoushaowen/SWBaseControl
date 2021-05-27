@@ -7,7 +7,7 @@
 //
 
 #import "SWVisualEffectView.h"
-#import <RACEXTScope.h>
+#import <ReactiveObjC/RACEXTScope.h>
 
 @implementation SWVisualEffectView
 {

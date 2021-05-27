@@ -7,7 +7,7 @@
 //
 
 #import "SWDatePickerViewController.h"
-#import <SWCustomPresentation.h>
+#import <SWCustomPresentation/SWCustomPresentation.h>
 
 @interface SWDatePickerViewController ()<UIGestureRecognizerDelegate>
 {

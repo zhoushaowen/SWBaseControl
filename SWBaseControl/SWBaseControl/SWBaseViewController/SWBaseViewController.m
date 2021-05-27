@@ -9,10 +9,10 @@
 #import "SWBaseViewController.h"
 #import <objc/runtime.h>
 #import "SWVisualEffectView.h"
-#import <SWExtension.h>
-#import <NSObject+RACKVOWrapper.h>
-#import <RACEXTScope.h>
-#import <ReactiveObjC.h>
+#import <SWExtension/SWExtension.h>
+//#import <NSObject+RACKVOWrapper.h>
+//#import <RACEXTScope.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 
 @interface SWBaseViewController ()

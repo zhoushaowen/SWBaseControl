@@ -7,7 +7,7 @@
 //
 
 #import "SWMoveableViewController.h"
-#import <SWCustomPresentation.h>
+#import <SWCustomPresentation/SWCustomPresentation.h>
 #import <UIKit/UIGestureRecognizerSubclass.h>
 #import <objc/runtime.h>
 

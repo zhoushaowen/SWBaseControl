@@ -7,7 +7,7 @@
 //
 
 #import "SWCollectionPagingView.h"
-#import <SWExtension.h>
+#import <SWExtension/SWExtension.h>
 
 @interface SWCollectionPagingViewCell : UICollectionViewCell
 

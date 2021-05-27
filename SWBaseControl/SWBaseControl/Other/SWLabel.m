@@ -7,7 +7,7 @@
 //
 
 #import "SWLabel.h"
-#import "SWBaseControl.h"
+//#import "SWBaseControl.h"
 
 @implementation SWLabel
 

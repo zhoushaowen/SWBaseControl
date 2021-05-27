@@ -7,7 +7,7 @@
 //
 
 #import "SWSlideViewController.h"
-#import <SWCustomPresentation.h>
+#import <SWCustomPresentation/SWCustomPresentation.h>
 
 @interface SWSlideViewControllerAnimatedTransitioning : NSObject<SWAnimatedTransitioning>
 
