@@ -149,11 +149,11 @@
 #pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
     CGRect rect = [textView.text boundingRectWithSize:CGSizeMake(_textView.bounds.size.width - _textView.textContainerInset.left - _textView.textContainerInset.right - _textView.textContainer.lineFragmentPadding * 2, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:_textView.font} context:nil];
-    if(rect.size.height > textView.font.lineHeight){
-        textView.textContainerInset = UIEdgeInsetsZero;
-    }else{
-        textView.textContainerInset = UIEdgeInsetsMake(8, 0, 8, 0);
-    }
+//    if(rect.size.height > textView.font.lineHeight){
+//        textView.textContainerInset = UIEdgeInsetsZero;
+//    }else{
+//        textView.textContainerInset = UIEdgeInsetsMake(8, 0, 8, 0);
+//    }
     if(_maxNumberOfLinesToDisplay > 0){
         if(rect.size.height > _maxNumberOfLinesToDisplay * textView.font.lineHeight) return;
     }
