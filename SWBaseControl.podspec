@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "SWBaseControl"
 
-  s.version      = "1.12.8"
+  s.version      = "1.12.9"
 
   s.homepage      = 'https://github.com/zhoushaowen/SWBaseControl'
 
@@ -29,6 +29,8 @@ Pod::Spec.new do |s|
   s.dependency 'MJExtension'
 
   s.dependency 'DZNEmptyDataSet'
+
+  s.dependency 'Masonry'
   
   s.requires_arc = true
 

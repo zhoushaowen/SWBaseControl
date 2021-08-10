@@ -7,6 +7,7 @@
 //
 
 #import "SWCornerShadowView.h"
+#import <Masonry/Masonry.h>
 
 @interface SWCornerShadowView ()
 
@@ -47,6 +48,12 @@
     [self addSubview:self.shadowView];
     self.contentView = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:self.contentView];
+    [self.shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];
     
@@ -61,11 +68,11 @@
     
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.shadowView.frame = self.bounds;
-    self.contentView.frame = self.bounds;
-}
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    self.shadowView.frame = self.bounds;
+//    self.contentView.frame = self.bounds;
+//}
 
 #pragma mark - Setter
 - (void)setShadowCornerRadius:(CGFloat)shadowCornerRadius {

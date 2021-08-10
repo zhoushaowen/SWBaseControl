@@ -53,6 +53,7 @@
 }
 
 - (void)setText:(NSString *)text {
+    if(![text isKindOfClass:text]) return;
     _text = [text copy];
     self.textLabel.text = text;
 }

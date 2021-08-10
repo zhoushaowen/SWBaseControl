@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#warning if shadow is not appear,please check superView's clipsToBounds property is set to YES.
 @interface SWCornerShadowView : UIView
 
 /// default is 10.0
