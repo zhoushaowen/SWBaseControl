@@ -409,12 +409,27 @@
 - (void)sw_configNavigation:(BOOL)animated {
     if(![self isNavigationRouteVc]) return;
 //    [self.navigationController.navigationBar setTranslucent:self.translucentNavigationBar];
-    [self.navigationController.navigationBar setShadowImage:self.navigationBarBottomLineHidden?[UIImage new]:nil];
+    [self.navigationController.navigationBar setShadowImage:self.navigationBarBottomLineHidden?[UIImage sw_createImageWithColor:[UIColor clearColor]]:nil];
     [self.navigationController.navigationBar setBarTintColor:self.navigationBarBackgroundColor];
     [self.navigationController.navigationBar setBackgroundImage:self.navigationBarBackgroundImage forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:self.navigationBarHidden animated:animated];
     self.navigationController.navigationBar.tintColor = self.navigationItemColor;
     [self.navigationController.navigationBar setTitleTextAttributes:self.navigationBarTitleTextAttributes];
+    if (@available(iOS 15.0, *)) {
+        //适配iOS15:在iOS15系统下navigationBar的背景默认是透明的,之前对导航栏的设置方法已失效,需要使用下面方法
+        UINavigationBarAppearance *barAppearence = [[UINavigationBarAppearance alloc] init];
+        [barAppearence configureWithOpaqueBackground];
+        [barAppearence setBackgroundColor:self.navigationBarBackgroundColor];
+        [barAppearence setBackgroundImage:self.navigationBarBackgroundImage];
+        [barAppearence setShadowImage:self.navigationBarBottomLineHidden?[UIImage sw_createImageWithColor:[UIColor clearColor]]:nil];
+        [barAppearence setTitleTextAttributes:self.navigationBarTitleTextAttributes];
+        self.navigationController.navigationBar.standardAppearance = barAppearence;
+        self.navigationController.navigationBar.scrollEdgeAppearance = barAppearence;
+        self.navigationController.navigationBar.compactAppearance = barAppearence;
+        self.navigationController.navigationBar.compactScrollEdgeAppearance = barAppearence;
+    } else {
+        // Fallback on earlier versions
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
