@@ -417,10 +417,16 @@
     [self.navigationController.navigationBar setTitleTextAttributes:self.navigationBarTitleTextAttributes];
     if (@available(iOS 15.0, *)) {
         //适配iOS15:在iOS15系统下navigationBar的背景默认是透明的,之前对导航栏的设置方法已失效,需要使用下面方法
+        /*scrollEdgeAppearance 属性
+         iOS15 强制适用于所有导航器
+         当导航控制器包含导航栏和滚动视图时，滚动视图的部分内容将显示在导航栏下方。如果滚动内容的边缘到达该栏，UIKit将在此属性中应用外观设置。如果此属性的值为nil，UIKit将使用standardAppearance属性中的设置，并修改为使用透明背景。如果没有导航控制器管理您的导航栏，UIKit将忽略此属性，并使用导航栏的标准外观。在使用iOS 14或更低版本的应用程序上运行时，此属性适用于标题较大的导航栏。在iOS 15中，此属性适用于所有导航栏。
+         */
         UINavigationBarAppearance *barAppearence = [[UINavigationBarAppearance alloc] init];
         [barAppearence configureWithOpaqueBackground];
         [barAppearence setBackgroundColor:self.navigationBarBackgroundColor];
+        //ios15上如果setBackgroundImage为[UIImage new]或者[UIImage sw_createImageWithColor:[UIColor clearColor]]将无法改变背景
         [barAppearence setBackgroundImage:self.navigationBarBackgroundImage];
+        //ios15上如果setBackgroundImage为[UIImage new]无法隐藏分割线
         [barAppearence setShadowImage:self.navigationBarBottomLineHidden?[UIImage sw_createImageWithColor:[UIColor clearColor]]:nil];
         [barAppearence setTitleTextAttributes:self.navigationBarTitleTextAttributes];
         self.navigationController.navigationBar.standardAppearance = barAppearence;
