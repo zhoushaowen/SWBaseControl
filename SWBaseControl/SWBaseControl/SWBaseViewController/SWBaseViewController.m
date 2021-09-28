@@ -189,6 +189,13 @@
             UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0.01)];
             _tableView.tableHeaderView = headerView;
             _tableView.tableFooterView = footerView;
+            if (@available(iOS 15.0, *)) {
+                //从 iOS 15 开始，TableView 增加sectionHeaderTopPadding属性，默认情况sectionHeaderTopPadding会有22个像素的高度
+                //手动关闭
+                _tableView.sectionHeaderTopPadding = 0;
+            } else {
+                // Fallback on earlier versions
+            }
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];

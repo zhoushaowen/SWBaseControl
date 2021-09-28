@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "SWBaseControl"
 
-  s.version      = "1.12.11"
+  s.version      = "1.12.12"
 
   s.homepage      = 'https://github.com/zhoushaowen/SWBaseControl'
 
