@@ -5,32 +5,36 @@ PODS:
   - MJExtension (3.1.0)
   - MJRefresh (3.1.15.3)
   - ReactiveObjC (3.1.1)
-  - SWBaseControl (1.12.5):
+  - SWBaseControl (1.12.12):
     - DZNEmptyDataSet
+    - Masonry
     - MJExtension
     - ReactiveObjC
-    - SWBaseControl/Other (= 1.12.5)
-    - SWBaseControl/SWBaseViewController (= 1.12.5)
-    - SWBaseControl/SWPopover (= 1.12.5)
+    - SWBaseControl/Other (= 1.12.12)
+    - SWBaseControl/SWBaseViewController (= 1.12.12)
+    - SWBaseControl/SWPopover (= 1.12.12)
     - SWCustomPresentation
     - SWExtension/Core
     - SWMultipleDelegateProxy
-  - SWBaseControl/Other (1.12.5):
+  - SWBaseControl/Other (1.12.12):
     - DZNEmptyDataSet
-    - MJExtension
-    - ReactiveObjC
-    - SWCustomPresentation
-    - SWExtension/Core
-    - SWMultipleDelegateProxy
-  - SWBaseControl/SWBaseViewController (1.12.5):
-    - DZNEmptyDataSet
+    - Masonry
     - MJExtension
     - ReactiveObjC
     - SWCustomPresentation
     - SWExtension/Core
     - SWMultipleDelegateProxy
-  - SWBaseControl/SWPopover (1.12.5):
+  - SWBaseControl/SWBaseViewController (1.12.12):
     - DZNEmptyDataSet
+    - Masonry
+    - MJExtension
+    - ReactiveObjC
+    - SWCustomPresentation
+    - SWExtension/Core
+    - SWMultipleDelegateProxy
+  - SWBaseControl/SWPopover (1.12.12):
+    - DZNEmptyDataSet
+    - Masonry
     - MJExtension
     - ReactiveObjC
     - SWCustomPresentation
@@ -82,11 +86,11 @@ SPEC CHECKSUMS:
   MJExtension: 6b69b3bef2864fd550ce1a184eda219e321209d2
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  SWBaseControl: 034437aa4f78374bf8cbff4862f6a0af6765a768
+  SWBaseControl: ab43737a7363ec6e7c36e8f62596d4b53f288299
   SWCustomPresentation: f7fe50b7fa4b6f660b13f26d61285924c4e75668
   SWExtension: 767bde898e6d9185aa5dba55acdf426c1d2f7bed
   SWMultipleDelegateProxy: a6ec2862c7e6eb5cd056777ddd5c97bec43b3c3c
 
-PODFILE CHECKSUM: fc5211e1ef9bfa51c882bc3b8f09740ef8eb30fe
+PODFILE CHECKSUM: 8d65eb74759ea4d28246b90b38ab82e2ec50070b
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2
