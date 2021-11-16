@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWCollectionViewAlignmentLayout.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, SWCollectionViewAlignment) {
-    SWCollectionViewAlignmentLeft,
-    SWCollectionViewAlignmentRight,
-};
+//typedef NS_ENUM(NSUInteger, SWCollectionViewAlignment) {
+//    SWCollectionViewAlignmentLeft,
+//    SWCollectionViewAlignmentRight,
+//};
 
 /// 建议使用SWCollectionViewAlignmentLayout替代
 @interface SWCollectionViewAlignedLayout : UICollectionViewFlowLayout
