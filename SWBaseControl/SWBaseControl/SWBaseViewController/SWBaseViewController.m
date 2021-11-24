@@ -423,6 +423,7 @@
     self.navigationController.navigationBar.tintColor = self.navigationItemColor;
     [self.navigationController.navigationBar setTitleTextAttributes:self.navigationBarTitleTextAttributes];
     if (@available(iOS 15.0, *)) {
+#ifdef __IPHONE_15_0
         //适配iOS15:在iOS15系统下navigationBar的背景默认是透明的,之前对导航栏的设置方法已失效,需要使用下面方法
         /*scrollEdgeAppearance 属性
          iOS15 强制适用于所有导航器
@@ -440,6 +441,7 @@
         self.navigationController.navigationBar.scrollEdgeAppearance = barAppearence;
         self.navigationController.navigationBar.compactAppearance = barAppearence;
         self.navigationController.navigationBar.compactScrollEdgeAppearance = barAppearence;
+#endif
     } else {
         // Fallback on earlier versions
     }
