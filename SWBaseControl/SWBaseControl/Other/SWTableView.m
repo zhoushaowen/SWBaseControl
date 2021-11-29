@@ -55,9 +55,11 @@
     self.tableHeaderView = headerView;
     self.tableFooterView = footerView;
     if (@available(iOS 15.0, *)) {
+#ifdef __IPHONE_15_0
         //从 iOS 15 开始，TableView 增加sectionHeaderTopPadding属性，默认情况sectionHeaderTopPadding会有22个像素的高度
         //手动关闭
         self.sectionHeaderTopPadding = 0;
+#endif
     } else {
         // Fallback on earlier versions
     }

@@ -144,7 +144,7 @@
             @strongify(self)
             [self->_webLoadingProgressView setProgress:self.webView.estimatedProgress animated:YES];
             if(self.webView.estimatedProgress >= 1){
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.45 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     self->_webLoadingProgressView.hidden = YES;
                 });
             }
@@ -190,9 +190,11 @@
             _tableView.tableHeaderView = headerView;
             _tableView.tableFooterView = footerView;
             if (@available(iOS 15.0, *)) {
+#ifdef __IPHONE_15_0
                 //从 iOS 15 开始，TableView 增加sectionHeaderTopPadding属性，默认情况sectionHeaderTopPadding会有22个像素的高度
                 //手动关闭
                 _tableView.sectionHeaderTopPadding = 0;
+#endif
             } else {
                 // Fallback on earlier versions
             }
