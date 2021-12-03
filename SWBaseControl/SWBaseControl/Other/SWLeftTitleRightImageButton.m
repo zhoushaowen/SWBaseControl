@@ -40,8 +40,14 @@
     [super layoutSubviews];
     CGRect imageRect = self.imageView.frame;
     CGRect titleRect = self.titleLabel.frame;
-    titleRect.origin.x = self.leftInset;
-    imageRect.origin.x = self.leftInset + titleRect.size.width + self.horizontalSpaceBetweenTitleAndImage;
+    if(self.direction == SWLeftTitleRightImageButtonDirection){
+        titleRect.origin.x = self.leftInset;
+        imageRect.origin.x = self.leftInset + titleRect.size.width + self.horizontalSpaceBetweenTitleAndImage;
+    }
+    else if (self.direction == SWLeftImageRightTitleButtonDirection){
+        imageRect.origin.x = self.leftInset;
+        titleRect.origin.x = self.leftInset + imageRect.size.width + self.horizontalSpaceBetweenTitleAndImage;
+    }
     self.imageView.frame = imageRect;
     self.titleLabel.frame = titleRect;
 }
